@@ -44,6 +44,6 @@ Load details on demand. Reuse unchanged skill/project context. Search named file
 
 Use the selected testing workflow for meaningful behavior, including relevant denied/invalid/failure cases. Run repository-required checks and exercise the actual user flow. Browser viewport emulation is not physical-device testing; mocks are not live integration proof. Respect review gates and existing release authorization, then verify deployed behavior.
 
-For installation, missing dependencies or community export, read [sharing and dependencies](references/sharing.md).
+For a repository-link install/update request, follow [INSTALL.md](INSTALL.md) without starting a website project. For missing dependencies or community export, read [sharing and dependencies](references/sharing.md).
 
 Report changes, evidence and limits briefly in the user's preferred language. Follow project conventions for code/docs/PR language. Communication skills do not impose a language or persona. Example: `Use $universal-web-dev to plan a PHP/MySQL inventory system with admin and staff roles.` Suspend for unrelated work or stop on "normal mode" / "stop universal-web-dev". Don't change global instructions or hooks.

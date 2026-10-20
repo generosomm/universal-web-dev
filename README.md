@@ -4,6 +4,16 @@ A reusable development skill by [Merwin M. Generoso](https://github.com/generoso
 
 **Local prerelease draft. Public publishing is on hold.** The installer and checker are tested with temporary fixtures; no completed reference website or bug-free/token-savings claim is implied. Current validation scope is in the [release checklist](docs/release-checklist.md).
 
+## Install through your AI
+
+After publication, paste the repository link into a local coding assistant and say:
+
+```text
+install or update universal-web-dev and its core skills from this repository.
+```
+
+**For the assistant:** follow [INSTALL.md](INSTALL.md). Resolve the host's skills directory, use managed sync, run the checker and report any missing/manual requirements. The assistant needs local tools and permissions; a URL alone is not an installer for every AI platform.
+
 ## What it does
 
 - Adapts to static sites, business systems, existing projects and focused fixes.
@@ -23,8 +33,8 @@ start with the project documentation and MVP sprint plan before application code
 Requires Python 3.10+ and a local Codex-compatible skills directory. Clone/download this repository, then run commands from its root. Review downloaded skills as instructions; installation never executes their scripts. The default command only prints a plan, with no network or filesystem changes:
 
 ```sh
-python scripts/install.py --profile core
-python scripts/install.py --profile core --apply
+python scripts/install.py --profile core --sync
+python scripts/install.py --profile core --sync --apply
 python scripts/doctor.py
 ```
 
@@ -40,7 +50,7 @@ python scripts/install.py --profile postgres --apply
 python scripts/doctor.py --profile all
 ```
 
-Backend selects API Design and OpenAI Security; Postgres selects Supabase's SQL guidance, not a hosted database or account. Existing matching skills are skipped. `--update --apply` replaces selected matching skills only after staging checks, retains backups beside the skills directory, and restores replaced directories if installation fails. It uses the pins already in the lock; it does not fetch newer versions automatically. Review local customizations and the printed plan first.
+Backend selects API Design and OpenAI Security; Postgres selects Supabase's SQL guidance, not a hosted database or account. With `--sync --apply`, missing skills are installed and unchanged receipt-managed skills update when the selected release changes their pinned source. Matching versions are skipped without downloads. Modified or unmanaged existing skills are preserved and reported. `--update --apply` is the explicit replacement override, with backups and rollback on commit failure. Updates use reviewed pins from the selected wrapper release; they never silently follow upstream HEAD. Review local customizations and the printed plan first.
 
 ## Dependencies and attribution
 

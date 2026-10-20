@@ -1,10 +1,10 @@
 # Sharing and dependencies
 
-Resolve skills by catalog name. This package contains the original wrapper, references, installer, checker and tests; upstream skill sources and binaries are not bundled. Install the full package rather than copying SKILL.md alone. See [README](../README.md), [credits](../CREDITS.md) and [dependency lock](../dependencies.lock.json).
+Resolve skills by catalog name. This package contains the original wrapper, references, installer, checker and tests; upstream skill sources and binaries are not bundled. Install the full package rather than copying SKILL.md alone. For an AI given the repository link, start with [INSTALL.md](../INSTALL.md). See [README](../README.md), [credits](../CREDITS.md) and [dependency lock](../dependencies.lock.json).
 
 ## Installation and compatibility
 
-Use Python 3.10+. `python scripts/install.py --profile core` prints a plan without network/writes; add `--apply` to download pinned sources and install. The default is $CODEX_HOME/skills or ~/.codex/skills; `--dest` selects another directory. `--profile backend` and `--profile postgres` are optional. Existing compatible skills are skipped; `--update --apply` stages and verifies replacements, retains backups and attempts rollback on installation failure. Review customizations first. No upstream scripts are executed.
+Use Python 3.10+. `python scripts/install.py --profile core` prints a plan without network/writes; add `--apply` to download pinned sources and install. The default is $CODEX_HOME/skills or ~/.codex/skills; `--dest` selects another directory. `--profile backend` and `--profile postgres` are optional. Use `--sync --apply` for missing skills and unchanged receipt-managed updates to the selected release's pins. Preserve modified/unmanaged copies and report them; `--update --apply` is an explicit replacement override with backups and rollback. Review customizations first. No upstream scripts are executed.
 
 Eight core capabilities are using-superpowers, ponytail, caveman, frontend-design, design-taste-frontend, ui-ux-pro-max, emil-design-eng and impeccable. Superpowers' workflow siblings are co-installed because its references depend on them. Installation is not language, provider or framework selection. UI/UX script examples must resolve their actual installed skill directory, not a hardcoded host plugin path.
 

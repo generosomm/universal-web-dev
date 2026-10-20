@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Plan by default; install pinned skills only with --apply. Python stdlib only."""
 import argparse
+import hashlib
 import io
 import json
 import os
@@ -18,6 +19,94 @@ PROFILES = {'core', 'backend', 'postgres'}
 MAX_DOWNLOAD = 64 * 1024 * 1024
 MAX_EXPANDED = 256 * 1024 * 1024
 MAX_FILES = 20000
+RECEIPT = '.universal-web-dev-install.json'
+WRAPPER_FILES = ('SKILL.md', 'agents', 'references', 'LICENSE', 'CREDITS.md', 'README.md',
+                 'INSTALL.md', 'dependencies.lock.json', 'scripts', 'docs', 'tests')
+
+
+def content_digest(root, selected=None):
+    """Hash paths and bytes without following links or including generated caches."""
+    digest = hashlib.sha256()
+
+    def visit(path):
+        if path.name in {RECEIPT, '__pycache__'} or path.suffix == '.pyc':
+            return
+        if path.is_symlink():
+            raise ValueError('Refusing content symlink: ' + str(path))
+        relative = path.relative_to(root).as_posix().encode('utf-8')
+        if path.is_dir():
+            digest.update(b'd' + len(relative).to_bytes(8, 'big') + relative)
+            for child in sorted(path.iterdir(), key=lambda p: p.name):
+                visit(child)
+        elif path.is_file():
+            content = path.read_bytes()
+            digest.update(b'f' + len(relative).to_bytes(8, 'big') + relative)
+            digest.update(len(content).to_bytes(8, 'big') + content)
+        else:
+            raise ValueError('Unsafe content: ' + str(path))
+
+    paths = [root / name for name in selected] if selected is not None else list(root.iterdir())
+    for path in sorted(paths, key=lambda p: p.name):
+        if path.exists() or path.is_symlink():
+            visit(path)
+    return digest.hexdigest()
+
+
+def desired_identity(name, package, skill):
+    if package is None:
+        return {'kind': 'wrapper', 'name': name, 'content': content_digest(SOURCE_ROOT, WRAPPER_FILES)}
+    return {'kind': 'dependency', 'name': name, 'repo': package['repo'], 'ref': package['ref'],
+            'package': package['id'], 'path': skill['path'], 'support': skill.get('support', []),
+            'license': package['license'], 'license_files': package['license_files']}
+
+
+def managed_status(target, desired):
+    """A receipt authorizes only this module's unchanged installed content."""
+    try:
+        path = target / RECEIPT
+        if path.is_symlink():
+            return 'unmanaged'
+        receipt = json.loads(path.read_text(encoding='utf-8'))
+        if not isinstance(receipt, dict) or type(receipt.get('version')) is not int or receipt['version'] != 1:
+            return 'unmanaged'
+        identity = receipt.get('identity')
+        if not isinstance(identity, dict) or set(identity) != set(desired):
+            return 'unmanaged'
+        stable = ('kind', 'name', 'repo', 'package', 'path') if desired['kind'] == 'dependency' else ('kind', 'name')
+        if any(identity.get(key) != desired.get(key) for key in stable):
+            return 'unmanaged'
+        hex_digest = lambda value: isinstance(value, str) and re.fullmatch(r'[0-9a-f]{64}', value)
+        if desired['kind'] == 'dependency':
+            if not isinstance(identity['ref'], str) or not re.fullmatch(r'[0-9a-fA-F]{40}', identity['ref']):
+                return 'unmanaged'
+            if not isinstance(identity['license'], str) or not identity['license'].strip():
+                return 'unmanaged'
+            licenses, support = identity['license_files'], identity['support']
+            if not isinstance(licenses, list) or not licenses or not isinstance(support, list):
+                return 'unmanaged'
+            for item in licenses:
+                safe_path(item)
+            for item in support:
+                if not isinstance(item, dict) or set(item) != {'source', 'target'}:
+                    return 'unmanaged'
+                safe_path(item['source'], root_ok=True)
+                safe_path(item['target'])
+            # Attribution must agree with the receipt's claimed installed pin.
+            notice_path = target / 'UPSTREAM-NOTICE.txt'
+            if notice_path.is_symlink():
+                return 'unmanaged'
+            notice = notice_path.read_text(encoding='utf-8')
+            if not notice.startswith('{}\nCommit: {}\n'.format(identity['repo'], identity['ref'])):
+                return 'unmanaged'
+        elif not hex_digest(identity['content']) or identity['content'] != receipt.get('digest'):
+            return 'unmanaged'
+        if not hex_digest(receipt.get('digest')):
+            return 'unmanaged'
+        if content_digest(target) != receipt['digest']:
+            return 'modified'
+        return 'unchanged' if identity == desired else 'update'
+    except (ValueError, OSError, UnicodeError):
+        return 'unmanaged'
 
 
 def safe_path(value, root_ok=False):
@@ -221,7 +310,9 @@ def main(argv=None):
     parser.add_argument('--dest', type=Path, default=default_dest())
     parser.add_argument('--manifest', type=Path, default=SOURCE_ROOT / 'dependencies.lock.json')
     parser.add_argument('--apply', action='store_true')
-    parser.add_argument('--update', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--update', action='store_true', help='Explicitly replace existing skills, retaining backups')
+    mode.add_argument('--sync', action='store_true', help='Update unchanged receipt-managed skills to the lock pins')
     args = parser.parse_args(argv)
     manifest = load_manifest(args.manifest)
     profiles = set(args.profile or ['core'])
@@ -240,9 +331,17 @@ def main(argv=None):
         target = locate_existing(dest, name)
         if package and package.get('canonical_folders') and target.name != name:
             raise ValueError('canonical folder required for {}: found {}; review and manually relocate it to {} before retrying, because this package uses sibling references'.format(name, target, dest / name))
-        action = 'update' if target.exists() and args.update else 'skip' if target.exists() else 'install'
+        action = 'install'
+        if target.exists():
+            if args.update:
+                action = 'update'
+            elif args.sync:
+                status = managed_status(target, desired_identity(name, package, skill))
+                action = 'update' if status == 'update' else 'skip (' + status + ')'
+            else:
+                action = 'skip'
         print('{} {} -> {}'.format(action, name, target))
-        if action != 'skip':
+        if action in {'install', 'update'}:
             pending.append((name, package, skill, target))
     if not args.apply or not pending:
         return 0
@@ -259,7 +358,7 @@ def main(argv=None):
             output = staged / name
             if package is None:
                 output.mkdir()
-                for item in ('SKILL.md', 'agents', 'references', 'LICENSE', 'CREDITS.md', 'README.md', 'dependencies.lock.json', 'scripts', 'docs', 'tests'):
+                for item in WRAPPER_FILES:
                     source = SOURCE_ROOT / item
                     if source.exists():
                         copy_safe(source, output / item)
@@ -284,6 +383,11 @@ def main(argv=None):
                 (output / 'UPSTREAM-NOTICE.txt').write_text('{}\nCommit: {}\nLicense: {}\nUpstream content retains its original license.\n'.format(package['repo'], package['ref'], package['license']), encoding='utf-8')
             if skill_name(output / 'SKILL.md') != name:
                 raise ValueError('SKILL.md name does not match manifest: ' + name)
+            if (output / RECEIPT).exists():
+                raise ValueError('Source contains reserved install receipt: ' + name)
+            receipt = {'version': 1, 'identity': desired_identity(name, package, skill),
+                       'digest': content_digest(output)}
+            (output / RECEIPT).write_text(json.dumps(receipt, indent=2) + '\n', encoding='utf-8')
         commit(staged, {name: target for name, _, _, target in pending}, dest)
     return 0
 

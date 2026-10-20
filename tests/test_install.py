@@ -128,7 +128,7 @@ class InstallerTests(unittest.TestCase):
         alternate.mkdir(parents=True)
         entry = alternate / 'SKILL.md'
         entry.write_text('---\nname: example\n---\nkeep')
-        for args in ((), ('--apply',), ('--apply', '--update')):
+        for args in ((), ('--apply',), ('--apply', '--update'), ('--apply', '--sync')):
             with self.subTest(args=args), self.assertRaisesRegex(ValueError, 'canonical folder required'):
                 self.run_install(*args)
         self.assertEqual(entry.read_text(), '---\nname: example\n---\nkeep')
@@ -285,6 +285,105 @@ class InstallerTests(unittest.TestCase):
             with self.assertRaises(OSError):
                 self.run_install('--apply', '--update')
         self.assertEqual((self.dest / 'example/old.txt').read_text(), 'preserve me')
+
+    def test_first_install_records_identity_and_content_digest(self):
+        (self.source / 'INSTALL.md').write_text('install guide')
+        self.run_install('--apply', '--sync')
+        receipt = json.loads((self.dest / 'example/.universal-web-dev-install.json').read_text())
+        self.assertEqual(receipt['version'], 1)
+        self.assertEqual(receipt['identity']['repo'], 'owner/repo')
+        self.assertEqual(receipt['identity']['ref'], 'a' * 40)
+        self.assertEqual(receipt['identity']['name'], 'example')
+        self.assertEqual(len(receipt['digest']), 64)
+        self.assertTrue((self.dest / 'universal-web-dev/INSTALL.md').exists())
+
+    def sync_without_network(self):
+        with patch.object(self.mod, 'SOURCE_ROOT', self.source), \
+                patch.object(self.mod, 'download', side_effect=AssertionError('network')), \
+                contextlib.redirect_stdout(io.StringIO()) as out:
+            self.mod.main(['--manifest', str(self.manifest), '--dest', str(self.dest), '--apply', '--sync'])
+        return out.getvalue()
+
+    def test_sync_same_pin_is_noop_without_network_and_ignores_cache(self):
+        self.run_install('--apply')
+        cache = self.dest / 'example/__pycache__'
+        cache.mkdir()
+        (cache / 'runtime.pyc').write_bytes(b'cache')
+        before = (self.dest / 'example/SKILL.md').stat().st_mtime_ns
+        self.assertIn('unchanged', self.sync_without_network())
+        self.assertEqual((self.dest / 'example/SKILL.md').stat().st_mtime_ns, before)
+        self.assertFalse((self.root / 'skills-backups').exists())
+
+    def test_sync_changed_pin_updates_with_backup(self):
+        self.run_install('--apply')
+        self.data['packages'][0]['ref'] = 'b' * 40
+        self.write_manifest()
+        self.run_install('--apply', '--sync')
+        self.assertIn('b' * 40, (self.dest / 'example/UPSTREAM-NOTICE.txt').read_text())
+        old = list((self.root / 'skills-backups').glob('*/example/UPSTREAM-NOTICE.txt'))
+        self.assertEqual(len(old), 1)
+        self.assertIn('a' * 40, old[0].read_text())
+
+    def test_sync_preserves_modified_and_unmanaged_folders(self):
+        self.run_install('--apply')
+        self.data['packages'][0]['ref'] = 'b' * 40
+        self.write_manifest()
+        entry = self.dest / 'example/SKILL.md'
+        entry.write_text(entry.read_text() + '\nlocal edit')
+        self.assertIn('modified', self.sync_without_network())
+        self.assertIn('local edit', entry.read_text())
+        (self.dest / 'example/.universal-web-dev-install.json').unlink()
+        self.assertIn('unmanaged', self.sync_without_network())
+        self.assertIn('local edit', entry.read_text())
+
+    def test_sync_malformed_and_foreign_receipts_are_not_authorization(self):
+        self.run_install('--apply')
+        path = self.dest / 'example/.universal-web-dev-install.json'
+        valid = json.loads(path.read_text())
+        foreign = json.loads(json.dumps(valid))
+        foreign['identity']['repo'] = 'other/repo'
+        wrong_name = json.loads(json.dumps(valid))
+        wrong_name['identity']['name'] = 'other'
+        malformed_support = json.loads(json.dumps(valid))
+        malformed_support['identity']['support'] = None
+        wrong_pin = json.loads(json.dumps(valid))
+        wrong_pin['identity']['ref'] = 'c' * 40
+        for content in ('bad json', '[]', json.dumps({'version': 1}),
+                        json.dumps(foreign), json.dumps(wrong_name),
+                        json.dumps(malformed_support), json.dumps(wrong_pin)):
+            with self.subTest(content=content):
+                path.write_text(content)
+                self.assertIn('unmanaged', self.sync_without_network())
+
+    def test_sync_inconsistent_wrapper_receipt_is_unmanaged(self):
+        self.run_install('--apply')
+        path = self.dest / 'universal-web-dev/.universal-web-dev-install.json'
+        receipt = json.loads(path.read_text())
+        receipt['identity']['content'] = '0' * 64
+        path.write_text(json.dumps(receipt))
+        self.assertIn('skip (unmanaged) universal-web-dev', self.sync_without_network())
+        self.assertEqual(json.loads(path.read_text())['identity']['content'], '0' * 64)
+
+    def test_sync_wrapper_receipt_without_digest_is_unmanaged(self):
+        self.run_install('--apply')
+        path = self.dest / 'universal-web-dev/.universal-web-dev-install.json'
+        receipt = json.loads(path.read_text())
+        del receipt['digest']
+        path.write_text(json.dumps(receipt))
+        self.assertIn('skip (unmanaged) universal-web-dev', self.sync_without_network())
+        self.assertNotIn('digest', json.loads(path.read_text()))
+
+    def test_sync_wrapper_source_change_updates_with_backup_without_network(self):
+        self.run_install('--apply')
+        (self.source / 'references/guide.md').write_text('updated guide')
+        self.sync_without_network()
+        self.assertEqual((self.dest / 'universal-web-dev/references/guide.md').read_text(), 'updated guide')
+        self.assertEqual(len(list((self.root / 'skills-backups').glob('*/universal-web-dev/references/guide.md'))), 1)
+
+    def test_sync_update_are_mutually_exclusive(self):
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as error:
+            self.run_install('--sync', '--update')
+        self.assertEqual(error.exception.code, 2)
 
 
 if __name__ == '__main__':

@@ -37,7 +37,7 @@ def check(package, roots, profiles, package_only=False):
         manifest = {'packages': []}
     # These are wrapper-owned Markdown files; upstream dependencies are checked separately.
     files = [package / 'SKILL.md'] + list((package / 'references').glob('*.md'))
-    files += [p for p in [package / 'README.md', package / 'CREDITS.md'] if p.exists()]
+    files += [p for p in [package / 'README.md', package / 'CREDITS.md', package / 'INSTALL.md'] if p.exists()]
     for file in files:
         if not file.exists():
             continue

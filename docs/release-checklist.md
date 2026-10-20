@@ -29,3 +29,11 @@ Impeccable remains manual due its binary-dependent launcher. Other upstream runt
 - Installed all automatic pinned-source profiles into a disposable directory: 25 skill folders including the wrapper, 24 upstream license notices. Repeated with --update; backups retained. No upstream scripts or Impeccable binaries executed.
 - The installed wrapper's package check passed. Its backend/Postgres dependency check passed. The core check deliberately reports Impeccable manual runtime setup as unverified.
 - No public repository or remote CI run exists yet. A new real reference website remains future validation.
+
+## Repository-link installation follow-up
+
+An explicit user install/update request routes the assistant to INSTALL.md. A local tool-enabled assistant resolves its actual skills directory, runs core --sync planning/apply and the dependency checker, and reports exceptions. A bare link or assistant without local tools is not promised automatic installation.
+
+Managed receipts bind the installed source identity and content digest. Sync should perform no network for unchanged sources, update changed reviewed pins only for intact managed folders, preserve unmanaged/modified folders, and retain existing backup/rollback behavior. Older installs without receipts require an explicit replacement choice before managed updates apply. Upstream HEAD is never selected during ordinary installation.
+
+Follow-up evidence: 43 local tests run, 42 passed and one POSIX-only check skipped on Windows. A cached pinned-source smoke installed 25 skill folders with managed receipts; repeat sync made no downloads, and a subsequent local customization was preserved and reported. The installed wrapper package check passed. Independent review found malformed wrapper receipt edge cases; both were reproduced with failing regressions, fixed, and re-reviewed with no remaining actionable findings. No AI platform without local tools or public-link installation has been claimed tested.
