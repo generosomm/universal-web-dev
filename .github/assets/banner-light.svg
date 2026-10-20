@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+  <title id="t">Universal Web Dev</title>
+  <desc id="d">A skill that routes your AI coding assistant to the right expert skills for each website task.</desc>
+  <rect width="1280" height="420" fill="#f4f7f5"/>
+  <g fill="#17703f">
+    <rect x="80" y="96" width="14" height="44"/><rect x="100" y="110" width="14" height="30"/><rect x="120" y="82" width="14" height="58"/>
+  </g>
+  <text x="152" y="128" fill="#4a5e54" font-size="20" font-weight="600">Agent skill for websites</text>
+  <text x="78" y="214" fill="#0d1411" font-size="70" font-weight="700" letter-spacing="-2">Universal Web Dev</text>
+  <text x="80" y="266" fill="#0d1411" font-size="27">Any website your AI builds: planned, distinctive,</text>
+  <text x="80" y="302" fill="#0d1411" font-size="27">and checked before it ships.</text>
+  <text x="80" y="352" fill="#4a5e54" font-size="19">Claude Code  ·  Codex  ·  28 pinned skills, one install</text>
+  <rect x="744" y="92" width="456" height="84" fill="#e3ebe6"/>
+  <text x="768" y="126" fill="#4a5e54" font-size="18">A new landing page</text>
+  <text x="768" y="155" fill="#17703f" font-size="21" font-weight="600">Taste direction  ·  Impeccable polish</text>
+  <rect x="744" y="196" width="456" height="84" fill="#e3ebe6"/>
+  <text x="768" y="230" fill="#4a5e54" font-size="18">A failing test</text>
+  <text x="768" y="259" fill="#17703f" font-size="21" font-weight="600">Systematic debugging only</text>
+  <rect x="744" y="300" width="456" height="84" fill="#e3ebe6"/>
+  <text x="768" y="334" fill="#4a5e54" font-size="18">Release day</text>
+  <text x="768" y="363" fill="#17703f" font-size="21" font-weight="600">Readiness  ·  Break UI  ·  Mobile Native</text>
+</svg>

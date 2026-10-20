@@ -1,28 +1,35 @@
 <div align="center">
 
-# Universal Web Dev
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/banner-dark.svg">
+  <img src=".github/assets/banner-light.svg" width="100%" alt="Universal Web Dev: any website your AI builds, planned, distinctive, and checked before it ships.">
+</picture>
 
-**Plan first. Build with intent. Verify the real flow.**
+<br>
 
-A flexible development skill for your AI coding assistant.
+[![Checks](https://github.com/generosomm/universal-web-dev/actions/workflows/check.yml/badge.svg)](https://github.com/generosomm/universal-web-dev/actions/workflows/check.yml)
+![Skills](https://img.shields.io/badge/skills-28%20pinned-17703f?style=flat-square)
+![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex-0d1411?style=flat-square)
+![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?style=flat-square)
+[![License](https://img.shields.io/badge/license-MIT-186B53?style=flat-square)](LICENSE)
 
-[Get started](#install-through-your-ai) · [The core skills](#dependencies-and-attribution) · [Setup guide](INSTALL.md) · [Portfolio](https://generosomm.dev)
-
-![Python 3.10 or newer](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square)
-[![MIT license for original files](https://img.shields.io/badge/License-MIT-186B53?style=flat-square)](LICENSE)
-![Community preview](https://img.shields.io/badge/Status-Community%20preview-8A5700?style=flat-square)
+**[Install](#install-in-one-message)** · **[What you get](#what-you-get)** · **[See a site it built](#see-a-site-it-built)** · **[Included skills](#included-skills)** · **[FAQ](#faq)**
 
 </div>
 
 ---
 
-A reusable development skill by [Merwin M. Generoso](https://generosomm.dev) for planning, building and verifying websites and web-based systems. It coordinates community skills without assuming a framework, database, visual style or industry.
+### Your AI can already write a website. This makes it a good one.
 
-**Community preview:** installer and checker validation includes temporary fixtures and disposable pinned-source installations. A static [reference site](https://github.com/generosomm/universal-web-dev/tree/main/examples/reference-site) was built through the routing, with its findings fed back into SKILL.md; a business-system trial (auth, database, roles) is still pending. See the [release checklist](docs/release-checklist.md) for evidence, limits and publication status.
+Without guidance, AI-built sites drift toward the same look: a centred headline, three icon cards, a soft gradient. They also skip the boring work that makes a site launchable: contrast, mobile, broken links, secrets in the browser.
 
-## Install through your AI
+**Universal Web Dev** is one skill that sits in front of your coding assistant. For each task it picks the right expert skill from 28 community skills and leaves the rest unloaded, so you get a distinctive design, a plan before code, and a release checklist, without paying for every manual on every edit.
 
-Copy this prompt into a local coding assistant with file, terminal and network access (Claude Code, Codex or similar). Run it once to install everything. Run it again after a new release to bring every skill it installed up to that release's reviewed versions; skills you edited or installed some other way are kept and reported, not replaced:
+<br>
+
+## Install in one message
+
+Paste this into Claude Code, Codex or any coding assistant that can run commands:
 
 ```text
 install or update universal-web-dev and all of its skills from:
@@ -30,130 +37,216 @@ https://github.com/generosomm/universal-web-dev
 follow INSTALL.md, preserve my customized skills, and report what changed.
 ```
 
-That one link installs this skill plus every skill it uses, from 11 GitHub repositories: Superpowers, Ponytail, Caveman, Anthropic's Frontend Design, Taste, UI/UX Pro Max, Emil Kowalski's skills, Impeccable, API Design, OpenAI Security and Supabase Postgres. Each comes from a reviewed, pinned commit listed in [credits](CREDITS.md). Your own edited copies are kept, never overwritten. Prefer a smaller setup? Say "core skills" instead of "all of its skills".
+That's it. Your assistant downloads this skill plus the 28 skills it uses, each from a reviewed, pinned commit, then runs a check and tells you what it installed. Restart or refresh your assistant afterwards so it sees the new skills.
 
-**For the assistant:** follow [INSTALL.md](INSTALL.md). The assistant needs local tools and permissions; a URL alone is not an installer for every AI platform.
-
-## What it does
-
-- Adapts to static sites, business systems, existing projects and focused fixes.
-- Plans empty projects before code using concise root briefs, an MVP sprint ledger and per-sprint test records.
-- Delivers one usable vertical feature with relevant permissions, database/API contracts and real-flow verification.
-- Routes each task to the fewest skills it needs: a typo loads nothing extra, a landing page loads one design direction plus one final review, and backend work skips design guidance. That keeps context, and token cost, small without skipping tests or validation.
-- Preserves accepted project decisions instead of redesigning on every change.
-
-Use it for portfolios, landing pages, dashboards, booking platforms, inventory systems and other web applications. Bring your own requirements and preferred stack. The skill guides your coding assistant; it does not provide hosting, databases or paid service accounts.
-
-Start with [SKILL.md](SKILL.md). Invoke it with `/universal-web-dev` in Claude Code or `$universal-web-dev` in Codex, or just describe the web task. For example:
-
-```text
-use universal-web-dev to plan a small inventory system with owner and staff roles.
-start with the project documentation and MVP sprint plan before application code.
-```
-
-For an existing project:
-
-```text
-use universal-web-dev to continue this project's next MVP feature.
-reuse the existing design and architecture, update the sprint status,
-and verify the complete user flow before marking it done.
-```
-
-## Project workflow
-
-1. Clarify users, scope, constraints and MVP acceptance criteria.
-2. Plan before application code in an empty project.
-3. Build one usable feature, including relevant permissions, validation and failure states.
-4. Run appropriate tests and verify the actual user flow.
-5. Update sprint status and evidence before continuing.
-
-The default new-project planning structure is:
-
-```text
-README.md
-PROJECT.md
-PRODUCT.md
-DESIGN.md
-docs/
-  sprint-plan.md
-  testing.md
-  sprints/S01.md
-tests/
-  sprints/S01/README.md
-```
-
-Existing projects keep their established structure. Tests are added as behavior is implemented; a folder alone is not proof. [Website readiness](references/website-readiness.md) covers relevant release checks, including accessibility, mobile layouts, secrets, forms, privacy and discoverability. Conditional references load only when needed to keep context focused.
-
-## Install
-
-Requires Python 3.10+ and a local skills directory (Claude Code, Codex or another compatible host). Clone/download this repository, then run commands from its root. Review downloaded skills as instructions; installation never executes their scripts. The default command only prints a plan, with no network or filesystem changes:
-
-```sh
-python scripts/install.py --host claude --profile core --sync
-python scripts/install.py --host claude --profile core --sync --apply
-python scripts/doctor.py
-```
-
-`--host claude` installs to ~/.claude/skills (or $CLAUDE_CONFIG_DIR/skills). `--host codex`, the default, installs to ~/.codex/skills (or $CODEX_HOME/skills). Use `--dest <skills-directory>` for any other root. Other runtimes need their documented skills directory and tool compatibility; installation is not account/cloud/mobile synchronization. New skills may require refreshing the host's catalog.
-
-**Impeccable installs guidance-only.** Its `scripts/` launcher downloads an unpinned runtime binary, so the installer leaves that folder out. Impeccable's own documented fallback then reads PRODUCT.md and DESIGN.md directly, so critique, audit and polish work. Live browser mode, the detector and shortcuts need the launcher; set it up from the [credited upstream source](CREDITS.md) if you want them. Do not run a downloaded binary merely to clear a check.
-
-Optional modules, selected explicitly:
-
-```sh
-python scripts/install.py --host claude --profile lean --apply
-python scripts/install.py --host claude --profile backend --apply
-python scripts/install.py --host claude --profile postgres --apply
-python scripts/doctor.py --profile all
-```
-
-Lean adds Caveman for terse replies; Backend selects API Design and OpenAI Security; Postgres selects Supabase's SQL guidance, not a hosted database or account.
+- **Updating later?** Send the same message. Skills you edited, or installed another way, are kept and reported, never overwritten.
+- **Want a smaller setup?** Say "core skills" instead of "all of its skills".
 
 <details>
-<summary><strong>How updates preserve your existing skills</strong></summary>
+<summary><strong>Install it yourself instead</strong></summary>
 
-With `--sync --apply`, missing skills install and unchanged receipt-managed skills update when the selected release changes their pinned source. Matching versions skip downloads. Modified or unmanaged existing skills are preserved and reported.
+<br>
 
-Caveman moved from `core` to the optional `lean` profile, Impeccable now installs automatically (guidance-only), and Superpowers' `diagnosing-superpowers` is no longer selected. Sync never removes skills, so existing copies stay in place.
+Needs Python 3.10+. From a clone of this repository:
 
-`--update --apply` explicitly replaces existing copies, with backups and rollback on installation failure. Review local customizations and the printed plan first. Updates use reviewed pins from the selected wrapper release; they never silently follow upstream HEAD.
+```sh
+python scripts/install.py --host claude --profile all --sync           # preview, changes nothing
+python scripts/install.py --host claude --profile all --sync --apply   # install
+python scripts/doctor.py --profile all                                 # check
+```
 
-If a running host locks the folder on Windows, release the lock/check normal permissions and retry. See [installation recovery](INSTALL.md#locked-installation-directories).
+Use `--host codex` for Codex, or `--dest <folder>` for any other skills directory. Profiles: `core` (design and workflow), `lean` (adds Caveman), `backend` (API design, security review), `postgres` (Supabase's Postgres guidance), or `all`.
+
+The installer never runs code from the skills it downloads. It keeps backups when it replaces anything and rolls back if an install fails. Details: [INSTALL.md](INSTALL.md).
 
 </details>
 
-## Dependencies and attribution
+<br>
 
-| Core capability | Main role |
-| --- | --- |
-| Superpowers | Planning, implementation workflow and verification |
-| Ponytail | The smallest complete implementation with controlled scope |
-| Caveman (optional `lean` profile) | Terse replies when the user asks for them |
-| Frontend Design | Intentional visual direction and interface composition |
-| Taste | Distinctive typography, layout and visual choices |
-| UI/UX Pro Max | UI/UX guidance and design-system decisions |
-| Emil Design Engineering | Component polish, interaction details and purposeful motion |
-| Break UI, Mobile Native (Emil) | Release checks: worst-case content and real-phone feel |
-| Prototype, Pick UI Library (Emil) | Run only when the developer invokes them: try several looks side by side; choose proven libraries for complex widgets |
-| Impeccable | Final interface critique, accessibility and refinement (guidance-only install) |
+## What you get
 
-Capabilities are routed by task, so only one design direction skill runs per project and Impeccable reviews once at the end. Superpowers includes its workflow subskills, so the installed folder count is larger than the table. Each module retains its own scope and license. The pinned upstream versions may differ from locally customized copies.
+**A design that belongs to the client.** Each new page gets its own layout, type and palette, built from what makes that business different from its competitors. Generic AI patterns are banned and checked in a real browser. Your brand or accepted design always wins.
 
-See [all credits and verified source/license links](CREDITS.md), [pinned dependencies](dependencies.lock.json), and [sharing guidance](references/sharing.md). No third-party skill source or runtime binary is bundled here. Opt-in installation downloads selected pinned source archives and retains license notices. This independent project does not imply upstream sponsorship or endorsement.
+**Context that stays small.** A typo loads nothing extra and a bug loads debugging only. The heavy design manuals load for new pages, not for every edit.
 
-## Checks and updates
+**A site that is ready to launch.** A plan before code, tests for real behaviour, and a release checklist that adapts to the site, so there are no cookie banners or bot walls where they don't belong.
 
-```sh
-python -m unittest discover -s tests -v
-python scripts/doctor.py --package-only
+### How it picks skills
+
+| You ask for | It loads | It skips |
+| --- | --- | --- |
+| A typo or copy fix | nothing extra | all design and backend guidance |
+| A bug fix | systematic debugging | design skills |
+| A new landing page or portfolio | Taste for direction, Impeccable for the final polish | backend guidance, a second design system |
+| A dashboard or admin screen | Frontend Design, UI/UX Pro Max lookups | marketing-page art direction |
+| A login, database or API | full-stack contracts, API and security guidance | design skills |
+| A release | readiness checklist, Break UI, Mobile Native | anything outside the release |
+
+The full routing lives in [SKILL.md](SKILL.md), which is about 5.7 KB.
+
+### What gets checked before launch
+
+Every item is marked done, pending, or "doesn't apply" with a reason, so a portfolio isn't forced through checks meant for a shop.
+
+| Trust and safety | Found and shared | Works for everyone |
+| --- | --- | --- |
+| Privacy policy and terms that match what the site does | Meta titles and descriptions | Contrast measured, not guessed |
+| No secrets in browser code | Social preview image and favicon | Keyboard focus and alt text |
+| HTTPS and secure sessions | Sitemap and robots.txt | Phone, tablet and desktop layouts |
+| Cookie consent only where needed | Heading order and structured data | Custom 404 and no broken links |
+| Form validation and spam protection | Hreflang for multilingual sites | Fast pages: images, slow scripts |
+
+The full checklist: [website readiness](references/website-readiness.md).
+
+<br>
+
+## See a site it built
+
+A one-page site for a fictional seaside guesthouse, built by following the skill end to end: planning documents, a dealt design direction, tests, browser checks and a final polish pass.
+
+<table>
+<tr>
+<td width="62%"><img src=".github/assets/reference-desktop.jpg" alt="Saltrum reference site: a bottle-green page with the name in large gold letters and the sections stacked as tabbed file folders"></td>
+<td width="38%" rowspan="2" valign="top"><img src=".github/assets/reference-phone.jpg" alt="The same page on a phone, with the folder tabs staggered across the width"></td>
+</tr>
+<tr>
+<td><img src=".github/assets/reference-rooms.jpg" alt="The four rooms as green cards that fold into narrow spines as you scroll, with the active room open and its price and booking link"></td>
+</tr>
+</table>
+
+The checks caught five real bugs before it was done, including a script error that disabled every feature and a colour that failed contrast. The [code, tests and build record](https://github.com/generosomm/universal-web-dev/tree/main/examples/reference-site) are in `examples/`. The business and its content are fictional.
+
+<br>
+
+## Use it
+
+Describe the work. The skill takes it from there:
+
+```text
+use universal-web-dev to plan a booking site for a small dental clinic with staff and admin roles.
 ```
 
-The doctor checks package integrity and dependency presence, not website security, external-service wiring, full runtime compatibility or exact integrity of existing custom skills. Manual requirements remain visible. Keep skills selective and projects small; better planning and focused tests do not guarantee zero bugs or lower token usage.
+```text
+use universal-web-dev to continue this project's next feature, reuse the existing design,
+and verify the whole flow before marking it done.
+```
 
-Contributors should follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused and include relevant regression evidence. Maintainers check for upstream updates with `python scripts/check-updates.py`, which reports whether new commits touch installed files. Updates should change verified source pins and credits together, test in a disposable skills directory, and review upstream changes before applying them. The project's [MIT license](LICENSE) covers original wrapper files only; upstream licenses remain separate.
+In Claude Code you can also type `/universal-web-dev`; in Codex, `$universal-web-dev`. For a new project it writes short planning documents and a sprint plan before any code, then builds one working feature at a time.
 
----
+<details>
+<summary><strong>Project files it creates for a new site</strong></summary>
 
-Created by **Merwin M. Generoso**. Explore my work at **[generosomm.dev](https://generosomm.dev)** or connect on [GitHub](https://github.com/generosomm).
+<br>
 
-Trying this on a project? [Share a reproducible issue or suggestion](https://github.com/generosomm/universal-web-dev/issues), including your AI host, setup and expected behavior. Remove secrets and private project data first.
+```text
+README.md        what exists and how to run it
+PROJECT.md       stack, structure, conventions
+PRODUCT.md       users, critical flow, what "done" means
+DESIGN.md        the visual direction and tokens
+docs/
+  sprint-plan.md   one status table for the whole build
+  testing.md       real test commands
+  sprints/S01.md   goal, acceptance, evidence
+tests/
+  sprints/S01/     tests mapped to acceptance
+```
+
+Existing projects keep their own structure. See [project bootstrap](references/project-bootstrap.md).
+
+</details>
+
+<br>
+
+## Included skills
+
+All installed from pinned commits in [dependencies.lock.json](dependencies.lock.json), with authors and licenses in [CREDITS.md](CREDITS.md).
+
+| Skill | By | What it does here |
+| --- | --- | --- |
+| [Superpowers](https://github.com/obra/superpowers) | Jesse Vincent | Planning, debugging, test-driven development, verification (14 skills) |
+| [Ponytail](https://github.com/DietrichGebert/ponytail) | Dietrich Gebert | The smallest change that fully solves the task |
+| [Taste](https://github.com/Leonxlnx/taste-skill) | Leonxlnx | Art direction that avoids generic AI pages |
+| [Frontend Design](https://github.com/anthropics/skills) | Anthropic | Direction for app screens and dashboards |
+| [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Next Level Builder | Searchable UX, accessibility and stack guidance |
+| [Emil's skills](https://github.com/emilkowalski/skills) | Emil Kowalski | Interaction polish, Break UI, Mobile Native, Prototype, Pick UI Library |
+| [Impeccable](https://github.com/pbakaus/impeccable) | Paul Bakaus | Final polish, audit and accessibility review |
+| [Caveman](https://github.com/JuliusBrussee/caveman) | Julius Brussee | Terse replies when you ask for them *(lean profile)* |
+| [API Design](https://github.com/wshobson/agents) | Seth Hobson | REST and GraphQL contracts *(backend profile)* |
+| [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* |
+| [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* |
+
+<br>
+
+## FAQ
+
+<details>
+<summary><strong>Does installing 28 skills make my assistant slower or more expensive?</strong></summary>
+
+<br>
+
+Barely. An installed skill costs only its one-line description until it's used, and the routing loads full instructions only when a task needs them. `Prototype` and `Pick UI Library` load only when you invoke them yourself, in assistants that honour that setting, such as Claude Code.
+
+</details>
+
+<details>
+<summary><strong>Will it overwrite skills I already have or have edited?</strong></summary>
+
+<br>
+
+No. Sync installs missing skills and updates only the copies it installed and you haven't changed. Everything else is kept and listed in the report.
+
+</details>
+
+<details>
+<summary><strong>Which AI tools does it work with?</strong></summary>
+
+<br>
+
+Claude Code and Codex have built-in install paths (`--host claude`, `--host codex`). Other assistants that support agent skills work with `--dest <their skills folder>`. A chat-only AI without file and terminal access can't install skills; it can only give you the commands.
+
+</details>
+
+<details>
+<summary><strong>Does it pick a framework, database or style for me?</strong></summary>
+
+<br>
+
+No. Your stack, brand and existing design are inputs. Static sites get no invented backend, and business systems get real permission and data rules.
+
+</details>
+
+<details>
+<summary><strong>Is Impeccable fully installed?</strong></summary>
+
+<br>
+
+Its design guidance is. Its optional launcher downloads a separate program that isn't pinned, so the installer leaves it out, and Impeccable uses its documented fallback. For live browser mode and its automatic detector, set up its launcher from [the upstream project](https://github.com/pbakaus/impeccable).
+
+</details>
+
+<details>
+<summary><strong>How do the pinned versions stay current?</strong></summary>
+
+<br>
+
+Maintainers run `python scripts/check-updates.py`, review any changes to installed files, and release new pins. Your installs update when you send the install message again. See the [release checklist](docs/release-checklist.md) for what has been verified.
+
+</details>
+
+<br>
+
+## Status and limits
+
+Community preview. The installer, checker and a static reference site are tested on Windows and in CI on Linux and Windows. Business-system trials (logins, databases, roles) are next. No skill guarantees bug-free output; this one makes problems visible earlier.
+
+Contributions: follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused, and include test evidence. Found a problem? [Open an issue](https://github.com/generosomm/universal-web-dev/issues) with your AI tool, setup and what you expected, and remove secrets and private project data first.
+
+The [MIT license](LICENSE) covers this wrapper's own files. Each included skill keeps its own license; none are bundled here, and nothing implies their authors endorse this project.
+
+<div align="center">
+
+<br>
+
+Made by **[Merwin M. Generoso](https://generosomm.dev)** · [GitHub](https://github.com/generosomm)
+
+</div>
