@@ -1,6 +1,6 @@
 # Prerelease review
 
-Status: local draft, public upload on hold.
+Status: initial public community preview authorized by the maintainer on 2026-10-20. Validation limits below still apply.
 
 ## Acceptance
 
@@ -12,13 +12,13 @@ Status: local draft, public upload on hold.
 - [x] Package/dependency doctor with clear missing/manual status.
 - [x] Independent code review completed and findings resolved.
 - [x] Real-source disposable install and update smoke checks completed.
-- [ ] Maintainer reviews the local result and authorizes public upload.
+- [x] Maintainer reviews the local result and authorizes public upload (2026-10-20).
 
 ## Evidence and limits
 
 Previous bootstrap forward-check created eight planning Markdown files for a branch-booking proposal, with three MVP slices and planned test coverage. This proved documentation generation, not a working booking website.
 
-Installer/checker tests use temporary directories and in-memory archives. Record final command results below after review. CI is configured for Linux/Windows and Python 3.10/3.12 but has not run remotely because this repository has not been published.
+Installer/checker tests use temporary directories and in-memory archives. Local command results are recorded below. CI is configured for Linux/Windows and Python 3.10/3.12; see the repository's Actions tab for current remote results.
 
 Impeccable remains manual due its binary-dependent launcher. Other upstream runtime tools, a physical device and a full new reference website have not been verified by package tests. A real website should be evaluated before claiming broad production reliability.
 
@@ -28,7 +28,7 @@ Impeccable remains manual due its binary-dependent launcher. Other upstream runt
 - `python scripts/doctor.py --package-only`: passed. Skills with quoted names, unsafe archive entries, unrelated symlinks, rollback, complete manifests and Superpowers canonical sibling paths have regression coverage.
 - Installed all automatic pinned-source profiles into a disposable directory: 25 skill folders including the wrapper, 24 upstream license notices. Repeated with --update; backups retained. No upstream scripts or Impeccable binaries executed.
 - The installed wrapper's package check passed. Its backend/Postgres dependency check passed. The core check deliberately reports Impeccable manual runtime setup as unverified.
-- No public repository or remote CI run exists yet. A new real reference website remains future validation.
+- At the time of these prerelease checks, no public repository or remote CI run existed. A new real reference website remains future validation.
 
 ## Repository-link installation follow-up
 

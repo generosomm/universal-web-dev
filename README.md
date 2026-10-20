@@ -1,17 +1,32 @@
+<div align="center">
+
 # Universal Web Dev
 
-Plan first. Build one usable feature at a time. Verify the actual user flow.
+**Plan first. Build with intent. Verify the real flow.**
 
-A reusable development skill by [Merwin M. Generoso](https://github.com/generosomm) for planning, building and verifying websites and web-based systems. It coordinates community skills without assuming a framework, database, visual style or industry.
+A flexible development skill for your AI coding assistant.
+
+[Get started](#install-through-your-ai) · [The eight skills](#dependencies-and-attribution) · [Setup guide](INSTALL.md) · [Portfolio](https://generosomm.dev)
+
+![Python 3.10 or newer](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square)
+[![MIT license for original files](https://img.shields.io/badge/License-MIT-186B53?style=flat-square)](LICENSE)
+![Community preview](https://img.shields.io/badge/Status-Community%20preview-8A5700?style=flat-square)
+
+</div>
+
+---
+
+A reusable development skill by [Merwin M. Generoso](https://generosomm.dev) for planning, building and verifying websites and web-based systems. It coordinates community skills without assuming a framework, database, visual style or industry.
 
 **Community preview:** installer and checker validation includes temporary fixtures and disposable pinned-source installations. A complete reference website is still pending. See the [release checklist](docs/release-checklist.md) for evidence, limits and publication status.
 
 ## Install through your AI
 
-After publication, paste the repository link into a local coding assistant and say:
+Copy this prompt into a local coding assistant with file, terminal and network access:
 
 ```text
-install or update universal-web-dev and its core skills from this repository.
+install or update universal-web-dev and its core skills from:
+https://github.com/generosomm/universal-web-dev
 follow INSTALL.md, preserve my customized skills, and report any manual setup.
 ```
 
@@ -88,7 +103,18 @@ python scripts/install.py --profile postgres --apply
 python scripts/doctor.py --profile all
 ```
 
-Backend selects API Design and OpenAI Security; Postgres selects Supabase's SQL guidance, not a hosted database or account. With `--sync --apply`, missing skills are installed and unchanged receipt-managed skills update when the selected release changes their pinned source. Matching versions are skipped without downloads. Modified or unmanaged existing skills are preserved and reported. `--update --apply` is the explicit replacement override, with backups and rollback on commit failure. Updates use reviewed pins from the selected wrapper release; they never silently follow upstream HEAD. Review local customizations and the printed plan first. If a running host locks the folder on Windows, release the lock/check normal permissions and retry; the installer stops without forcing deletion. See [installation recovery](INSTALL.md#locked-installation-directories).
+Backend selects API Design and OpenAI Security; Postgres selects Supabase's SQL guidance, not a hosted database or account.
+
+<details>
+<summary><strong>How updates preserve your existing skills</strong></summary>
+
+With `--sync --apply`, missing skills install and unchanged receipt-managed skills update when the selected release changes their pinned source. Matching versions skip downloads. Modified or unmanaged existing skills are preserved and reported.
+
+`--update --apply` explicitly replaces existing copies, with backups and rollback on installation failure. Review local customizations and the printed plan first. Updates use reviewed pins from the selected wrapper release; they never silently follow upstream HEAD.
+
+If a running host locks the folder on Windows, release the lock/check normal permissions and retry. See [installation recovery](INSTALL.md#locked-installation-directories).
+
+</details>
 
 ## Dependencies and attribution
 
@@ -117,3 +143,9 @@ python scripts/doctor.py --package-only
 The doctor checks package integrity and dependency presence, not website security, external-service wiring, full runtime compatibility or exact integrity of existing custom skills. Manual requirements remain visible. Keep skills selective and projects small; better planning and focused tests do not guarantee zero bugs or lower token usage.
 
 Contributors should follow [AGENTS.md](AGENTS.md), keep changes focused and include relevant regression evidence. Maintainer updates should change verified source pins and credits together, test in a disposable skills directory, and review upstream changes before applying them. The project's [MIT license](LICENSE) covers original wrapper files only; upstream licenses remain separate.
+
+---
+
+Created by **Merwin M. Generoso**. Explore my work at **[generosomm.dev](https://generosomm.dev)** or connect on [GitHub](https://github.com/generosomm).
+
+Trying this on a project? [Share a reproducible issue or suggestion](https://github.com/generosomm/universal-web-dev/issues), including your AI host, setup and expected behavior. Remove secrets and private project data first.
