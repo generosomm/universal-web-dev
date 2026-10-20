@@ -175,6 +175,8 @@ All installed from pinned commits in [dependencies.lock.json](dependencies.lock.
 | [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* |
 | [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* |
 
+Also recommended, not installed or pinned: [Lucide Animated](https://github.com/pqoqubbw/icons) (pqoqubbw, MIT), animated icons for React sites, added one icon at a time when a project wants them.
+
 <br>
 
 ## FAQ
