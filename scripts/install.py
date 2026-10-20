@@ -15,7 +15,8 @@ import uuid
 import zipfile
 
 SOURCE_ROOT = Path(__file__).resolve().parents[1]
-PROFILES = {'core', 'backend', 'postgres'}
+PROFILES = {'core', 'lean', 'backend', 'postgres'}
+HOSTS = {'codex': ('.codex', 'CODEX_HOME'), 'claude': ('.claude', 'CLAUDE_CONFIG_DIR')}
 MAX_DOWNLOAD = 64 * 1024 * 1024
 MAX_EXPANDED = 256 * 1024 * 1024
 MAX_FILES = 20000
@@ -178,8 +179,9 @@ def load_manifest(path):
     return data
 
 
-def default_dest():
-    return Path(os.environ['CODEX_HOME']) / 'skills' if os.environ.get('CODEX_HOME') else Path.home() / '.codex' / 'skills'
+def default_dest(host='codex'):
+    folder, variable = HOSTS[host]
+    return Path(os.environ[variable]) / 'skills' if os.environ.get(variable) else Path.home() / folder / 'skills'
 
 
 def download(package):
@@ -307,7 +309,8 @@ def commit(staged, destinations, dest):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--profile', action='append', choices=sorted(PROFILES | {'all'}))
-    parser.add_argument('--dest', type=Path, default=default_dest())
+    parser.add_argument('--host', choices=sorted(HOSTS), default='codex', help='Default skills directory when --dest is omitted')
+    parser.add_argument('--dest', type=Path)
     parser.add_argument('--manifest', type=Path, default=SOURCE_ROOT / 'dependencies.lock.json')
     parser.add_argument('--apply', action='store_true')
     mode = parser.add_mutually_exclusive_group()
@@ -317,7 +320,7 @@ def main(argv=None):
     manifest = load_manifest(args.manifest)
     profiles = set(args.profile or ['core'])
     selected = [p for p in manifest['packages'] if 'all' in profiles or profiles.intersection(p['profiles'])]
-    dest = args.dest.expanduser().absolute()
+    dest = (args.dest or default_dest(args.host)).expanduser().absolute()
     if dest.is_symlink():
         raise ValueError('Refusing destination symlink')
     dest = dest.resolve()

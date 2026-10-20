@@ -97,7 +97,7 @@
     {
       "id": "caveman",
       "profiles": [
-        "core"
+        "lean"
       ],
       "repo": "JuliusBrussee/caveman",
       "ref": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",

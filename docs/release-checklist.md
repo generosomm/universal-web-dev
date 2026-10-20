@@ -6,7 +6,7 @@ Status: initial public community preview authorized by the maintainer on 2026-10
 
 - [x] Flexible across stacks/project types; no forced game, palette, database or response language.
 - [x] Empty-project docs-first bootstrap, sprint status and test manifests.
-- [x] Eight core sources and conditional modules credited with pinned revisions and license links.
+- [x] Core sources and optional modules credited with pinned revisions and license links.
 - [x] Original wrapper licensed MIT; upstream material not vendored or relicensed.
 - [x] Installer plan default; explicit writes, backups and rollback coverage.
 - [x] Package/dependency doctor with clear missing/manual status.

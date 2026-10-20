@@ -1,8 +1,10 @@
 import importlib.util
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 SPEC = importlib.util.spec_from_file_location('doctor', Path(__file__).parents[1] / 'scripts/doctor.py')
 doctor = importlib.util.module_from_spec(SPEC)
@@ -76,6 +78,10 @@ class DoctorTests(unittest.TestCase):
             path.mkdir(parents=True)
             (path / 'SKILL.md').write_text('---\nname: ' + name + '\n---\n', encoding='utf-8')
         self.assertTrue(self.check([skills], False)['errors'])
+
+    def test_default_roots_include_claude_skills(self):
+        with patch.dict(os.environ, {'CLAUDE_CONFIG_DIR': str(self.root)}):
+            self.assertIn(self.root / 'skills', doctor.default_roots())
 
     def test_manual_dependency_is_not_verified(self):
         self.manifest['packages'][0]['manual_reason'] = 'Requires supported tool'

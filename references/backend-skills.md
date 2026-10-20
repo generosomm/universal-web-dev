@@ -1,6 +1,6 @@
 # Backend skill routing
 
-Eight core skills cover workflow/design; these domain modules are conditional, not extra mandatory passes. Resolve names through the current catalog and verify availability before use. Read only relevant references as each module instructs. A missing module does not justify inventing that it ran, changing stacks, or installing an unrelated bundle.
+Core skills cover workflow/design; these domain modules are conditional, not extra mandatory passes. Resolve names through the current catalog and verify availability before use. Read only relevant references as each module instructs. A missing module does not justify inventing that it ran, changing stacks, or installing an unrelated bundle.
 
 | Task | Module and boundary |
 | --- | --- |

@@ -22,7 +22,8 @@ def declared_name(path):
 
 def default_roots():
     home = Path.home()
-    return [Path(os.environ.get('CODEX_HOME', home / '.codex')) / 'skills', home / '.agents' / 'skills']
+    return [Path(os.environ.get('CODEX_HOME', home / '.codex')) / 'skills',
+            Path(os.environ.get('CLAUDE_CONFIG_DIR', home / '.claude')) / 'skills', home / '.agents' / 'skills']
 
 
 def check(package, roots, profiles, package_only=False):
@@ -93,7 +94,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--package-only', action='store_true')
     parser.add_argument('--skills-dir', type=Path, action='append', help='Additional installed skills root (repeatable)')
-    parser.add_argument('--profile', action='append', choices=['core', 'backend', 'postgres', 'all'])
+    parser.add_argument('--profile', action='append', choices=['core', 'lean', 'backend', 'postgres', 'all'])
     parser.add_argument('--json', action='store_true')
     args = parser.parse_args(argv)
     result = check(Path(__file__).resolve().parents[1], args.skills_dir or default_roots(), args.profile or ['core'], args.package_only)

@@ -77,6 +77,20 @@ class InstallerTests(unittest.TestCase):
         with patch.dict(os.environ, environment, clear=True):
             self.assertEqual(self.mod.default_dest(), Path.home() / '.codex' / 'skills')
 
+    def test_claude_host_dest(self):
+        with patch.dict(os.environ, {'CLAUDE_CONFIG_DIR': str(self.root)}):
+            self.assertEqual(self.mod.default_dest('claude'), self.root / 'skills')
+        environment = dict(os.environ)
+        environment.pop('CLAUDE_CONFIG_DIR', None)
+        with patch.dict(os.environ, environment, clear=True):
+            self.assertEqual(self.mod.default_dest('claude'), Path.home() / '.claude' / 'skills')
+
+    def test_release_lock_keeps_caveman_out_of_core(self):
+        lock = self.mod.load_manifest(SCRIPT.parents[1] / 'dependencies.lock.json')
+        profiles = {p['id']: p['profiles'] for p in lock['packages']}
+        self.assertEqual(profiles['caveman'], ['lean'])
+        self.assertIn('core', profiles['superpowers'])
+
     def test_manifest_rejects_unpinned_repo_and_unsafe_paths(self):
         for field, value in [('ref', 'main'), ('repo', 'https://evil/repo'),
                              ('license_files', ['../LICENSE'])]:
