@@ -25,7 +25,7 @@ python scripts/install.py --profile core --sync --dest <skills-directory> --appl
 python scripts/doctor.py --skills-dir <skills-directory> --profile core
 ```
 
-No upstream skill script is executed by installation. Manual Impeccable runtime setup remains visible; do not download/execute its separate binary to make a check pass. Installation completion and runtime verification are different results.
+No upstream skill script is executed by installation. Impeccable installs guidance-only: its critique, audit and polish playbooks work, while live browser mode, the detector and shortcuts need the upstream launcher; do not download/execute its separate binary. Installation completion and runtime verification are different results.
 
 ## Update behavior
 

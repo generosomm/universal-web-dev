@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saltrum: a four-room guesthouse on a northern beach</title>
+  <meta name="description" content="Saltrum is a four-room guesthouse in an old net store on a cold northern beach, with breakfast at eight, a sauna and a lighthouse you can walk to at low tide.">
+  <meta property="og:title" content="Saltrum guesthouse">
+  <meta property="og:description" content="Four rooms in an old net store, a sauna, and a lighthouse you can walk to at low tide.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#133621">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23133621'/%3E%3Cpath d='M6 22h20l-4-12H10z' fill='%23f4d96c'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#rooms">Skip to the rooms</a>
+
+  <header class="hero" id="top">
+    <nav class="bar" aria-label="Main">
+      <span class="wordmark">Saltrum</span>
+      <a href="#visit">Book a room</a>
+    </nav>
+    <h1 data-enter>Saltrum</h1>
+    <p class="hero-note" data-enter style="--d:1">A four-room guesthouse in an old net store on a cold northern beach. Breakfast at eight, a wood sauna, and a lighthouse you can walk to when the tide is out.</p>
+    <ol class="folders" aria-label="Sections">
+      <li class="folder f1"><a href="#tides"><span class="tab">The tide</span></a></li>
+      <li class="folder f2"><a href="#rooms"><span class="tab">Rooms</span></a></li>
+      <li class="folder f3"><a href="#letter"><span class="tab">Letter</span></a></li>
+      <li class="folder f4"><a href="#visit"><span class="tab">Visit</span></a></li>
+      <li class="folder f5 open">
+        <span class="tab">Book</span>
+        <a class="button" href="mailto:stay@example.com?subject=Room%20at%20Saltrum&amp;body=Dates%3A%20%0AGuests%3A%20%0ARoom%3A%20">Ask for a room</a>
+      </li>
+    </ol>
+  </header>
+
+  <main>
+    <section class="intro" id="tides" aria-labelledby="tides-title">
+      <div class="intro-top">
+        <h2 id="tides-title" data-enter>Four rooms, one tide</h2>
+        <p class="intro-text" data-enter style="--d:1">The day here runs on the water. Breakfast is at eight, the sauna stove is lit at six, and the lighthouse path opens twice a day when the sand comes up.</p>
+      </div>
+      <div class="facts-wrap">
+        <ul class="facts">
+          <li><button type="button" class="fact" data-img="f-breakfast"><span class="fact-big">08:00</span><span class="fact-small">Breakfast in the net loft</span></button>
+            <img class="fact-img" id="f-breakfast" src="https://picsum.photos/id/485/1200/900" width="1200" height="900" loading="lazy" alt="Chalk cliffs above a curved beach in morning sea mist"></li>
+          <li><button type="button" class="fact" data-img="f-sauna"><span class="fact-big">18:00</span><span class="fact-small">The sauna stove is lit</span></button>
+            <img class="fact-img" id="f-sauna" src="https://picsum.photos/id/154/1200/900" width="1200" height="900" loading="lazy" alt="Hazy beach at dusk with distant walkers and soft surf"></li>
+          <li><button type="button" class="fact" data-img="f-tide"><span class="fact-big">2 × day</span><span class="fact-small">The lighthouse path opens</span></button>
+            <img class="fact-img" id="f-tide" src="https://picsum.photos/id/1049/1200/900" width="1200" height="900" loading="lazy" alt="Rock island reflected on a wet beach at low water"></li>
+          <li><button type="button" class="fact" data-img="f-rooms"><span class="fact-big">4 rooms</span><span class="fact-small">Sleeps seven in all</span></button>
+            <img class="fact-img" id="f-rooms" src="https://picsum.photos/id/1052/1200/900" width="1200" height="900" loading="lazy" alt="Black sea stacks off a dark beach with white surf"></li>
+        </ul>
+        <figure class="frame" aria-hidden="true"><img id="frame-img" src="https://picsum.photos/id/485/1200/900" width="1200" height="900" alt=""></figure>
+      </div>
+
+      <form class="tide" id="tide" aria-labelledby="tide-title" onsubmit="return false">
+        <h3 id="tide-title">When can you walk out?</h3>
+        <label for="tide-date">Your day</label>
+        <input type="date" id="tide-date" name="day">
+        <output for="tide-date" id="tide-out" aria-live="polite">Tide times are posted by the door each morning. Email us your dates and we will send them.</output>
+        <p class="tide-note">Sample tide model for this demo, not for navigation.</p>
+      </form>
+    </section>
+
+    <section class="rooms" id="rooms" aria-labelledby="rooms-title">
+      <div class="deck-stage">
+        <h2 id="rooms-title" data-enter>The four rooms</h2>
+        <ul class="deck">
+          <li class="card c1"><h3>Drift</h3><p>A double bed under the old hoist door, which now opens onto the beach.</p><div class="card-foot"><span>€145 a night</span><a href="mailto:stay@example.com?subject=Drift%20room%20at%20Saltrum">Ask for Drift</a></div></li>
+          <li class="card c2"><h3>Seine</h3><p>Twin beds and a long window over the boat ramp and the first light.</p><div class="card-foot"><span>€130 a night</span><a href="mailto:stay@example.com?subject=Seine%20room%20at%20Saltrum">Ask for Seine</a></div></li>
+          <li class="card c3"><h3>Trawl</h3><p>A double up in the roof beams, with a skylight you can watch the weather through.</p><div class="card-foot"><span>€155 a night</span><a href="mailto:stay@example.com?subject=Trawl%20room%20at%20Saltrum">Ask for Trawl</a></div></li>
+          <li class="card c4"><h3>Gill</h3><p>A single with one small window that looks straight at the lighthouse.</p><div class="card-foot"><span>€95 a night</span><a href="mailto:stay@example.com?subject=Gill%20room%20at%20Saltrum">Ask for Gill</a></div></li>
+        </ul>
+        <p class="deck-foot">Four rooms, seven beds, breakfast included. <a href="mailto:stay@example.com?subject=The%20whole%20house%20at%20Saltrum">Ask about the whole house</a></p>
+      </div>
+    </section>
+
+    <section class="letter-wrap" id="letter" aria-labelledby="letter-title">
+      <article class="letter">
+        <span class="monogram" aria-hidden="true">I</span>
+        <h2 id="letter-title" data-enter>A letter from the house</h2>
+        <p data-enter>This building stored nets for sixty years. You can still see the hooks in the beams of the Trawl room, and the floor slopes towards the old hoist door so the water could run out.</p>
+        <p data-enter>We kept what we could. The walls are tarred pine, the windows are where the net menders wanted light, and the stove in the loft is the one they warmed their hands at.</p>
+        <p data-enter>Most guests come for the quiet and stay for the walk. <mark>Twice a day the sand comes up and you can reach the lighthouse dry-footed</mark>; we will tell you when at breakfast.</p>
+        <p data-enter>Bring a warm jumper. The sauna does the rest.</p>
+        <p class="sign">Ingrid<span>Keeper of the net store</span></p>
+        <div class="stub"><a href="mailto:stay@example.com">stay@example.com</a></div>
+      </article>
+    </section>
+
+    <section class="visit" id="visit" aria-labelledby="visit-title">
+      <img class="visit-photo" src="https://picsum.photos/id/574/2400/1350" width="2400" height="1350" loading="lazy" alt="Grassy cliff above a black sand beach with sea stacks offshore">
+      <div class="visit-card">
+        <h2 id="visit-title">Find the net store</h2>
+        <p>Naustvegen 4<br>Saltvik, on the north shore</p>
+        <dl class="hours">
+          <div><dt>Check-in</dt><dd>15:00–20:00</dd></div>
+          <div><dt>Breakfast</dt><dd>08:00–10:00</dd></div>
+          <div><dt>Sauna</dt><dd>18:00–21:00</dd></div>
+        </dl>
+        <p><a href="tel:+0000000000">+00 000 00 000</a></p>
+        <a class="button" href="mailto:stay@example.com?subject=Room%20at%20Saltrum&amp;body=Dates%3A%20%0AGuests%3A%20%0ARoom%3A%20">Email to book</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="postcard">
+    <div class="card-back">
+      <div class="message">
+        <h2>Until the tide turns</h2>
+        <p>Write with your dates and the room you would like. We answer every email ourselves, usually the same day.</p>
+      </div>
+      <div class="address">
+        <img class="stamp" src="https://picsum.photos/id/1049/300/400" width="300" height="400" loading="lazy" alt="Rock island on a wet beach">
+        <a href="mailto:stay@example.com">stay@example.com</a>
+        <a href="tel:+0000000000">+00 000 00 000</a>
+        <a href="#visit">Naustvegen 4, Saltvik</a>
+        <a href="#top">Back to the top</a>
+      </div>
+      <p class="imprint">Saltrum is a fictional sample site. Photographs: Unsplash via picsum.photos, by David Marcu, Christopher Sardegna, Rosan Harmens, Annie Spratt and Julien Lavallée.</p>
+    </div>
+  </footer>
+</body>
+</html>

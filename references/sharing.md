@@ -8,7 +8,7 @@ Use Python 3.10+. `python scripts/install.py --profile core` prints a plan witho
 
 Core capabilities are Superpowers, ponytail, frontend-design, design-taste-frontend, ui-ux-pro-max, emil-design-eng and impeccable; SKILL.md routes each task to the few it needs. The optional lean profile adds caveman. Superpowers' workflow siblings are co-installed because its references depend on them. Installation is not language, provider or framework selection. UI/UX script examples must resolve their actual installed skill directory, not a hardcoded host plugin path.
 
-Impeccable is manual-only in this lock: its launcher downloads a runtime binary outside the pinned source tree. Review and configure the credited upstream distribution separately. Don't claim every core skill ran when one is missing or its runtime is unverified. A host may use documented reference fallbacks, but disclose the limited coverage.
+Impeccable installs guidance-only: its critique, audit and polish playbooks work, while live browser mode, the detector and shortcuts need the upstream launcher (its `scripts/` folder is not installed because the launcher downloads an unpinned binary). Don't claim every core skill ran when one is missing or its runtime is unverified. A host may use documented reference fallbacks, but disclose the limited coverage.
 
 Run `python scripts/doctor.py`, using `--skills-dir` for another skill root and `--profile all` to inspect optional modules. It checks package links and dependency names without credentials, database connections or service calls. Presence is not operational verification. `--package-only` checks only this package. Missing/manual modules remain reported. Refresh the host catalog as needed.
 

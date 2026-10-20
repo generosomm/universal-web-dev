@@ -18,10 +18,6 @@
           "path": "skills/brainstorming"
         },
         {
-          "name": "diagnosing-superpowers",
-          "path": "skills/diagnosing-superpowers"
-        },
-        {
           "name": "dispatching-parallel-agents",
           "path": "skills/dispatching-parallel-agents"
         },
@@ -199,8 +195,15 @@
         "LICENSE",
         "NOTICE.md"
       ],
-      "skills": [],
-      "manual_reason": "Current Codex distribution .agents/skills/impeccable includes scripts/impeccable and impeccable.cmd launchers that require a separate release binary, downloaded on first run if absent. That binary is not pinned or verified by this source lock. Install/configure the upstream distribution separately after reviewing its release provenance; or use the existing installed impeccable skill if available. Source references are at .agents/skills/impeccable/reference. Do not execute or download its launcher during dependency installation."
+      "skills": [
+        {
+          "name": "impeccable",
+          "path": ".agents/skills/impeccable",
+          "exclude": [
+            "scripts"
+          ]
+        }
+      ]
     },
     {
       "id": "api-design-principles",

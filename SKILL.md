@@ -16,14 +16,15 @@ Load a skill only when its row applies. Read its SKILL.md once per conversation;
 | Typo, copy or config fix | nothing extra | design or backend guidance |
 | Bug or failing test | `systematic-debugging` | design skills |
 | New feature in an existing project | `ponytail`; `test-driven-development` when behavior changes | a new design direction; reuse the accepted one |
-| Marketing page, landing page, portfolio | `design-taste-frontend` for direction, then `impeccable` review | `frontend-design`, backend references |
+| New marketing page, landing page, portfolio | `design-taste-frontend` full run, then `impeccable` polish | `frontend-design`, backend references |
+| Change to an existing page | the project's accepted design; Taste house rules only if Taste set its direction | a new direction |
 | App screens, dashboard, admin, portal | `frontend-design` for direction; `ui-ux-pro-max` for focused lookups | `design-taste-frontend` |
 | Component states, gestures, motion | `emil-design-eng` | a full redesign |
 | Backend, database, auth, integrations | [full-stack contracts](references/full-stack.md) sections and [backend routing](references/backend-skills.md) | design skills |
-| Empty project | [project bootstrap](references/project-bootstrap.md), `brainstorming`, `writing-plans` | implementation code before the plan |
+| Empty project | [project bootstrap](references/project-bootstrap.md); `brainstorming` only if requirements are unclear; `writing-plans` only for multi-sprint builds | implementation code before the plan |
 | Kickoff or release | [website readiness](references/website-readiness.md), `verification-before-completion` | checks outside the release scope |
 
-Use one design direction skill per project; never run two against each other. Run `impeccable` once as the final usability review, not on every edit. Use `ui-ux-pro-max` with narrow queries, and do not generate a new design system for each change. Its scripts run from the actual installed skill folder, never a hardcoded path.
+Use one design direction skill per project; never run two against each other. Run `impeccable` once as the final review with its `polish` playbook, not `critique` (seven times larger) unless asked, and not on every edit; if its folder has no `scripts/`, skip its launcher and use its documented fallback. When skills disagree on a visual rule, the chosen direction wins. Use `ui-ux-pro-max` with narrow queries, and do not generate a new design system for each change. Its scripts run from the actual installed skill folder, never a hardcoded path.
 
 ## Plan
 
@@ -49,7 +50,7 @@ Use one design direction skill per project; never run two against each other. Ru
 
 ## Verify and report
 
-Test meaningful behavior, including denied, invalid and failure cases. Run the repository's required checks and walk through the real user flow. Viewport emulation is not device testing, and mocks are not proof that a live integration works. Respect review gates and release authorization, and verify deployed behavior after release.
+Test meaningful behavior, including denied, invalid and failure cases. Run the repository's required checks and walk through the real user flow. Viewport emulation is not device testing, and mocks are not proof that a live integration works. If a skill's checking script cannot run, use its documented fallback and report that the check did not run. Respect review gates and release authorization, and verify deployed behavior after release.
 
 Report what changed, the evidence and what remains unverified, in a few lines in the user's language. If the optional `caveman` skill is installed and the user asked for terse replies, use it; otherwise write plain, short sentences. Code, docs and PR language follow the project's conventions.
 

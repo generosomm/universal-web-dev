@@ -79,6 +79,14 @@ class DoctorTests(unittest.TestCase):
             (path / 'SKILL.md').write_text('---\nname: ' + name + '\n---\n', encoding='utf-8')
         self.assertTrue(self.check([skills], False)['errors'])
 
+    def test_installed_wrapper_files_pass_package_check(self):
+        # Regression: README linked a file the installer never copies, so every install failed its own check.
+        repo, installed = Path(__file__).resolve().parents[1], self.root / 'installed'
+        for item in doctor._installer.WRAPPER_FILES:
+            if (repo / item).exists():
+                doctor._installer.copy_safe(repo / item, installed / item)
+        self.assertEqual(doctor.check(installed, [], ['core'], True)['errors'], [])
+
     def test_default_roots_include_claude_skills(self):
         with patch.dict(os.environ, {'CLAUDE_CONFIG_DIR': str(self.root)}):
             self.assertIn(self.root / 'skills', doctor.default_roots())

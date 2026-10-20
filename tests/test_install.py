@@ -112,6 +112,29 @@ class InstallerTests(unittest.TestCase):
         self.assertFalse((target / 'unselected').exists())
         self.assertTrue((self.dest / 'universal-web-dev/references/guide.md').exists())
 
+    def test_excluded_paths_are_never_extracted(self):
+        self.data['packages'][0]['skills'][0]['exclude'] = ['scripts']
+        self.write_manifest()
+        payload = archive({'nested/skill/SKILL.md': '---\nname: example\n---', 'nested/skill/scripts/run': 'launcher',
+                           'shared/helper.py': 'x', 'LICENSE': 'MIT'}, symlink='nested/skill/scripts/link')
+        self.run_install('--apply', payload=payload)
+        target = self.dest / 'example'
+        self.assertFalse((target / 'scripts').exists())
+        self.assertIn('Not installed: scripts', (target / 'UPSTREAM-NOTICE.txt').read_text())
+        with patch.object(self.mod, 'SOURCE_ROOT', self.source), contextlib.redirect_stdout(io.StringIO()) as out:
+            self.mod.main(['--manifest', str(self.manifest), '--dest', str(self.dest), '--sync'])
+        self.assertIn('skip (unchanged) example', out.getvalue())
+
+    def test_exclude_cannot_remove_entrypoint(self):
+        self.data['packages'][0]['skills'][0]['exclude'] = ['SKILL.md']
+        self.write_manifest()
+        with self.assertRaises(ValueError):
+            self.mod.load_manifest(self.manifest)
+
+    def test_identity_without_exclude_keeps_existing_receipt_shape(self):
+        skill = self.data['packages'][0]['skills'][0]
+        self.assertNotIn('exclude', self.mod.desired_identity('example', self.data['packages'][0], skill))
+
     def test_root_skill_is_supported(self):
         self.data['packages'][0]['skills'] = [{'name': 'example', 'path': '.'}]
         self.write_manifest()

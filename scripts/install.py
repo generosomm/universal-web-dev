@@ -56,9 +56,13 @@ def content_digest(root, selected=None):
 def desired_identity(name, package, skill):
     if package is None:
         return {'kind': 'wrapper', 'name': name, 'content': content_digest(SOURCE_ROOT, WRAPPER_FILES)}
-    return {'kind': 'dependency', 'name': name, 'repo': package['repo'], 'ref': package['ref'],
-            'package': package['id'], 'path': skill['path'], 'support': skill.get('support', []),
-            'license': package['license'], 'license_files': package['license_files']}
+    identity = {'kind': 'dependency', 'name': name, 'repo': package['repo'], 'ref': package['ref'],
+                'package': package['id'], 'path': skill['path'], 'support': skill.get('support', []),
+                'license': package['license'], 'license_files': package['license_files']}
+    if skill.get('exclude'):
+        # Only present when used, so receipts written before this key stay managed.
+        identity['exclude'] = skill['exclude']
+    return identity
 
 
 def managed_status(target, desired):
@@ -92,6 +96,11 @@ def managed_status(target, desired):
                     return 'unmanaged'
                 safe_path(item['source'], root_ok=True)
                 safe_path(item['target'])
+            if 'exclude' in identity:
+                if not isinstance(identity['exclude'], list) or not identity['exclude']:
+                    return 'unmanaged'
+                for item in identity['exclude']:
+                    safe_path(item)
             # Attribution must agree with the receipt's claimed installed pin.
             notice_path = target / 'UPSTREAM-NOTICE.txt'
             if notice_path.is_symlink():
@@ -169,6 +178,12 @@ def load_manifest(path):
             support = skill.get('support', [])
             if not isinstance(support, list):
                 raise ValueError('Invalid support list')
+            exclude = skill.get('exclude', [])
+            if not isinstance(exclude, list):
+                raise ValueError('Invalid exclude list')
+            for item in exclude:
+                if safe_path(item).parts[0] in {'SKILL.md', 'UPSTREAM-NOTICE.txt', 'upstream-licenses'}:
+                    raise ValueError('Exclude must not remove entrypoint or attribution')
             for item in support:
                 safe_path(item.get('source'), root_ok=True)
                 target = safe_path(item.get('target'))
@@ -193,7 +208,7 @@ def download(package):
     return data
 
 
-def unpack(data, target, selected_paths=None):
+def unpack(data, target, selected_paths=None, excluded_paths=()):
     if len(data) > MAX_DOWNLOAD:
         raise ValueError('Archive exceeds download limit')
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
@@ -202,6 +217,7 @@ def unpack(data, target, selected_paths=None):
             raise ValueError('Archive exceeds extraction limits')
         roots, seen, selected_items = set(), set(), []
         selections = [safe_path(p, root_ok=True) for p in selected_paths] if selected_paths is not None else None
+        exclusions = [safe_path(p) for p in excluded_paths]
         for item in items:
             path = safe_path(item.filename.rstrip('/'))
             mode = item.external_attr >> 16
@@ -212,6 +228,8 @@ def unpack(data, target, selected_paths=None):
             roots.add(path.parts[0])
             relative = PurePosixPath(*path.parts[1:])
             selected = selections is None or any(relative.is_relative_to(p) or p.is_relative_to(relative) for p in selections)
+            # Excluded paths are never extracted, so their file types are never trusted or written.
+            selected = selected and not any(relative.is_relative_to(p) for p in exclusions)
             if selected:
                 if stat.S_ISLNK(mode) or (stat.S_IFMT(mode) not in (0, stat.S_IFREG, stat.S_IFDIR)):
                     raise ValueError('Selected archive path is a symlink or special file: ' + str(relative))
@@ -368,22 +386,26 @@ def main(argv=None):
             else:
                 key = (package['repo'], package['ref'])
                 if key not in repositories:
-                    paths = set()
+                    paths, excluded = set(), set()
                     for _, candidate, candidate_skill, _ in pending:
                         if candidate and (candidate['repo'], candidate['ref']) == key:
                             paths.add(candidate_skill['path'])
+                            excluded.update(str(PurePosixPath(candidate_skill['path'], e)) for e in candidate_skill.get('exclude', []))
                             paths.update(s['source'] for s in candidate_skill.get('support', []))
                             paths.update(candidate['license_files'])
                     print('Source: {} @ {}'.format(*key), flush=True)
                     repositories[key] = unpack(download(package), scratch / ('archive-' + str(len(repositories))),
-                                               selected_paths=sorted(paths))
+                                               selected_paths=sorted(paths), excluded_paths=sorted(excluded))
                 repository = repositories[key]
                 copy_safe(repository.joinpath(*safe_path(skill['path'], True).parts), output)
                 for support in skill.get('support', []):
                     copy_safe(repository.joinpath(*safe_path(support['source'], True).parts), output.joinpath(*safe_path(support['target']).parts))
                 for license_file in package['license_files']:
                     copy_safe(repository.joinpath(*safe_path(license_file).parts), output / 'upstream-licenses' / license_file)
-                (output / 'UPSTREAM-NOTICE.txt').write_text('{}\nCommit: {}\nLicense: {}\nUpstream content retains its original license.\n'.format(package['repo'], package['ref'], package['license']), encoding='utf-8')
+                notice = '{}\nCommit: {}\nLicense: {}\nUpstream content retains its original license.\n'.format(package['repo'], package['ref'], package['license'])
+                if skill.get('exclude'):
+                    notice += 'Not installed: {}\n'.format(', '.join(skill['exclude']))
+                (output / 'UPSTREAM-NOTICE.txt').write_text(notice, encoding='utf-8')
             if skill_name(output / 'SKILL.md') != name:
                 raise ValueError('SKILL.md name does not match manifest: ' + name)
             if (output / RECEIPT).exists():

@@ -18,7 +18,7 @@ A flexible development skill for your AI coding assistant.
 
 A reusable development skill by [Merwin M. Generoso](https://generosomm.dev) for planning, building and verifying websites and web-based systems. It coordinates community skills without assuming a framework, database, visual style or industry.
 
-**Community preview:** installer and checker validation includes temporary fixtures and disposable pinned-source installations. A complete reference website is still pending. See the [release checklist](docs/release-checklist.md) for evidence, limits and publication status.
+**Community preview:** installer and checker validation includes temporary fixtures and disposable pinned-source installations. A static [reference site](https://github.com/generosomm/universal-web-dev/tree/main/examples/reference-site) was built through the routing, with its findings fed back into SKILL.md; a business-system trial (auth, database, roles) is still pending. See the [release checklist](docs/release-checklist.md) for evidence, limits and publication status.
 
 ## Install through your AI
 
@@ -94,7 +94,7 @@ python scripts/doctor.py
 
 `--host claude` installs to ~/.claude/skills (or $CLAUDE_CONFIG_DIR/skills). `--host codex`, the default, installs to ~/.codex/skills (or $CODEX_HOME/skills). Use `--dest <skills-directory>` for any other root. Other runtimes need their documented skills directory and tool compatibility; installation is not account/cloud/mobile synchronization. New skills may require refreshing the host's catalog.
 
-**Impeccable requires manual setup.** Its pinned distribution uses a separately downloaded runtime binary. The installer prints the limitation and skips it; the checker keeps it unverified. Follow its [credited upstream instructions](CREDITS.md) before claiming every core capability is available. Do not run a downloaded binary merely to clear a check.
+**Impeccable installs guidance-only.** Its `scripts/` launcher downloads an unpinned runtime binary, so the installer leaves that folder out. Impeccable's own documented fallback then reads PRODUCT.md and DESIGN.md directly, so critique, audit and polish work. Live browser mode, the detector and shortcuts need the launcher; set it up from the [credited upstream source](CREDITS.md) if you want them. Do not run a downloaded binary merely to clear a check.
 
 Optional modules, selected explicitly:
 
@@ -112,7 +112,7 @@ Lean adds Caveman for terse replies; Backend selects API Design and OpenAI Secur
 
 With `--sync --apply`, missing skills install and unchanged receipt-managed skills update when the selected release changes their pinned source. Matching versions skip downloads. Modified or unmanaged existing skills are preserved and reported.
 
-Caveman moved from `core` to the optional `lean` profile. Sync never removes skills, so an existing Caveman install stays in place.
+Caveman moved from `core` to the optional `lean` profile, Impeccable now installs automatically (guidance-only), and Superpowers' `diagnosing-superpowers` is no longer selected. Sync never removes skills, so existing copies stay in place.
 
 `--update --apply` explicitly replaces existing copies, with backups and rollback on installation failure. Review local customizations and the printed plan first. Updates use reviewed pins from the selected wrapper release; they never silently follow upstream HEAD.
 
@@ -131,7 +131,7 @@ If a running host locks the folder on Windows, release the lock/check normal per
 | Taste | Distinctive typography, layout and visual choices |
 | UI/UX Pro Max | UI/UX guidance and design-system decisions |
 | Emil Design Engineering | Component polish, interaction details and purposeful motion |
-| Impeccable | Interface critique, accessibility and refinement; manual setup |
+| Impeccable | Final interface critique, accessibility and refinement (guidance-only install) |
 
 Capabilities are routed by task, so only one design direction skill runs per project and Impeccable reviews once at the end. Superpowers includes its workflow subskills, so the installed folder count is larger than the table. Each module retains its own scope and license. The pinned upstream versions may differ from locally customized copies.
 
@@ -146,7 +146,7 @@ python scripts/doctor.py --package-only
 
 The doctor checks package integrity and dependency presence, not website security, external-service wiring, full runtime compatibility or exact integrity of existing custom skills. Manual requirements remain visible. Keep skills selective and projects small; better planning and focused tests do not guarantee zero bugs or lower token usage.
 
-Contributors should follow [AGENTS.md](AGENTS.md), keep changes focused and include relevant regression evidence. Maintainer updates should change verified source pins and credits together, test in a disposable skills directory, and review upstream changes before applying them. The project's [MIT license](LICENSE) covers original wrapper files only; upstream licenses remain separate.
+Contributors should follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused and include relevant regression evidence. Maintainer updates should change verified source pins and credits together, test in a disposable skills directory, and review upstream changes before applying them. The project's [MIT license](LICENSE) covers original wrapper files only; upstream licenses remain separate.
 
 ---
 

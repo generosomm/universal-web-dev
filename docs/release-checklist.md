@@ -20,7 +20,7 @@ Previous bootstrap forward-check created eight planning Markdown files for a bra
 
 Installer/checker tests use temporary directories and in-memory archives. Local command results are recorded below. CI is configured for Linux/Windows and Python 3.10/3.12; see the repository's Actions tab for current remote results.
 
-Impeccable remains manual due its binary-dependent launcher. Other upstream runtime tools, a physical device and a full new reference website have not been verified by package tests. A real website should be evaluated before claiming broad production reliability.
+Impeccable installs guidance-only; its binary-dependent launcher is excluded. Other upstream runtime tools, a physical device and a full new reference website have not been verified by package tests. A real website should be evaluated before claiming broad production reliability.
 
 ## Local final checks, 2026-10-20
 
@@ -39,3 +39,10 @@ Managed receipts bind the installed source identity and content digest. Sync sho
 Follow-up evidence: 43 local tests run, 42 passed and one POSIX-only check skipped on Windows. A cached pinned-source smoke installed 25 skill folders with managed receipts; repeat sync made no downloads, and a subsequent local customization was preserved and reported. The installed wrapper package check passed. Independent review found malformed wrapper receipt edge cases; both were reproduced with failing regressions, fixed, and re-reviewed with no remaining actionable findings. No AI platform without local tools or public-link installation has been claimed tested.
 
 Windows live-host limit: updating the maintainer's currently loaded global wrapper returned Access denied on directory rename; its existing folder was preserved. Automatic update while a host holds that folder is not claimed supported. Recovery is documented in INSTALL.md; the maintainer's own installed copy was separately backed up and reconciled file-by-file. Disposable-directory install/update tests passed.
+
+## Routing refinement and reference-site trial, 2026-10-20
+
+- SKILL.md routes each task to the fewest skills and names what not to load. Caveman moved to the optional `lean` profile; `--host claude` installs to ~/.claude/skills.
+- Impeccable now installs guidance-only: `scripts/` is excluded at extraction and recorded in `UPSTREAM-NOTICE.txt`. A real pinned-source core install into a disposable folder produced 21 skill folders; the doctor passed with every core skill present; a repeat `--sync` reported every skill `skip (unchanged)`. `diagnosing-superpowers` is no longer selected (no sibling references it).
+- A static reference site (`examples/reference-site`) was built by following the routing: bootstrap docs, Taste direction, Impeccable polish in fallback mode. Its record lists the bugs the checks caught, what ran, what could not run (Taste's inspector, physical devices, screen reader, performance scores) and the routing changes it caused.
+- Not yet exercised by a trial: the bug, existing-feature, app-screen and backend rows. A business-system trial is the next validation.
