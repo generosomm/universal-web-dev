@@ -9,7 +9,7 @@ Build the smallest complete system that satisfies the brief. Project type, user 
 
 ## Route each task to the fewest skills
 
-Load a skill only when its row applies. Read its SKILL.md once per conversation; open its references only for the specific question. If a skill is missing, say so and continue with the guidance you have. Never claim a skill ran when it did not.
+Load a skill only when its row applies; read its SKILL.md once per conversation and its references only for the question at hand. If a skill is missing, say so and continue. Never claim a skill ran when it did not.
 
 | Task | Load | Do not load |
 | --- | --- | --- |
@@ -22,9 +22,9 @@ Load a skill only when its row applies. Read its SKILL.md once per conversation;
 | Component states, gestures, motion | `emil-design-eng` | a full redesign |
 | Backend, database, auth, integrations | [full-stack contracts](references/full-stack.md) sections and [backend routing](references/backend-skills.md) | design skills |
 | Empty project | [project bootstrap](references/project-bootstrap.md); `brainstorming` only if requirements are unclear; `writing-plans` only for multi-sprint builds | implementation code before the plan |
-| Kickoff or release | [website readiness](references/website-readiness.md), `verification-before-completion` | checks outside the release scope |
+| Kickoff or release | [website readiness](references/website-readiness.md), `verification-before-completion`; for UI releases `break-ui` on the main screens and `mobile-native` | checks outside the release scope |
 
-Use one design direction skill per project; never run two against each other. Run `impeccable` once as the final review with its `polish` playbook, not `critique` (seven times larger) unless asked, and not on every edit; if its folder has no `scripts/`, skip its launcher and use its documented fallback. When skills disagree on a visual rule, the chosen direction wins. Use `ui-ux-pro-max` with narrow queries, and do not generate a new design system for each change. Its scripts run from the actual installed skill folder, never a hardcoded path.
+Use one design direction skill per project; never run two against each other. Run `impeccable` once as the final review with its `polish` playbook, not `critique` (seven times larger) unless asked, and not on every edit; if its folder has no `scripts/`, skip its launcher and use its documented fallback. When skills disagree on a visual rule, the chosen direction wins. Use `ui-ux-pro-max` with narrow queries, and do not generate a new design system for each change. Its scripts run from the actual installed skill folder, never a hardcoded path. Suggest, never auto-run, the explicit-only `prototype` when the developer is unsure between looks, and `pick-ui-library` before hand-building charts, OTP inputs, drag and drop or similar widgets.
 
 ## Plan
 

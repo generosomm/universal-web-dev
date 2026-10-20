@@ -131,6 +131,8 @@ If a running host locks the folder on Windows, release the lock/check normal per
 | Taste | Distinctive typography, layout and visual choices |
 | UI/UX Pro Max | UI/UX guidance and design-system decisions |
 | Emil Design Engineering | Component polish, interaction details and purposeful motion |
+| Break UI, Mobile Native (Emil) | Release checks: worst-case content and real-phone feel |
+| Prototype, Pick UI Library (Emil) | Run only when the developer invokes them: try several looks side by side; choose proven libraries for complex widgets |
 | Impeccable | Final interface critique, accessibility and refinement (guidance-only install) |
 
 Capabilities are routed by task, so only one design direction skill runs per project and Impeccable reviews once at the end. Superpowers includes its workflow subskills, so the installed folder count is larger than the table. Each module retains its own scope and license. The pinned upstream versions may differ from locally customized copies.

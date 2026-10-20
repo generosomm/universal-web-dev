@@ -180,6 +180,22 @@
         {
           "name": "emil-design-eng",
           "path": "skills/emil-design-eng"
+        },
+        {
+          "name": "break-ui",
+          "path": "skills/break-ui"
+        },
+        {
+          "name": "mobile-native",
+          "path": "skills/mobile-native"
+        },
+        {
+          "name": "prototype",
+          "path": "skills/prototype"
+        },
+        {
+          "name": "pick-ui-library",
+          "path": "skills/pick-ui-library"
         }
       ]
     },

@@ -90,6 +90,8 @@ class InstallerTests(unittest.TestCase):
         profiles = {p['id']: p['profiles'] for p in lock['packages']}
         self.assertEqual(profiles['caveman'], ['lean'])
         self.assertIn('core', profiles['superpowers'])
+        emil = [p for p in lock['packages'] if p['id'] == 'emil-design-eng'][0]
+        self.assertLessEqual({'break-ui', 'mobile-native', 'prototype', 'pick-ui-library'}, {s['name'] for s in emil['skills']})
 
     def test_manifest_rejects_unpinned_repo_and_unsafe_paths(self):
         for field, value in [('ref', 'main'), ('repo', 'https://evil/repo'),
