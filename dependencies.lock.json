@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "packages": [
+    {
+      "id": "superpowers",
+      "profiles": [
+        "core"
+      ],
+      "repo": "obra/superpowers",
+      "ref": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "brainstorming",
+          "path": "skills/brainstorming"
+        },
+        {
+          "name": "diagnosing-superpowers",
+          "path": "skills/diagnosing-superpowers"
+        },
+        {
+          "name": "dispatching-parallel-agents",
+          "path": "skills/dispatching-parallel-agents"
+        },
+        {
+          "name": "executing-plans",
+          "path": "skills/executing-plans"
+        },
+        {
+          "name": "finishing-a-development-branch",
+          "path": "skills/finishing-a-development-branch"
+        },
+        {
+          "name": "receiving-code-review",
+          "path": "skills/receiving-code-review"
+        },
+        {
+          "name": "requesting-code-review",
+          "path": "skills/requesting-code-review"
+        },
+        {
+          "name": "subagent-driven-development",
+          "path": "skills/subagent-driven-development"
+        },
+        {
+          "name": "systematic-debugging",
+          "path": "skills/systematic-debugging"
+        },
+        {
+          "name": "test-driven-development",
+          "path": "skills/test-driven-development"
+        },
+        {
+          "name": "using-git-worktrees",
+          "path": "skills/using-git-worktrees"
+        },
+        {
+          "name": "using-superpowers",
+          "path": "skills/using-superpowers"
+        },
+        {
+          "name": "verification-before-completion",
+          "path": "skills/verification-before-completion"
+        },
+        {
+          "name": "writing-plans",
+          "path": "skills/writing-plans"
+        },
+        {
+          "name": "writing-skills",
+          "path": "skills/writing-skills"
+        }
+      ],
+      "canonical_folders": true
+    },
+    {
+      "id": "ponytail",
+      "profiles": [
+        "core"
+      ],
+      "repo": "DietrichGebert/ponytail",
+      "ref": "09c434ab73ca43761c5d8b0c5d341926c2fba710",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "ponytail",
+          "path": "skills/ponytail"
+        }
+      ]
+    },
+    {
+      "id": "caveman",
+      "profiles": [
+        "core"
+      ],
+      "repo": "JuliusBrussee/caveman",
+      "ref": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",
+      "license": "Apache-2.0; retained MIT notices for pre-3.0 contributions",
+      "license_files": [
+        "LICENSE",
+        "LICENSE-MIT",
+        "NOTICE",
+        "LICENSING.md"
+      ],
+      "skills": [
+        {
+          "name": "caveman",
+          "path": "skills/caveman"
+        }
+      ]
+    },
+    {
+      "id": "frontend-design",
+      "profiles": [
+        "core"
+      ],
+      "repo": "anthropics/skills",
+      "ref": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "license": "Apache-2.0 for skills/frontend-design only",
+      "license_files": [
+        "skills/frontend-design/LICENSE.txt"
+      ],
+      "skills": [
+        {
+          "name": "frontend-design",
+          "path": "skills/frontend-design"
+        }
+      ]
+    },
+    {
+      "id": "taste-skill",
+      "profiles": [
+        "core"
+      ],
+      "repo": "Leonxlnx/taste-skill",
+      "ref": "63aba5f43b5056758b15bbe7d683da8c86a7a7ad",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "design-taste-frontend",
+          "path": "skills/taste-skill"
+        }
+      ]
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "profiles": [
+        "core"
+      ],
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "ref": "56ea9cf174ed86786187daa9de0e6247cb0747e4",
+      "license": "MIT for repository code and guidance; preserve bundled data provenance and font metadata notices",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "ui-ux-pro-max",
+          "path": ".claude/skills/ui-ux-pro-max"
+        }
+      ]
+    },
+    {
+      "id": "emil-design-eng",
+      "profiles": [
+        "core"
+      ],
+      "repo": "emilkowalski/skills",
+      "ref": "2d228630ba1446365f614a108cb8252f1feda202",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "emil-design-eng",
+          "path": "skills/emil-design-eng"
+        }
+      ]
+    },
+    {
+      "id": "impeccable",
+      "profiles": [
+        "core"
+      ],
+      "repo": "pbakaus/impeccable",
+      "ref": "374a0e179bb36725283a612462131705ba4780ae",
+      "license": "Apache-2.0; NOTICE.md attributes MIT-derived platform references",
+      "license_files": [
+        "LICENSE",
+        "NOTICE.md"
+      ],
+      "skills": [],
+      "manual_reason": "Current Codex distribution .agents/skills/impeccable includes scripts/impeccable and impeccable.cmd launchers that require a separate release binary, downloaded on first run if absent. That binary is not pinned or verified by this source lock. Install/configure the upstream distribution separately after reviewing its release provenance; or use the existing installed impeccable skill if available. Source references are at .agents/skills/impeccable/reference. Do not execute or download its launcher during dependency installation."
+    },
+    {
+      "id": "api-design-principles",
+      "profiles": [
+        "backend"
+      ],
+      "repo": "wshobson/agents",
+      "ref": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "api-design-principles",
+          "path": "plugins/backend-development/skills/api-design-principles"
+        }
+      ]
+    },
+    {
+      "id": "security-best-practices",
+      "profiles": [
+        "backend"
+      ],
+      "repo": "openai/skills",
+      "ref": "49f948faa9258a0c61caceaf225e179651397431",
+      "license": "Apache-2.0 for skills/.curated/security-best-practices only",
+      "license_files": [
+        "skills/.curated/security-best-practices/LICENSE.txt"
+      ],
+      "skills": [
+        {
+          "name": "security-best-practices",
+          "path": "skills/.curated/security-best-practices"
+        }
+      ]
+    },
+    {
+      "id": "supabase-postgres-best-practices",
+      "profiles": [
+        "postgres"
+      ],
+      "repo": "supabase/agent-skills",
+      "ref": "c9be0e931b7930f7d02126d04774d904c381e7d7",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "supabase-postgres-best-practices",
+          "path": "skills/supabase-postgres-best-practices"
+        }
+      ]
+    }
+  ]
+}

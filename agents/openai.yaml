@@ -1,0 +1,4 @@
+interface:
+  display_name: "Universal Web Dev"
+  short_description: "Docs-first websites and full-stack systems, lean context"
+  default_prompt: "Use $universal-web-dev to plan an empty project before code, or continue its active sprint with verified tests and concise documentation."
