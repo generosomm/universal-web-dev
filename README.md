@@ -175,7 +175,7 @@ All installed from pinned commits in [dependencies.lock.json](dependencies.lock.
 | [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* |
 | [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* |
 
-Also recommended, not installed or pinned: [Lucide Animated](https://github.com/pqoqubbw/icons) (pqoqubbw, MIT), animated icons for React sites, added one icon at a time when a project wants them.
+Also recommended, not installed or pinned: [Lucide Animated](https://github.com/pqoqubbw/icons) (pqoqubbw) for animated icons and [FeralUI](https://feralui.dev) (Sarthak Navalekar) for playful physics components, both for React sites and added only when a project wants them. See [component sources](references/component-sources.md).
 
 <br>
 
