@@ -7,7 +7,7 @@ Read this when the user asks to install or update Universal Web Dev from its rep
 After this repository is published, the user can send its URL with:
 
 ```text
-install or update universal-web-dev and its core skills from this repository in my ai setup.
+install or update universal-web-dev and all of its skills from this repository in my ai setup.
 ```
 
 A bare URL is not guaranteed to trigger installation in every assistant. Do not claim universal AI-platform support or invent a public URL before publication.
@@ -16,13 +16,13 @@ A bare URL is not guaranteed to trigger installation in every assistant. Do not 
 
 1. Read README.md, this guide and dependencies.lock.json from a fresh checkout/download of the user-selected repository revision. Inspect the installer before running it. Use the current published revision unless the user pins a release. Preserve dirty/existing checkouts; use a separate temporary download rather than resetting someone's work.
 2. Identify the host and its documented skills directory. For Claude Code pass `--host claude` (~/.claude/skills or $CLAUDE_CONFIG_DIR/skills); for Codex pass `--host codex` ($CODEX_HOME/skills or ~/.codex/skills); for another host verify its actual support and use --dest explicitly. Do not write to an arbitrary guessed global config file. Check Python 3.10+; do not install Python, a plugin, a CLI binary or administrator tooling as an unrequested side effect.
-3. Plan and apply the core installation with the commands below, replacing the target with the resolved directory. The user's install/update request authorizes ordinary selected skill installation subject to host permissions; do not add a second routine confirmation when authorization is already clear. Honor any explicit hold or review request. Optional lean/backend/Postgres profiles require the user's selection or the requested project need; --profile all is available when all source modules are requested.
+3. Plan and apply the core installation with the commands below, replacing the target with the resolved directory. The user's install/update request authorizes ordinary selected skill installation subject to host permissions; do not add a second routine confirmation when authorization is already clear. Honor any explicit hold or review request. "All of its skills" (the README prompt) means `--profile all`; "core skills" means `--profile core`. If the host already provides a module through a plugin (for example Supabase's Postgres skill), install the remaining profiles by name instead of `all` and report the skip, so the catalog has no duplicate. Otherwise optional lean/backend/Postgres profiles require the user's selection or the requested project need.
 4. Run the dependency checker for the selected profiles. Report installed, updated, unchanged, preserved custom/unmanaged, missing and manual requirements honestly. If the host caches skills, explain its supported refresh/restart step. Do not run a newly installed skill or start a project just to demonstrate installation.
 
 ```sh
-python scripts/install.py --profile core --sync --dest <skills-directory>
-python scripts/install.py --profile core --sync --dest <skills-directory> --apply
-python scripts/doctor.py --skills-dir <skills-directory> --profile core
+python scripts/install.py --profile all --sync --dest <skills-directory>
+python scripts/install.py --profile all --sync --dest <skills-directory> --apply
+python scripts/doctor.py --skills-dir <skills-directory> --profile all
 ```
 
 No upstream skill script is executed by installation. Impeccable installs guidance-only: its critique, audit and polish playbooks work, while live browser mode, the detector and shortcuts need the upstream launcher; do not download/execute its separate binary. Installation completion and runtime verification are different results.

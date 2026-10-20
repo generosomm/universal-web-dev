@@ -22,15 +22,17 @@ A reusable development skill by [Merwin M. Generoso](https://generosomm.dev) for
 
 ## Install through your AI
 
-Copy this prompt into a local coding assistant with file, terminal and network access:
+Copy this prompt into a local coding assistant with file, terminal and network access (Claude Code, Codex or similar). Run it once to install everything. Run it again after a new release to bring every skill it installed up to that release's reviewed versions; skills you edited or installed some other way are kept and reported, not replaced:
 
 ```text
-install or update universal-web-dev and its core skills from:
+install or update universal-web-dev and all of its skills from:
 https://github.com/generosomm/universal-web-dev
-follow INSTALL.md, preserve my customized skills, and report any manual setup.
+follow INSTALL.md, preserve my customized skills, and report what changed.
 ```
 
-**For the assistant:** follow [INSTALL.md](INSTALL.md). Resolve the host's skills directory, use managed sync, run the checker and report any missing/manual requirements. The assistant needs local tools and permissions; a URL alone is not an installer for every AI platform.
+That one link installs this skill plus every skill it uses, from 11 GitHub repositories: Superpowers, Ponytail, Caveman, Anthropic's Frontend Design, Taste, UI/UX Pro Max, Emil Kowalski's skills, Impeccable, API Design, OpenAI Security and Supabase Postgres. Each comes from a reviewed, pinned commit listed in [credits](CREDITS.md). Your own edited copies are kept, never overwritten. Prefer a smaller setup? Say "core skills" instead of "all of its skills".
+
+**For the assistant:** follow [INSTALL.md](INSTALL.md). The assistant needs local tools and permissions; a URL alone is not an installer for every AI platform.
 
 ## What it does
 
@@ -148,7 +150,7 @@ python scripts/doctor.py --package-only
 
 The doctor checks package integrity and dependency presence, not website security, external-service wiring, full runtime compatibility or exact integrity of existing custom skills. Manual requirements remain visible. Keep skills selective and projects small; better planning and focused tests do not guarantee zero bugs or lower token usage.
 
-Contributors should follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused and include relevant regression evidence. Maintainer updates should change verified source pins and credits together, test in a disposable skills directory, and review upstream changes before applying them. The project's [MIT license](LICENSE) covers original wrapper files only; upstream licenses remain separate.
+Contributors should follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused and include relevant regression evidence. Maintainers check for upstream updates with `python scripts/check-updates.py`, which reports whether new commits touch installed files. Updates should change verified source pins and credits together, test in a disposable skills directory, and review upstream changes before applying them. The project's [MIT license](LICENSE) covers original wrapper files only; upstream licenses remain separate.
 
 ---
 
