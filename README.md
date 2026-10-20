@@ -175,7 +175,7 @@ All installed from pinned commits in [dependencies.lock.json](dependencies.lock.
 | [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* |
 | [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* |
 
-Also recommended, not installed or pinned: reusable components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to the site's own design. See [component sources](references/component-sources.md) for licenses and rules.
+Also recommended, not installed or pinned: reusable components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to the site's own design. See [component sources](references/component-sources.md) for rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
 
 <br>
 

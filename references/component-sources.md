@@ -14,7 +14,7 @@ Read this only when a task adds icons or a ready-made component. Reusing a maint
 
 - Use the install command from the component's own page or README, copied exactly; never guess a package or registry name from a display name.
 - For npm packages, confirm the maintainer or repository matches the source below.
-- Components copied into the project become its code: keep the license notice the source asks for.
+- Components copied into the project become its code: keep the license notice the source asks for. Authors and licenses: [credits](../CREDITS.md#referenced-not-installed).
 
 ## Sources
 
