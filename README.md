@@ -50,7 +50,7 @@ python scripts/install.py --profile postgres --apply
 python scripts/doctor.py --profile all
 ```
 
-Backend selects API Design and OpenAI Security; Postgres selects Supabase's SQL guidance, not a hosted database or account. With `--sync --apply`, missing skills are installed and unchanged receipt-managed skills update when the selected release changes their pinned source. Matching versions are skipped without downloads. Modified or unmanaged existing skills are preserved and reported. `--update --apply` is the explicit replacement override, with backups and rollback on commit failure. Updates use reviewed pins from the selected wrapper release; they never silently follow upstream HEAD. Review local customizations and the printed plan first.
+Backend selects API Design and OpenAI Security; Postgres selects Supabase's SQL guidance, not a hosted database or account. With `--sync --apply`, missing skills are installed and unchanged receipt-managed skills update when the selected release changes their pinned source. Matching versions are skipped without downloads. Modified or unmanaged existing skills are preserved and reported. `--update --apply` is the explicit replacement override, with backups and rollback on commit failure. Updates use reviewed pins from the selected wrapper release; they never silently follow upstream HEAD. Review local customizations and the printed plan first. If a running host locks the folder on Windows, release the lock/check normal permissions and retry; the installer stops without forcing deletion. See [installation recovery](INSTALL.md#locked-installation-directories).
 
 ## Dependencies and attribution
 

@@ -34,3 +34,7 @@ No upstream skill script is executed by installation. Manual Impeccable runtime 
 The --sync mode installs missing modules and updates unchanged modules managed by this installer when the release's desired source changes. Its local content receipt detects modifications. Existing unmanaged, malformed-receipt or modified skills are kept and reported; do not claim they were brought up to date. The explicit --update override requires the user's clear intent to replace those local copies, and creates backups. Neither flag is an unattended scheduler or background updater.
 
 Repeated setup should be a no-op for matching managed sources. Failed staging must leave existing installed folders intact; updates preserve backups and attempt rollback on a commit failure. Stop and report a failed requirement rather than weakening checks. Do not print environment values or credentials. Keep the final installation report concise and use the user's language.
+
+## Locked installation directories
+
+If Windows reports Access denied while renaming an installed folder, stop and report it. Check normal directory permissions and release any host/editor lock, then retry the reviewed plan; do not delete the existing folder, escalate privileges automatically or silently fall back to partial in-place updates. Initial staging can succeed while replacement is blocked. Existing installations should remain intact after this failure. A maintainer can separately back up and reconcile their own files, but that is not the installer's automatic update path.
