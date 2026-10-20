@@ -1,6 +1,6 @@
 # Website readiness
 
-Use at kickoff and release review; inspect only affected sections for a small feature. Record verified evidence, pending work or not applicable with a reason in the project's existing tracker. A checklist entry is not proof or authorization to expand the task. Prioritize actual exposure and the agreed release scope.
+Use at kickoff and release review; inspect only affected sections for a small feature. Record verified evidence, pending work or not applicable with a reason in the project's existing tracker; every item fits the site being built, so a portfolio with no forms gets no invented bot defense. A checklist entry is not proof or authorization to expand the task. Prioritize actual exposure and the agreed release scope.
 
 ## Privacy and policy pages
 
@@ -18,6 +18,8 @@ Use at kickoff and release review; inspect only affected sections for a small fe
 
 - Accurate, distinct meta titles/descriptions on public routes; canonical URLs and social metadata. Verify delivered HTML for the intended crawler, not only an updated browser title.
 - A product-specific social preview image and favicon: valid public paths, appropriate dimensions/formats, no private data, and rendered/share-preview checks where available.
+- One h1 per page that names it, then headings in order without skipped levels; headings describe sections, not styling.
+- Structured data (schema.org JSON-LD) only for what the page really is (organization, local business, product, article, event, FAQ), matching visible content; validate it. Multilingual sites add reciprocal hreflang, with x-default for the fallback page.
 - Generate sitemap.xml and robots.txt where appropriate to public indexing. Include canonical public pages only; check deployment hostname and preview/staging behavior. robots.txt is not access control or a reliable way to prevent indexing. Keep private routes authenticated; use appropriate indexing controls separately.
 
 ## Usability and accessibility
@@ -32,7 +34,22 @@ Use at kickoff and release review; inspect only affected sections for a small fe
 
 - Compress/resize images, use suitable modern formats and responsive sources, set dimensions, and lazy-load noncritical media. Don't degrade essential visual quality or lazy-load the primary hero indiscriminately.
 - Measure representative initial load and the critical user interaction, including mobile and heavy 3D routes. Record tool, route, conditions and actual findings; fix material bottlenecks. Don't invent performance scores or guarantee a target from a build alone.
+- Find slow resources: scripts, styles, fonts and images that block rendering or load slowly on a throttled mobile connection; defer, shrink or remove them. Remove third-party scripts, pixels and embeds nobody asked for.
 - Analytics: evaluate a concrete measurement goal, approved provider, minimized data and consent requirements. Configure only when in scope and authorized; don't install tracking by default or send personal data/secrets in events. If enabled, verify events and relevant consent behavior. Otherwise record deferred/not applicable.
+
+## Who checks what
+
+Use the installed skills instead of improvising, each once at release and only when its area applies:
+
+| Area | Skill |
+| --- | --- |
+| Accessibility, contrast, performance, responsive layout | `impeccable`, once per release: `audit` when a measured report is needed, otherwise the `polish` pass, never both; `optimize` only for a page measured as slow. Without its launcher, do the detector's checks by hand with available tools |
+| Worst-case content: long names, empty lists, huge numbers, other scripts | `break-ui` |
+| Real-phone feel: viewport height, input zoom, notch, tap states | `mobile-native` |
+| Security review the developer requests | `security-best-practices` (backend profile) |
+| Final evidence before calling it done | `verification-before-completion` |
+
+For a human second opinion, free tools such as Chrome's Lighthouse or Plerdy's SEO Analyzer and UX & Usability Testing extensions show SEO issues and predicted attention. Treat their scores and heatmaps as hints, not pass/fail gates, and run AI page-review tools only on pages that hold no private data.
 
 ## Sources for implementation checks
 
