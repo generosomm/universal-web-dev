@@ -1,6 +1,6 @@
 # Website readiness
 
-Use at kickoff and release review; inspect only affected sections for a small feature. Record verified evidence, pending work or not applicable with a reason in the project's existing tracker; every item fits the site being built, so a portfolio with no forms gets no invented bot defense. A checklist entry is not proof or authorization to expand the task. Prioritize actual exposure and the agreed release scope.
+Use at kickoff and release review, and score it with the [Launch Readiness Score](readiness-score.md) when asked to check or audit; inspect only affected sections for a small feature. Record verified evidence, pending work or not applicable with a reason in the project's existing tracker; every item fits the site being built, so a portfolio with no forms gets no invented bot defense. A checklist entry is not proof or authorization to expand the task. Prioritize actual exposure and the agreed release scope.
 
 ## Privacy and policy pages
 
@@ -58,7 +58,10 @@ Use the installed skills instead of improvising, each once at release and only w
 
 | Area | Skill |
 | --- | --- |
-| Accessibility, contrast, performance, responsive layout | `impeccable`, once per release: `audit` when a measured report is needed, otherwise the `polish` pass, never both; `optimize` only for a page measured as slow. Without its launcher, do the detector's checks by hand with available tools |
+| Accessibility, contrast, responsive layout | `impeccable`, once per release: `audit` when a measured report is needed, otherwise the `polish` pass, never both. Without its launcher, do the detector's checks by hand with available tools |
+| Load speed and Core Web Vitals | `performance`, and `core-web-vitals` for LCP, INP or CLS; measure first |
+| Titles, structured data, sitemaps, AI-answer visibility | `seo-aeo-best-practices` |
+| Critical flow, console errors, screenshots in a real browser | `webapp-testing`, or the host's own browser tool |
 | Worst-case content: long names, empty lists, huge numbers, other scripts | `break-ui` |
 | Real-phone feel: viewport height, input zoom, notch, tap states | `mobile-native` |
 | Security review the developer requests | `security-best-practices` (backend profile) |

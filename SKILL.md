@@ -9,13 +9,13 @@ Build the smallest complete system that satisfies the brief. Project type, user 
 
 ## Route each task to the fewest skills
 
-Load a skill only when its row applies; read its SKILL.md once per conversation and its references only for the question at hand. If a skill is missing, say so and continue. Never claim a skill ran when it did not.
+Load a skill only when its row applies; read its SKILL.md once per conversation and its references only for the question at hand. If a skill is missing, say so, use [the built-in fallback](references/fallback.md) for that row, and continue. Never claim a skill ran when it did not. When a project uses a stack or service with an official skill pack (WordPress, Shopify, Laravel, Svelte, React, Stripe, Sanity, Prisma and others), check [stack packs](references/stack-packs.md) once per project and offer the pack; install only with approval.
 
 | Task | Load | Do not load |
 | --- | --- | --- |
 | Typo, label or config fix, or copy the user supplied word for word | nothing extra | design or backend guidance |
 | Copy that reads AI-written or needs a rewrite: headlines, intros, about text, CTAs | `humanizer`, on the user's own words | design skills |
-| Bug or failing test | `systematic-debugging` | design skills |
+| Bug or failing test | `systematic-debugging`; `webapp-testing` to reproduce a UI bug in a browser | design skills |
 | New feature in an existing project | `ponytail`; `test-driven-development` when behavior changes | a new design direction; reuse the accepted one |
 | New marketing page, landing page, portfolio | `design-taste-frontend` full run, then `impeccable` polish | `frontend-design`, backend references |
 | Change to an existing page | the project's accepted design; Taste house rules only if Taste set its direction | a new direction |
@@ -25,6 +25,10 @@ Load a skill only when its row applies; read its SKILL.md once per conversation 
 | Empty project | [project bootstrap](references/project-bootstrap.md); `brainstorming` only if requirements are unclear; `writing-plans` only for multi-sprint builds | implementation code before the plan |
 | Carrying out a written plan, code review, or finishing a branch | `executing-plans`, or `subagent-driven-development` and `dispatching-parallel-agents` when the host runs subagents; `requesting-code-review` before merge, `receiving-code-review` for feedback; `using-git-worktrees` for isolated work, `finishing-a-development-branch` to wrap up | a new design direction |
 | Kickoff planning, or a release when the site is about to go live | [website readiness](references/website-readiness.md), `verification-before-completion`; for UI releases `break-ui` on the main screens and `mobile-native` | checks outside the release scope; release checks on a first draft |
+| An explicit request to check or audit the whole site, score it, write a client handoff report, or compare two scores | [Launch Readiness Score](references/readiness-score.md); `webapp-testing` for browser checks | code changes before the report; a score for anything not checked; checking one component or comparing design options |
+| Slow pages, Core Web Vitals, page weight | `performance`, and `core-web-vitals` for LCP, INP or CLS | guesses without a measurement |
+| Search or AI-answer visibility: metadata, structured data, sitemaps | `seo-aeo-best-practices` | design skills |
+| Clicking through a flow, screenshots, console errors in a real browser | `webapp-testing` | the readiness score unless asked |
 
 Use one design direction skill per project; when skills disagree on a visual rule, it wins. Run `impeccable` once as the final review: its `polish` playbook, or `audit` when release needs a measured report; `critique` (seven times larger) only when asked, never on every edit; without its `scripts/` folder, use its documented fallback. Query `ui-ux-pro-max` narrowly, running its scripts from the installed skill folder, and never generate a new design system per change. Suggest, never auto-run, the explicit-only `prototype` when looks are undecided and `pick-ui-library` before hand-building charts, OTP inputs, drag and drop or similar widgets. Read [component sources](references/component-sources.md) before adding icon or UI component libraries.
 

@@ -8,22 +8,25 @@
 <br>
 
 [![Checks](https://github.com/generosomm/universal-web-dev/actions/workflows/check.yml/badge.svg)](https://github.com/generosomm/universal-web-dev/actions/workflows/check.yml)
-![Skills](https://img.shields.io/badge/skills-29%20pinned-17703f?style=flat-square)
+![Price](https://img.shields.io/badge/price-free-17703f?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-33%20pinned-17703f?style=flat-square)
 ![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex-0d1411?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?style=flat-square)
 [![License](https://img.shields.io/badge/license-MIT-186B53?style=flat-square)](LICENSE)
 
-**[Install](#install-in-one-message)** · **[What you get](#what-you-get)** · **[How it works](#how-it-works)** · **[How to use it](#how-to-use-it)** · **[See a site it built](#see-a-site-it-built)** · **[Included skills](#included-skills)** · **[FAQ](#faq)**
+**[Install](#install-in-one-message)** · **[What you get](#what-you-get)** · **[Launch score](#launch-readiness-score)** · **[How it works](#how-it-works)** · **[How to use it](#how-to-use-it)** · **[Included skills](#included-skills)** · **[Your stack](#works-with-your-stack)** · **[FAQ](#faq)**
 
 </div>
 
 ---
 
-### Help your AI build websites that look designed and actually work
+### A free skill that helps your AI build websites you can actually launch
 
 If you've asked an AI to build a website, you've probably seen the result: a centred headline, three icon cards and a soft gradient. It also tends to skip the boring parts that make a site ready to launch, like colour contrast, phone layouts, broken links and secrets left in the browser.
 
-Universal Web Dev is one skill you add to your coding assistant. For each request, it picks the right expert from 29 community skills and leaves the rest unloaded. You get a design that fits the business, a plan before any code, and a checklist before launch, without paying for every manual on every edit.
+Universal Web Dev is one free skill you add to your coding assistant. For each request, it picks the right expert from 33 community skills and leaves the rest unloaded. You get a design that fits the business, a plan before any code, tests that prove it works, and a **Launch Readiness Score** that shows exactly what's left before you go live.
+
+It works for any kind of site (portfolio, landing page, shop, booking system, dashboard, full-stack app) in any stack, and it never picks a framework for you.
 
 **New to skills?** A skill is a folder of instructions your coding assistant reads when a task needs it. Until then, your assistant only sees each skill's short description, so installing many of them costs very little. The [FAQ](#faq) has the numbers.
 
@@ -39,7 +42,7 @@ https://github.com/generosomm/universal-web-dev
 follow INSTALL.md, preserve my customized skills, and report what changed.
 ```
 
-Your assistant downloads this skill and the 29 skills it uses, each from a reviewed, pinned commit. Then it runs a check and tells you what it installed. Restart or refresh your assistant afterwards so it picks up the new skills.
+Your assistant downloads this skill and the 33 skills it uses, each from a reviewed, pinned commit. Then it runs a check and tells you what it installed. Restart or refresh your assistant afterwards so it picks up the new skills.
 
 - Updating later? Send the same message. Skills you edited or installed another way are kept and listed in the report, and never overwritten.
 - Want a smaller setup? Say "core skills" instead of "all of its skills".
@@ -57,7 +60,7 @@ python scripts/install.py --host claude --profile all --sync --apply   # install
 python scripts/doctor.py --profile all                                 # check
 ```
 
-Use `--host codex` for Codex, or `--dest <folder>` for any other skills directory. Profiles: `core` (design and workflow), `lean` (adds Caveman), `backend` (API design, security review), `postgres` (Supabase's Postgres guidance), or `all`.
+Use `--host codex` for Codex, or `--dest <folder>` for any other skills directory. Profiles: `core` (design, workflow, testing, speed and search), `lean` (adds Caveman), `backend` (API design, security review), `postgres` (Supabase's Postgres guidance), or `all`.
 
 The installer never runs code from the skills it downloads. It keeps a backup whenever it replaces something, and rolls back if an install fails. Details are in [INSTALL.md](INSTALL.md).
 
@@ -73,6 +76,54 @@ The installer never runs code from the skills it downloads. It keeps a backup wh
 
 **A site that's ready to launch.** You get a plan before code, tests that check real behaviour, and a launch checklist that fits the site. A portfolio won't get a cookie banner or a bot check it doesn't need.
 
+**A score you can show.** Say "check" or "audit" and you get a Launch Readiness Score from 0 to 100, with the evidence behind every point and the fixes that matter most. Freelancers can turn it into a plain-language handoff report for a client.
+
+**The official expert for your stack.** It recognizes WordPress, Shopify, Laravel, Svelte, React, Stripe, Sanity, Prisma and more, and offers the official skill from that tool's maker, where one exists. See [works with your stack](#works-with-your-stack).
+
+**Useful from the first minute.** If a companion skill isn't installed yet, it says so and uses a short built-in version of the essentials, so it still works on its own.
+
+### Why it's different
+
+Most skills are one specialist: a design manual, a debugging method, a token saver. Universal Web Dev is the project lead that coordinates them.
+
+- It decides what *not* to load. Each routing row names the skills to skip, and settles conflicts (one design direction per project, one final review).
+- Every skill is pinned to a reviewed commit with its license checked. The installer never runs downloaded code, keeps your edits, and rolls back if something fails.
+- Its scores come only from checks that actually ran. Items it couldn't check are listed with how to run them, never guessed.
+
+<br>
+
+## Launch Readiness Score
+
+Ask your assistant to `check` a site for a quick scan, or to `audit` it for every route and every applicable item. Each item is marked pass, partial or fail with the evidence. Items that don't apply are left out instead of lowering the score, and anything it couldn't check lowers the coverage figure shown next to the score.
+
+Here is a real `check` of the reference site in this repository, unedited apart from shortening:
+
+```text
+Launch Readiness Score: 70/100, Needs work   Coverage: 21/25 (84%)
+Mode: check   Site: examples/reference-site, served locally   Date: 2026-10-27
+
+Category             Score  Weight  Status
+Works as intended      88     20    Tide planner works, all 8 in-page links resolve, no console errors
+Works for everyone     79     25    Every measured text passes contrast; one small tap target
+Trust and safety       75     25    No secrets; third-party font and image requests without a privacy note
+Speed                  67     15    No blocking scripts, images sized and lazy; font CSS blocks rendering
+Found and shared       30     15    No canonical, share image, structured data or sitemap
+
+Blockers: none
+Top fixes: 1. Add LodgingBusiness structured data (S)   2. Add sitemap.xml and robots.txt (S)
+           3. Add canonical URL and share image (S)     4. Self-host font and photos, or add a privacy note (M)
+Not run: HTTPS (not deployed), worst-case content, Core Web Vitals field data
+```
+
+The full report, with evidence, impact and a fix for each finding, is in [readiness-check.md](https://github.com/generosomm/universal-web-dev/blob/main/examples/reference-site/docs/readiness-check.md). The scoring rules are in [readiness score](references/readiness-score.md).
+
+| Say | You get |
+| --- | --- |
+| `check` | A quick scan of the home page and main flow: score, coverage, blockers, top five fixes |
+| `audit` | Every public route and flow, measured where possible, with the full report |
+| `handoff` | The latest results in plain words for a client, with who owns each open item |
+| `compare` | Two real runs side by side, to show what your fixes changed |
+
 <br>
 
 ## How it works
@@ -82,7 +133,7 @@ Think of Universal Web Dev as a project lead. It doesn't do every job itself. It
 Here's what happens when you ask for something:
 
 1. You describe the work in plain words, like "fix the contact form" or "build a landing page for my bakery".
-2. Your assistant sees that it's web work and opens this skill's routing table in [SKILL.md](SKILL.md). That file is small, about 1,700 tokens.
+2. Your assistant sees that it's web work and opens this skill's routing table in [SKILL.md](SKILL.md). That file is small, about 2,000 tokens.
 3. The table matches your request to one row. The row names the skills to load (usually one to three) and the ones to leave alone.
 4. Your assistant reads only those skills and does the work. A new project gets a short plan first, then one working feature at a time with tests.
 5. Before saying "done", it runs the project's checks and walks through the real user flow. When the site is about to go live, it also goes through the launch checklist below.
@@ -101,8 +152,12 @@ A token is a small piece of text, roughly four characters, and it's what AI tool
 | A dashboard or admin screen | Frontend Design, UI/UX Pro Max lookups | marketing-page art direction |
 | A login, database or API | full-stack contracts, API and security guidance | design skills |
 | A release | readiness checklist, Break UI, Mobile Native | anything outside the release |
+| "Check my site" or "audit my site" | the Launch Readiness Score, Webapp Testing for the browser | code changes before the report |
+| Slow pages | Performance, Core Web Vitals | guesses without a measurement |
+| Search or AI-answer visibility | SEO and AEO best practices | design skills |
+| A WordPress, Shopify or Laravel project | an offer to add that platform's official skill pack | packs for stacks you don't use |
 
-All the routing lives in [SKILL.md](SKILL.md), about 7 KB.
+All the routing lives in [SKILL.md](SKILL.md), about 8 KB.
 
 ### What gets checked before launch
 
@@ -116,7 +171,7 @@ Each item is marked done, pending, or "doesn't apply" with a reason, so a portfo
 | Cookie consent only where needed | Heading order and structured data | Custom 404 and no broken links |
 | Form validation and spam protection | Hreflang for multilingual sites | Fast pages: images, slow scripts |
 
-See the full checklist in [website readiness](references/website-readiness.md).
+See the full checklist in [website readiness](references/website-readiness.md). The [Launch Readiness Score](#launch-readiness-score) turns it into a number.
 
 <br>
 
@@ -164,6 +219,10 @@ A few more things you might say, and what they lead to:
 | "Make this headline sound less like AI" | `humanizer` rewrites it from your own words |
 | "Show me a few options for the hero" | It suggests `prototype` so you can flip between versions and pick one |
 | "We launch on Friday, is it ready?" | It runs the launch checklist, `break-ui` and `mobile-native` |
+| "Audit my site" | A Launch Readiness Score with evidence and the top fixes |
+| "Why is the homepage so slow on my phone?" | `performance` measures first, then fixes the biggest cost |
+| "Click through checkout and tell me what breaks" | `webapp-testing` drives a real browser and reads the console |
+| "Write a handoff report for my client" | The latest score and open items, in plain words |
 | "Do a security review" | `security-best-practices` reviews the code *(backend profile)* |
 | "Keep your replies short" | `caveman` trims its answers *(lean profile)* |
 
@@ -203,9 +262,9 @@ Existing projects keep their own structure. See [project bootstrap](references/p
 
 ## Included skills
 
-All 29 skills are listed below by their real names, the ones you'll see in your assistant and in [SKILL.md](SKILL.md). You don't have to call them yourself. Universal Web Dev picks the right ones for each task, except the two marked "only when you ask".
+All 33 skills are listed below by their real names, the ones you'll see in your assistant and in [SKILL.md](SKILL.md). You don't have to call them yourself. Universal Web Dev picks the right ones for each task, except the two marked "only when you ask".
 
-They come from 12 projects. Most projects add one skill, while [Superpowers](https://github.com/obra/superpowers) adds 14 and [Emil's skills](https://github.com/emilkowalski/skills) adds 5. Every skill installs from a pinned commit listed in [dependencies.lock.json](dependencies.lock.json), and authors and licenses are in [CREDITS.md](CREDITS.md).
+They come from 14 projects. Most projects add one skill, while [Superpowers](https://github.com/obra/superpowers) adds 14, [Emil's skills](https://github.com/emilkowalski/skills) adds 5 and [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) adds 2. Every skill installs from a pinned commit listed in [dependencies.lock.json](dependencies.lock.json), and authors and licenses are in [CREDITS.md](CREDITS.md).
 
 A profile is a bundle you choose at install time. `core` is installed for everyone. `lean`, `backend` and `postgres` are optional extras, and asking for "all of its skills" installs every profile.
 
@@ -262,16 +321,27 @@ From [Emil's skills](https://github.com/emilkowalski/skills) by Emil Kowalski. P
 | 24 | `prototype` | Builds several genuinely different versions of a piece of UI and lets you flip between them, so you can keep the one that feels right. | Only when you ask; it may suggest it when the look is undecided |
 | 25 | `pick-ui-library` | Recommends a proven, ready-made library for things like charts, code inputs, toasts or drag and drop, so they aren't built from scratch. | Only when you ask; it may suggest it before building one of these by hand |
 
+### Testing, speed and search
+
+Profile: `core`.
+
+| # | Skill | What it does, in plain words | Used when |
+| --- | --- | --- | --- |
+| 26 | `webapp-testing` | Opens your site in a real browser with Playwright, clicks through flows, takes screenshots and reads console errors. Needs Python Playwright; without it, it reports that the browser check didn't run. From [Anthropic's skills](https://github.com/anthropics/skills). | Checking a flow, an audit, or before saying "done" |
+| 27 | `performance` | Makes pages load faster: measures first, then fixes the biggest cost, such as a heavy image, blocking script or slow font. From [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) by Addy Osmani. | A page feels slow, or an audit measures it as slow |
+| 28 | `core-web-vitals` | Fixes Google's three page-experience scores: how fast the main content appears (LCP), how fast the page reacts (INP) and how much it jumps around (CLS). From the same project. | A Core Web Vitals score is poor |
+| 29 | `seo-aeo-best-practices` | Gets pages found by search engines and quoted by AI answers: titles, structured data, sitemaps, and content written to be cited. From [Sanity's agent toolkit](https://github.com/sanity-io/agent-toolkit). | Search visibility, structured data, or the "Found and shared" part of an audit |
+
 ### Extras
 
 Optional profiles, installed only if you choose them.
 
 | # | Skill | What it does, in plain words | Used when |
 | --- | --- | --- | --- |
-| 26 | `caveman` | Makes your assistant's replies very short while keeping every technical fact. Profile: `lean`. From [Caveman](https://github.com/JuliusBrussee/caveman) by Julius Brussee. | You ask for short replies |
-| 27 | `api-design-principles` | Rules for designing a clean REST or GraphQL API, the part of your app that other code talks to: naming, errors, paging and versions. Profile: `backend`. From [API Design](https://github.com/wshobson/agents) by Seth Hobson. | Designing an API |
-| 28 | `security-best-practices` | Reviews Python, JavaScript, TypeScript or Go code for security problems and suggests safer defaults. Profile: `backend`. From [Security Best Practices](https://github.com/openai/skills) by OpenAI. | You ask for a security review |
-| 29 | `supabase-postgres-best-practices` | Rules for Postgres databases: tables, migrations, queries, indexes, and RLS (row-level security, which controls which rows each user is allowed to see). Profile: `postgres`. From [Postgres Best Practices](https://github.com/supabase/agent-skills) by Supabase. | Any Postgres database work |
+| 30 | `caveman` | Makes your assistant's replies very short while keeping every technical fact. Profile: `lean`. From [Caveman](https://github.com/JuliusBrussee/caveman) by Julius Brussee. | You ask for short replies |
+| 31 | `api-design-principles` | Rules for designing a clean REST or GraphQL API, the part of your app that other code talks to: naming, errors, paging and versions. Profile: `backend`. From [API Design](https://github.com/wshobson/agents) by Seth Hobson. | Designing an API |
+| 32 | `security-best-practices` | Reviews Python, JavaScript, TypeScript or Go code for security problems and suggests safer defaults. Profile: `backend`. From [Security Best Practices](https://github.com/openai/skills) by OpenAI. | You ask for a security review |
+| 33 | `supabase-postgres-best-practices` | Rules for Postgres databases: tables, migrations, queries, indexes, and RLS (row-level security, which controls which rows each user is allowed to see). Profile: `postgres`. From [Postgres Best Practices](https://github.com/supabase/agent-skills) by Supabase. | Any Postgres database work |
 
 Also recommended, but not installed or pinned: components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to match the site's design. See [component sources](references/component-sources.md) for the rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
 
@@ -279,10 +349,41 @@ Some skills we looked at were left out because they overlap the ones above, touc
 
 <br>
 
+## Works with your stack
+
+Many tools now publish official skills for their own products. Universal Web Dev doesn't install all of them, because a Shopify skill is no use on a WordPress site and every installed skill costs tokens. It recognizes your project's stack from its files and offers the matching official pack once, with its publisher and license. Nothing is installed without your OK.
+
+| Stack | Official pack from |
+| --- | --- |
+| WordPress | WordPress contributors (GPL-2.0-or-later) |
+| Shopify | Shopify (MIT) |
+| Laravel | Laravel, through Laravel Boost (MIT) |
+| Svelte and SvelteKit | the Svelte team (MIT) |
+| React and Next.js | Vercel (MIT declared in the skill) |
+| Stripe payments | Stripe (MIT) |
+| Email | Resend (MIT), useful with any email provider |
+| Sanity CMS | Sanity (MIT) |
+| Prisma, Neon, Supabase | Prisma (MIT), Neon (Apache-2.0), Supabase (MIT, already the `postgres` profile) |
+| Convex | Convex (Apache-2.0), offered only if you already use Convex |
+| Clerk, Better Auth | linked only: neither repository has a license file |
+
+The full list, with how each stack is detected, is in [stack packs](references/stack-packs.md). No official pack existed yet for Tailwind CSS, Nuxt, Astro, Drizzle or Django when this was checked.
+
+<br>
+
 ## FAQ
 
 <details>
-<summary><strong>Does installing 29 skills make my assistant slower or more expensive?</strong></summary>
+<summary><strong>Is it really free?</strong></summary>
+
+<br>
+
+Yes. Universal Web Dev is MIT licensed and free to use, share and change, including for client work. The skills it installs are open source under their own licenses, and none of them need an account or a paid service.
+
+</details>
+
+<details>
+<summary><strong>Does installing 33 skills make my assistant slower or more expensive?</strong></summary>
 
 <br>
 
@@ -290,9 +391,9 @@ Barely. An installed skill costs only its description until it's used. Here's wh
 
 | What | Tokens | When |
 | --- | --- | --- |
-| All 30 skill descriptions | about 2,200 | Once per conversation, about one page of text |
-| This skill's routing | about 1,700 | Each web task |
-| Every skill's full instructions added up | about 90,000 | Never all at once: a task loads only the one to three skills its routing row names |
+| All 34 skill descriptions | about 2,600 | Once per conversation, about one page of text |
+| This skill's routing | about 2,000 | Each web task |
+| Every skill's full instructions added up | about 91,000 | Never all at once: a request loads only the one to three skills its routing row names |
 
 A typo loads nothing extra. A new landing page loads Taste and, at the end, Impeccable. Backend and Postgres guidance stay unloaded on a static site. `Prototype` and `Pick UI Library` load only when you invoke them yourself, in assistants that honour that setting, such as Claude Code.
 
@@ -347,7 +448,7 @@ Maintainers run `python scripts/check-updates.py`, review any changes to install
 
 ## Status and limits
 
-This is a community preview. The installer, the checker and a static reference site are tested on Windows and in CI on Linux and Windows. Trials with business systems (logins, databases, roles) come next. No skill guarantees bug-free output; this one helps you catch problems earlier.
+This is a community preview. The installer, the checker and a static reference site are tested on Windows and in CI on Linux and Windows. Trials with business systems (logins, databases, roles) come next. The routing is tuned for medium-effort models such as Opus 5.5 and GPT 6.1 Sol, and works with higher settings too. No skill guarantees bug-free output; this one helps you catch problems earlier.
 
 Want to contribute? Follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused, and include test evidence. Found a problem? [Open an issue](https://github.com/generosomm/universal-web-dev/issues) with your AI tool, your setup and what you expected, and remove any secrets or private project data first.
 

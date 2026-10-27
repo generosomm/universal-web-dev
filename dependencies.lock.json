@@ -249,6 +249,65 @@
       ]
     },
     {
+      "id": "webapp-testing",
+      "profiles": [
+        "core"
+      ],
+      "repo": "anthropics/skills",
+      "ref": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "license": "Apache-2.0 for skills/webapp-testing only",
+      "license_files": [
+        "skills/webapp-testing/LICENSE.txt"
+      ],
+      "skills": [
+        {
+          "name": "webapp-testing",
+          "path": "skills/webapp-testing"
+        }
+      ]
+    },
+    {
+      "id": "web-quality-skills",
+      "profiles": [
+        "core"
+      ],
+      "repo": "addyosmani/web-quality-skills",
+      "ref": "afa8da942115f2961fdbfa80807ea0b232ff6c00",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "canonical_folders": true,
+      "skills": [
+        {
+          "name": "performance",
+          "path": "skills/performance"
+        },
+        {
+          "name": "core-web-vitals",
+          "path": "skills/core-web-vitals"
+        }
+      ]
+    },
+    {
+      "id": "seo-aeo-best-practices",
+      "profiles": [
+        "core"
+      ],
+      "repo": "sanity-io/agent-toolkit",
+      "ref": "571a2d077554bd1272f31c345ecb7719889e7957",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "seo-aeo-best-practices",
+          "path": "skills/seo-aeo-best-practices"
+        }
+      ]
+    },
+    {
       "id": "api-design-principles",
       "profiles": [
         "backend"
