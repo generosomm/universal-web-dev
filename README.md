@@ -19,11 +19,13 @@
 
 ---
 
-### Your AI can already write a website. This makes it a good one.
+### Help your AI build websites that look designed and actually work
 
-Without guidance, AI-built sites drift toward the same look: a centred headline, three icon cards, a soft gradient. They also skip the boring work that makes a site launchable: contrast, mobile, broken links, secrets in the browser.
+If you've asked an AI to build a website, you've probably seen the result: a centred headline, three icon cards and a soft gradient. It also tends to skip the boring parts that make a site ready to launch, like colour contrast, phone layouts, broken links and secrets left in the browser.
 
-**Universal Web Dev** is one skill that sits in front of your coding assistant. For each task it picks the right expert skill from 29 community skills and leaves the rest unloaded, so you get a distinctive design, a plan before code, and a release checklist, without paying for every manual on every edit.
+Universal Web Dev is one skill you add to your coding assistant. For each request, it picks the right expert from 29 community skills and leaves the rest unloaded. You get a design that fits the business, a plan before any code, and a checklist before launch, without paying for every manual on every edit.
+
+**New to skills?** A skill is a folder of instructions your coding assistant reads when a task needs it. Until then, your assistant only sees each skill's short description, so installing many of them costs very little. The [FAQ](#faq) has the numbers.
 
 <br>
 
@@ -37,17 +39,17 @@ https://github.com/generosomm/universal-web-dev
 follow INSTALL.md, preserve my customized skills, and report what changed.
 ```
 
-That's it. Your assistant downloads this skill plus the 29 skills it uses, each from a reviewed, pinned commit, then runs a check and tells you what it installed. Restart or refresh your assistant afterwards so it sees the new skills.
+Your assistant downloads this skill and the 29 skills it uses, each from a reviewed, pinned commit. Then it runs a check and tells you what it installed. Restart or refresh your assistant afterwards so it picks up the new skills.
 
-- **Updating later?** Send the same message. Skills you edited, or installed another way, are kept and reported, never overwritten.
-- **Want a smaller setup?** Say "core skills" instead of "all of its skills".
+- Updating later? Send the same message. Skills you edited or installed another way are kept and listed in the report, and never overwritten.
+- Want a smaller setup? Say "core skills" instead of "all of its skills".
 
 <details>
 <summary><strong>Install it yourself instead</strong></summary>
 
 <br>
 
-Needs Python 3.10+. From a clone of this repository:
+You need Python 3.10 or newer. From a clone of this repository:
 
 ```sh
 python scripts/install.py --host claude --profile all --sync           # preview, changes nothing
@@ -57,7 +59,7 @@ python scripts/doctor.py --profile all                                 # check
 
 Use `--host codex` for Codex, or `--dest <folder>` for any other skills directory. Profiles: `core` (design and workflow), `lean` (adds Caveman), `backend` (API design, security review), `postgres` (Supabase's Postgres guidance), or `all`.
 
-The installer never runs code from the skills it downloads. It keeps backups when it replaces anything and rolls back if an install fails. Details: [INSTALL.md](INSTALL.md).
+The installer never runs code from the skills it downloads. It keeps a backup whenever it replaces something, and rolls back if an install fails. Details are in [INSTALL.md](INSTALL.md).
 
 </details>
 
@@ -65,11 +67,11 @@ The installer never runs code from the skills it downloads. It keeps backups whe
 
 ## What you get
 
-**A design that belongs to the client.** Each new page gets its own layout, type and palette, built from what makes that business different from its competitors. Generic AI patterns are banned and checked in a real browser. Your brand or accepted design always wins.
+**A design made for the client.** Each new page gets its own layout, type and palette, based on what makes that business different from its competitors. Common AI patterns are banned and checked in a real browser, and your brand or an existing design always comes first.
 
-**Context that stays small.** A typo loads nothing extra and a bug loads debugging only. The heavy design manuals load for new pages, not for every edit.
+**Only the help a task needs.** Fixing a typo loads nothing extra and a bug loads the debugging skill. The big design manuals load for new pages, not for every edit.
 
-**A site that is ready to launch.** A plan before code, tests for real behaviour, and a release checklist that adapts to the site, so there are no cookie banners or bot walls where they don't belong.
+**A site that's ready to launch.** You get a plan before code, tests that check real behaviour, and a launch checklist that fits the site. A portfolio won't get a cookie banner or a bot check it doesn't need.
 
 ### How it picks skills
 
@@ -83,27 +85,27 @@ The installer never runs code from the skills it downloads. It keeps backups whe
 | A login, database or API | full-stack contracts, API and security guidance | design skills |
 | A release | readiness checklist, Break UI, Mobile Native | anything outside the release |
 
-The full routing lives in [SKILL.md](SKILL.md), about 7 KB.
+All the routing lives in [SKILL.md](SKILL.md), about 7 KB.
 
 ### What gets checked before launch
 
-Every item is marked done, pending, or "doesn't apply" with a reason, so a portfolio isn't forced through checks meant for a shop.
+Each item is marked done, pending, or "doesn't apply" with a reason, so a portfolio isn't put through checks meant for an online shop.
 
 | Trust and safety | Found and shared | Works for everyone |
 | --- | --- | --- |
-| Privacy policy and terms that match what the site does | Meta titles and descriptions | Contrast measured, not guessed |
+| Privacy policy and terms that match what the site does | Meta titles and descriptions | Contrast checked with a measurement |
 | No secrets in browser code | Social preview image and favicon | Keyboard focus and alt text |
 | HTTPS and secure sessions | Sitemap and robots.txt | Phone, tablet and desktop layouts |
 | Cookie consent only where needed | Heading order and structured data | Custom 404 and no broken links |
 | Form validation and spam protection | Hreflang for multilingual sites | Fast pages: images, slow scripts |
 
-The full checklist: [website readiness](references/website-readiness.md).
+See the full checklist in [website readiness](references/website-readiness.md).
 
 <br>
 
 ## See a site it built
 
-A one-page site for a fictional seaside guesthouse, built by following the skill end to end: planning documents, a dealt design direction, tests, browser checks and a final polish pass.
+Here's a one-page site for a fictional seaside guesthouse. It was built by following the skill from start to finish: planning documents, a dealt design direction, tests, browser checks and a final polish pass.
 
 <table>
 <tr>
@@ -115,13 +117,13 @@ A one-page site for a fictional seaside guesthouse, built by following the skill
 </tr>
 </table>
 
-The checks caught five real bugs before it was done, including a script error that disabled every feature and a colour that failed contrast. The [code, tests and build record](https://github.com/generosomm/universal-web-dev/tree/main/examples/reference-site) are in `examples/`. The business and its content are fictional.
+The checks caught five real bugs before it was finished, including a script error that disabled every feature and a colour that failed contrast. The [code, tests and build record](https://github.com/generosomm/universal-web-dev/tree/main/examples/reference-site) are in `examples/`. The business and its content are made up.
 
 <br>
 
 ## Use it
 
-Describe the work. The skill takes it from there:
+Describe what you want in plain words. For example:
 
 ```text
 use universal-web-dev to plan a booking site for a small dental clinic with staff and admin roles.
@@ -132,7 +134,7 @@ use universal-web-dev to continue this project's next feature, reuse the existin
 and verify the whole flow before marking it done.
 ```
 
-In Claude Code you can also type `/universal-web-dev`; in Codex, `$universal-web-dev`. For a new project it writes short planning documents and a sprint plan before any code, then builds one working feature at a time.
+In Claude Code you can also type `/universal-web-dev`, and in Codex, `$universal-web-dev`. For a new project, it writes short planning documents and a sprint plan before any code, then builds one working feature at a time.
 
 <details>
 <summary><strong>Project files it creates for a new site</strong></summary>
@@ -160,7 +162,7 @@ Existing projects keep their own structure. See [project bootstrap](references/p
 
 ## Included skills
 
-All installed from pinned commits in [dependencies.lock.json](dependencies.lock.json), with authors and licenses in [CREDITS.md](CREDITS.md).
+Every skill installs from a pinned commit listed in [dependencies.lock.json](dependencies.lock.json). Authors and licenses are in [CREDITS.md](CREDITS.md).
 
 | Skill | By | What it does here | Loads when |
 | --- | --- | --- | --- |
@@ -177,9 +179,9 @@ All installed from pinned commits in [dependencies.lock.json](dependencies.lock.
 | [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* | You ask for a security review |
 | [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* | Postgres work |
 
-Also recommended, not installed or pinned: reusable components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to the site's own design. See [component sources](references/component-sources.md) for rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
+Also recommended, but not installed or pinned: components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to match the site's design. See [component sources](references/component-sources.md) for the rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
 
-More skills were vetted and left out, either because they overlap these or because they touch your browser logins, send your work to other services or have no license. [More skills](references/more-skills.md) lists them with the reasons, so your AI can suggest a safe one when a project needs it.
+Some skills we looked at were left out because they overlap the ones above, touch your browser logins, send your work to other services, or have no license. [More skills](references/more-skills.md) lists them with the reasons, so your AI can suggest a safe one when a project needs it.
 
 <br>
 
@@ -190,7 +192,7 @@ More skills were vetted and left out, either because they overlap these or becau
 
 <br>
 
-Barely. An installed skill costs only its description until it's used. Measured on a full install (characters ÷ 4, a rough token estimate):
+Barely. An installed skill costs only its description until it's used. Here's what we measured on a full install (characters ÷ 4, a rough token estimate):
 
 | What | Tokens | When |
 | --- | --- | --- |
@@ -207,7 +209,7 @@ A typo loads nothing extra. A new landing page loads Taste and, at the end, Impe
 
 <br>
 
-No. Sync installs missing skills and updates only the copies it installed and you haven't changed. Everything else is kept and listed in the report.
+No. Sync installs missing skills and updates only the copies it installed itself that you haven't changed. Everything else stays as it is and is listed in the report.
 
 </details>
 
@@ -216,7 +218,7 @@ No. Sync installs missing skills and updates only the copies it installed and yo
 
 <br>
 
-Claude Code and Codex have built-in install paths (`--host claude`, `--host codex`). Other assistants that support agent skills work with `--dest <their skills folder>`. A chat-only AI without file and terminal access can't install skills; it can only give you the commands.
+Claude Code and Codex have built-in install paths (`--host claude`, `--host codex`). Other assistants that support agent skills work with `--dest <their skills folder>`. A chat-only AI without file and terminal access can't install skills, but it can give you the commands to run.
 
 </details>
 
@@ -225,7 +227,7 @@ Claude Code and Codex have built-in install paths (`--host claude`, `--host code
 
 <br>
 
-No. Your stack, brand and existing design are inputs. Static sites get no invented backend, and business systems get real permission and data rules.
+No. Your stack, brand and existing design come first. Static sites don't get an invented backend, and business systems get real permission and data rules.
 
 </details>
 
@@ -234,7 +236,7 @@ No. Your stack, brand and existing design are inputs. Static sites get no invent
 
 <br>
 
-Its design guidance is. Its optional launcher downloads a separate program that isn't pinned, so the installer leaves it out, and Impeccable uses its documented fallback. For live browser mode and its automatic detector, set up its launcher from [the upstream project](https://github.com/pbakaus/impeccable).
+Its design guidance is. Its optional launcher downloads a separate program that isn't pinned, so the installer leaves the launcher out and Impeccable uses its documented fallback. If you want live browser mode and its automatic detector, set up the launcher from [the upstream project](https://github.com/pbakaus/impeccable).
 
 </details>
 
@@ -243,7 +245,7 @@ Its design guidance is. Its optional launcher downloads a separate program that 
 
 <br>
 
-Maintainers run `python scripts/check-updates.py`, review any changes to installed files, and release new pins. Your installs update when you send the install message again. See the [release checklist](docs/release-checklist.md) for what has been verified.
+Maintainers run `python scripts/check-updates.py`, review any changes to installed files, and release new pins. Your install updates when you send the install message again. The [release checklist](docs/release-checklist.md) records what has been verified.
 
 </details>
 
@@ -251,11 +253,11 @@ Maintainers run `python scripts/check-updates.py`, review any changes to install
 
 ## Status and limits
 
-Community preview. The installer, checker and a static reference site are tested on Windows and in CI on Linux and Windows. Business-system trials (logins, databases, roles) are next. No skill guarantees bug-free output; this one makes problems visible earlier.
+This is a community preview. The installer, the checker and a static reference site are tested on Windows and in CI on Linux and Windows. Trials with business systems (logins, databases, roles) come next. No skill guarantees bug-free output; this one helps you catch problems earlier.
 
-Contributions: follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused, and include test evidence. Found a problem? [Open an issue](https://github.com/generosomm/universal-web-dev/issues) with your AI tool, setup and what you expected, and remove secrets and private project data first.
+Want to contribute? Follow [AGENTS.md](https://github.com/generosomm/universal-web-dev/blob/main/AGENTS.md), keep changes focused, and include test evidence. Found a problem? [Open an issue](https://github.com/generosomm/universal-web-dev/issues) with your AI tool, your setup and what you expected, and remove any secrets or private project data first.
 
-The [MIT license](LICENSE) covers this wrapper's own files. Each included skill keeps its own license; none are bundled here, and nothing implies their authors endorse this project.
+The [MIT license](LICENSE) covers this wrapper's own files. Each included skill keeps its own license. None of them are bundled here, and nothing here implies their authors endorse this project.
 
 <div align="center">
 
