@@ -76,13 +76,14 @@ The installer never runs code from the skills it downloads. It keeps backups whe
 | You ask for | It loads | It skips |
 | --- | --- | --- |
 | A typo or copy fix | nothing extra | all design and backend guidance |
+| Copy that sounds AI-written | Humanizer, working from your own words | design skills |
 | A bug fix | systematic debugging | design skills |
 | A new landing page or portfolio | Taste for direction, Impeccable for the final polish | backend guidance, a second design system |
 | A dashboard or admin screen | Frontend Design, UI/UX Pro Max lookups | marketing-page art direction |
 | A login, database or API | full-stack contracts, API and security guidance | design skills |
 | A release | readiness checklist, Break UI, Mobile Native | anything outside the release |
 
-The full routing lives in [SKILL.md](SKILL.md), which is about 5.7 KB.
+The full routing lives in [SKILL.md](SKILL.md), about 7 KB.
 
 ### What gets checked before launch
 
@@ -161,20 +162,20 @@ Existing projects keep their own structure. See [project bootstrap](references/p
 
 All installed from pinned commits in [dependencies.lock.json](dependencies.lock.json), with authors and licenses in [CREDITS.md](CREDITS.md).
 
-| Skill | By | What it does here |
-| --- | --- | --- |
-| [Superpowers](https://github.com/obra/superpowers) | Jesse Vincent | Planning, debugging, test-driven development, code review, verification (14 skills; `using-superpowers` and `writing-skills` are loaded by Superpowers itself) |
-| [Ponytail](https://github.com/DietrichGebert/ponytail) | Dietrich Gebert | The smallest change that fully solves the task |
-| [Humanizer](https://github.com/blader/humanizer) | Siqi Chen | Rewrites website copy that reads AI-written, in your own voice |
-| [Taste](https://github.com/Leonxlnx/taste-skill) | Leonxlnx | Art direction that avoids generic AI pages |
-| [Frontend Design](https://github.com/anthropics/skills) | Anthropic | Direction for app screens and dashboards |
-| [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Next Level Builder | Searchable UX, accessibility and stack guidance |
-| [Emil's skills](https://github.com/emilkowalski/skills) | Emil Kowalski | Interaction polish, Break UI, Mobile Native, Prototype, Pick UI Library |
-| [Impeccable](https://github.com/pbakaus/impeccable) | Paul Bakaus | Final polish, audit and accessibility review |
-| [Caveman](https://github.com/JuliusBrussee/caveman) | Julius Brussee | Terse replies when you ask for them *(lean profile)* |
-| [API Design](https://github.com/wshobson/agents) | Seth Hobson | REST and GraphQL contracts *(backend profile)* |
-| [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* |
-| [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* |
+| Skill | By | What it does here | Loads when |
+| --- | --- | --- | --- |
+| [Superpowers](https://github.com/obra/superpowers) | Jesse Vincent | Planning, debugging, test-driven development, code review, verification (14 skills; `using-superpowers` and `writing-skills` are loaded by Superpowers itself) | One at a time: a bug, a behaviour change, a written plan, a review, or the final check |
+| [Ponytail](https://github.com/DietrichGebert/ponytail) | Dietrich Gebert | The smallest change that fully solves the task | Writing or changing code |
+| [Humanizer](https://github.com/blader/humanizer) | Siqi Chen | Rewrites website copy that reads AI-written, in your own voice | Copy needs a rewrite |
+| [Taste](https://github.com/Leonxlnx/taste-skill) | Leonxlnx | Art direction that avoids generic AI pages | A new marketing page or portfolio |
+| [Frontend Design](https://github.com/anthropics/skills) | Anthropic | Direction for app screens and dashboards | A new app screen or dashboard |
+| [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Next Level Builder | Searchable UX, accessibility and stack guidance | A focused lookup, not a full read |
+| [Emil's skills](https://github.com/emilkowalski/skills) | Emil Kowalski | Interaction polish, Break UI, Mobile Native, Prototype, Pick UI Library | Motion and component states; Break UI and Mobile Native at release; Prototype and Pick UI Library only when you ask |
+| [Impeccable](https://github.com/pbakaus/impeccable) | Paul Bakaus | Final polish, audit and accessibility review | Once, as the final review |
+| [Caveman](https://github.com/JuliusBrussee/caveman) | Julius Brussee | Terse replies when you ask for them *(lean profile)* | You ask for short replies |
+| [API Design](https://github.com/wshobson/agents) | Seth Hobson | REST and GraphQL contracts *(backend profile)* | Designing an API |
+| [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* | You ask for a security review |
+| [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* | Postgres work |
 
 Also recommended, not installed or pinned: reusable components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to the site's own design. See [component sources](references/component-sources.md) for rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
 
@@ -189,7 +190,15 @@ More skills were vetted and left out, either because they overlap these or becau
 
 <br>
 
-Barely. An installed skill costs only its one-line description until it's used, and the routing loads full instructions only when a task needs them. `Prototype` and `Pick UI Library` load only when you invoke them yourself, in assistants that honour that setting, such as Claude Code.
+Barely. An installed skill costs only its description until it's used. Measured on a full install (characters ÷ 4, a rough token estimate):
+
+| What | Tokens | When |
+| --- | --- | --- |
+| All 30 skill descriptions | about 2,200 | Once per conversation, about one page of text |
+| This skill's routing | about 1,700 | Each web task |
+| Every skill's full instructions added up | about 90,000 | Never all at once: a task loads only the one to three skills its routing row names |
+
+A typo loads nothing extra. A new landing page loads Taste and, at the end, Impeccable. Backend and Postgres guidance stay unloaded on a static site. `Prototype` and `Pick UI Library` load only when you invoke them yourself, in assistants that honour that setting, such as Claude Code.
 
 </details>
 

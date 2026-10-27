@@ -10,6 +10,8 @@ Read this only when a task needs something the routing table doesn't cover. Noth
 | A second copy pass, or a detect-only review | [no-ai-slop](https://github.com/petergyang/no-ai-slop) | MIT | Same job as the installed `humanizer`; keep one |
 | A different website design direction | [Hallmark](https://github.com/Nutlope/hallmark) | MIT | Overlaps the installed design skills. Needs Node 18 or later, and its browser checks need a global `puppeteer-core` install with Chrome. Never run it next to Taste on one project |
 | Finding another skill | [find-skills](https://github.com/vercel-labs/skills) | MIT | Its commands install globally with `-y` (no confirmation): show the command and get approval first |
+| A demo GIF of the site for a README | [demo-gif](https://github.com/conorbronsdon/demo-gif-skill) | MIT | In maintenance mode. Needs vhs, ffmpeg or Playwright; it commits the GIF and edits the README |
+| A UI finish gate grounded in real product screens | [anti-ui-slop](https://github.com/uizze/uizze) | Apache-2.0, with MIT notices | Its playbooks are derived from the installed `impeccable`, and its description matches almost every UI task. Use it instead of Impeccable's final review, never both. Its hosted reference library is optional and partly paid |
 
 ## Watch list
 
@@ -17,6 +19,7 @@ Promising, but very new. Review the source before use.
 
 - [deadcode](https://github.com/seanpaulforonda/deadcode) (MIT): finds unused CSS, JavaScript and imports, and deletes only after approval.
 - [fullstack-audit](https://github.com/Eurie92/fullstack-audit-skill) (Apache-2.0): maps routes, components and APIs; runs an npm package through `npx`.
+- [agent-qa](https://github.com/vostride/agent-qa) (Functional Source License 1.1, not open source): plain-language end-to-end tests for web apps. Needs Node 24 or later and a model provider key; link to it rather than redistributing it.
 
 ## Not recommended
 
@@ -31,5 +34,9 @@ Promising, but very new. Review the source before use.
 | [xerj-org/xerj](https://github.com/xerj-org/xerj), [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | Code-search tools installed by a downloaded script or pip, not website skills |
 | [udaysharmadev/Gravitas](https://github.com/udaysharmadev/Gravitas), [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all) | Install hooks or edit agent configuration; overlap the installed verification and skill-writing skills |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | Overlaps the installed Superpowers skills, and its `prototype` name clashes with the installed one |
+| [Sahil-SS9/hermes-simplify-swarm](https://github.com/Sahil-SS9/hermes-simplify-swarm) | When a test fails it runs `git checkout -- .`, which discards every uncommitted change, not only its own. It also starts three review agents after each code change |
+| [Sahil-SS9/hermaguard](https://github.com/Sahil-SS9/hermaguard) | Setup uses `sudo` and a Python static-analysis toolchain; overlaps the installed code-review and security skills |
+| [nexu-io/open-design](https://github.com/nexu-io/open-design) | A desktop design app rather than a skill; its installer pipes a downloaded script to the shell |
+| [bergside/typeui](https://github.com/bergside/typeui) | Its `typeui-fundamentals` skill (MIT) repeats UI principles the installed `ui-ux-pro-max` covers |
 
 Browsing directories, not vetted: [skills.sh](https://www.skills.sh), [MCP Market](https://mcpmarket.com), [Hermes Atlas](https://hermesatlas.com/lists/top-skills).
