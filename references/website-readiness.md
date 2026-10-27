@@ -30,6 +30,21 @@ Use at kickoff and release review; inspect only affected sections for a small fe
 - Mobile-friendly layout: small phone, tablet and desktop checks, zoom/reflow, touch targets, landscape where relevant, and no hidden critical controls or unintended horizontal scroll. Label viewport emulation honestly.
 - Helpful custom 404 with a recovery link; correct not-found HTTP status where supported. Check internal/external links, deep links, navigation and recovery. A screen labelled 404 returning 200 is not automatically a correct HTTP 404.
 
+## Phones
+
+Viewport emulation misses these; check each that applies and say which were checked only in emulation.
+
+- Fixed or sticky bottom bars: offset by `env(safe-area-inset-bottom)` and the area a browser toolbar covers (`window.visualViewport`), and pad the page so the bar never covers the last content or the hero's controls. A bar that hides while scrolling down must return after a short scroll back up, however slow; measure the distance across scroll events, not per frame.
+- Touch has no hover: anything opened by hover or tap (tooltips, popovers, menus) also closes on a tap outside and on Escape, and hover-only details have a tap equivalent.
+- Full-width controls really span their container; a flex sibling or an empty status element can quietly shorten a button.
+- Phone performance: measure with CPU throttling and separate script time from paint and raster before optimizing. Prefer one-time reveals over scroll-linked blur or filters, and pause auto-moving carousels while the page scrolls.
+
+## Preview and caching
+
+- Don't hand-edit `?v=` query strings on every edit; use content-hashed file names, a build step, or one version value that a script writes.
+- A local static preview server sends `Cache-Control: no-cache`, so edited data and scripts reload.
+- Headless Chromium reports `prefers-reduced-transparency: reduce` by default; emulate the intended settings before judging translucent or animated UI from screenshots.
+
 ## Assets, speed and analytics
 
 - Compress/resize images, use suitable modern formats and responsive sources, set dimensions, and lazy-load noncritical media. Don't degrade essential visual quality or lazy-load the primary hero indiscriminately.
