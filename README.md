@@ -13,7 +13,7 @@
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?style=flat-square)
 [![License](https://img.shields.io/badge/license-MIT-186B53?style=flat-square)](LICENSE)
 
-**[Install](#install-in-one-message)** · **[What you get](#what-you-get)** · **[See a site it built](#see-a-site-it-built)** · **[Included skills](#included-skills)** · **[FAQ](#faq)**
+**[Install](#install-in-one-message)** · **[What you get](#what-you-get)** · **[How it works](#how-it-works)** · **[How to use it](#how-to-use-it)** · **[See a site it built](#see-a-site-it-built)** · **[Included skills](#included-skills)** · **[FAQ](#faq)**
 
 </div>
 
@@ -73,6 +73,23 @@ The installer never runs code from the skills it downloads. It keeps a backup wh
 
 **A site that's ready to launch.** You get a plan before code, tests that check real behaviour, and a launch checklist that fits the site. A portfolio won't get a cookie banner or a bot check it doesn't need.
 
+<br>
+
+## How it works
+
+Think of Universal Web Dev as a project lead. It doesn't do every job itself. It reads your request, hands each part to the right specialist skill, and makes sure the work is checked before anyone calls it done.
+
+Here's what happens when you ask for something:
+
+1. You describe the work in plain words, like "fix the contact form" or "build a landing page for my bakery".
+2. Your assistant sees that it's web work and opens this skill's routing table in [SKILL.md](SKILL.md). That file is small, about 1,700 tokens.
+3. The table matches your request to one row. The row names the skills to load (usually one to three) and the ones to leave alone.
+4. Your assistant reads only those skills and does the work. A new project gets a short plan first, then one working feature at a time with tests.
+5. Before saying "done", it runs the project's checks and walks through the real user flow. When the site is about to go live, it also goes through the launch checklist below.
+6. It tells you what changed, how it was checked, and anything it couldn't check.
+
+A token is a small piece of text, roughly four characters, and it's what AI tools count when they bill you or fill their memory. Loading only the skills a task needs keeps that count low.
+
 ### How it picks skills
 
 | You ask for | It loads | It skips |
@@ -121,9 +138,14 @@ The checks caught five real bugs before it was finished, including a script erro
 
 <br>
 
-## Use it
+## How to use it
 
-Describe what you want in plain words. For example:
+After installing, there are two ways to start:
+
+- Just describe web work. The skill turns on by itself when your request is about a website or a web app.
+- Call it by name: type `/universal-web-dev` in Claude Code or `$universal-web-dev` in Codex, followed by what you want.
+
+Then talk to it the way you'd brief a developer. For example:
 
 ```text
 use universal-web-dev to plan a booking site for a small dental clinic with staff and admin roles.
@@ -134,7 +156,26 @@ use universal-web-dev to continue this project's next feature, reuse the existin
 and verify the whole flow before marking it done.
 ```
 
-In Claude Code you can also type `/universal-web-dev`, and in Codex, `$universal-web-dev`. For a new project, it writes short planning documents and a sprint plan before any code, then builds one working feature at a time.
+A few more things you might say, and what they lead to:
+
+| You say | What happens |
+| --- | --- |
+| "The signup button doesn't work" | It finds the cause first with `systematic-debugging`, then fixes it |
+| "Make this headline sound less like AI" | `humanizer` rewrites it from your own words |
+| "Show me a few options for the hero" | It suggests `prototype` so you can flip between versions and pick one |
+| "We launch on Friday, is it ready?" | It runs the launch checklist, `break-ui` and `mobile-native` |
+| "Do a security review" | `security-best-practices` reviews the code *(backend profile)* |
+| "Keep your replies short" | `caveman` trims its answers *(lean profile)* |
+
+For a new project, it writes short planning documents and a sprint plan before any code, then builds one working feature at a time. A sprint is one small, finished piece of the site, such as "visitors can book a room".
+
+Some habits it follows while working with you:
+
+- Your brand, your stack and your existing design come first. It won't swap your framework or restyle a page you already approved.
+- When you approve a change in one place, it applies the same change to matching places across the site and tells you which ones it skipped and why.
+- If it expects a request to look or work worse, it says so in a line and suggests something better before changing anything.
+- It commits, pushes or publishes only when you ask in the conversation.
+- To pause it for unrelated work, say "stop universal-web-dev".
 
 <details>
 <summary><strong>Project files it creates for a new site</strong></summary>
@@ -178,6 +219,66 @@ Every skill installs from a pinned commit listed in [dependencies.lock.json](dep
 | [API Design](https://github.com/wshobson/agents) | Seth Hobson | REST and GraphQL contracts *(backend profile)* | Designing an API |
 | [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* | You ask for a security review |
 | [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* | Postgres work |
+
+### Every skill, in plain words
+
+Each name below is the skill's real name, the one you'll see in your assistant and in [SKILL.md](SKILL.md). You never have to call these yourself, except the two marked "only when you ask". Universal Web Dev picks them for you.
+
+A profile is a bundle you choose at install time. `core` is installed for everyone. `lean`, `backend` and `postgres` are extras, and "all of its skills" installs every profile.
+
+**Planning and teamwork** (from Superpowers, `core`)
+
+| Skill | In plain words | Used when |
+| --- | --- | --- |
+| `brainstorming` | Asks you questions to turn a rough idea into clear requirements | A new project where it's unclear what you want |
+| `writing-plans` | Writes a step-by-step build plan you can review | A build big enough for several sprints |
+| `executing-plans` | Follows a written plan one step at a time and checks each step | Carrying out a plan |
+| `subagent-driven-development` | Gives each plan step to a helper AI and reviews what it hands back | Carrying out a plan, if your assistant can run helpers (subagents) |
+| `dispatching-parallel-agents` | Runs several helpers at once on jobs that don't depend on each other | Separate tasks, if your assistant can run helpers |
+| `test-driven-development` | Writes a test that fails first, then the code that makes it pass, so you know the feature works | Any change to how the site behaves |
+| `systematic-debugging` | Finds what's actually causing a bug before touching code, instead of guessing | A bug or a failing test |
+| `verification-before-completion` | Runs the checks and reads the results before claiming "done" | The final check, and every release |
+| `requesting-code-review` | Asks a reviewer to look over the changes | Before merging work |
+| `receiving-code-review` | Checks that review feedback is correct before acting on it | When feedback comes in |
+| `using-git-worktrees` | Makes a separate copy of the project to work in, so your main files stay untouched | Risky or experimental work |
+| `finishing-a-development-branch` | Wraps up finished work: tests pass, then merge, open a pull request or keep it | When a branch is done |
+| `using-superpowers` | Teaches your assistant how to find and use the skills above | Loaded by Superpowers itself |
+| `writing-skills` | A guide to writing and testing new skills | Loaded by Superpowers itself, mainly for skill authors |
+
+**Writing code and copy** (`core`)
+
+| Skill | In plain words | Used when |
+| --- | --- | --- |
+| `ponytail` | Makes the smallest change that fully solves the task, with no extra files, libraries or features you didn't ask for | Writing or changing code |
+| `humanizer` | Rewrites text that sounds like a chatbot so it sounds like you, keeping your facts | Headlines, intros, about text or buttons need a rewrite |
+
+**Design** (`core`)
+
+| Skill | In plain words | Used when |
+| --- | --- | --- |
+| `design-taste-frontend` (Taste) | Picks a design direction for a public page (layout, fonts, colours, photos) and checks it in a browser against a list of generic AI looks | A new landing page, marketing page or portfolio |
+| `frontend-design` | Design direction for app screens, where clarity matters more than flair | A new dashboard, admin area or app screen |
+| `ui-ux-pro-max` | A searchable library of UX rules, colour palettes, font pairings and framework tips. Your assistant looks up one answer instead of reading it all | A focused design question |
+| `impeccable` | A final design review of spacing, type, colour, accessibility and states like hover and error | Once, at the end of a design task |
+
+**Feel and finishing touches** (from Emil Kowalski, `core`)
+
+| Skill | In plain words | Used when |
+| --- | --- | --- |
+| `emil-design-eng` | Polishes how things feel to use: animations, hover and press states, gestures | Buttons, menus, transitions or motion |
+| `break-ui` | Fills a screen with worst-case content (very long names, empty lists, huge numbers, emoji) and reports what breaks | Before launch, on the main screens |
+| `mobile-native` | Fixes the small things that make a site feel wrong on a phone, like inputs that zoom the page or content hidden under the notch | Before launch |
+| `prototype` | Builds several different versions of a piece of UI so you can flip between them and keep the best | Only when you ask; it may suggest it when the look is undecided |
+| `pick-ui-library` | Recommends a ready-made library for charts, code inputs, drag and drop and similar widgets, so they aren't built from scratch | Only when you ask; it may suggest it before hand-building one |
+
+**Extras** (optional profiles)
+
+| Skill | In plain words | Used when |
+| --- | --- | --- |
+| `caveman` *(lean)* | Makes your assistant's replies very short while keeping every technical fact | You ask for short replies |
+| `api-design-principles` *(backend)* | Rules for designing a clean API, the part of your app that other code talks to: URLs, errors, versions | Designing an API |
+| `security-best-practices` *(backend)* | Reviews Python, JavaScript, TypeScript or Go code for security problems and suggests fixes | You ask for a security review |
+| `supabase-postgres-best-practices` *(postgres)* | Rules for Postgres databases: tables, queries, indexes, and RLS (row-level security, which controls which rows each user can see) | Any Postgres database work |
 
 Also recommended, but not installed or pinned: components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to match the site's design. See [component sources](references/component-sources.md) for the rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
 
