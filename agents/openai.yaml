@@ -1,4 +1,4 @@
 interface:
   display_name: "Universal Web Dev"
-  short_description: "Any website or web system: plan, build, verify, lean context"
-  default_prompt: "Use $universal-web-dev to plan an empty project before code, or continue its active sprint with verified tests and concise documentation."
+  short_description: "Plan, build, test and score any website for launch"
+  default_prompt: "Use $universal-web-dev to plan an empty project before code, continue its active sprint with verified tests, or audit the site for a Launch Readiness Score."
