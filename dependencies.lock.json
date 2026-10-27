@@ -7,7 +7,7 @@
         "core"
       ],
       "repo": "obra/superpowers",
-      "ref": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "ref": "2ce8aa15d05bd57213e6f746f953aafb7ded7a8b",
       "license": "MIT",
       "license_files": [
         "LICENSE"
@@ -91,12 +91,39 @@
       ]
     },
     {
+      "id": "humanizer",
+      "profiles": [
+        "core"
+      ],
+      "repo": "blader/humanizer",
+      "ref": "8c307f367c91bd974002f10f2be2965d642c13df",
+      "license": "MIT",
+      "license_files": [
+        "LICENSE"
+      ],
+      "skills": [
+        {
+          "name": "humanizer",
+          "path": ".",
+          "exclude": [
+            ".claude-plugin",
+            ".cursor-plugin",
+            ".github",
+            "AGENTS.md",
+            "CHANGELOG.md",
+            "README.md",
+            "scripts"
+          ]
+        }
+      ]
+    },
+    {
       "id": "caveman",
       "profiles": [
         "lean"
       ],
       "repo": "JuliusBrussee/caveman",
-      "ref": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",
+      "ref": "9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4",
       "license": "Apache-2.0; retained MIT notices for pre-3.0 contributions",
       "license_files": [
         "LICENSE",
@@ -135,7 +162,7 @@
         "core"
       ],
       "repo": "Leonxlnx/taste-skill",
-      "ref": "63aba5f43b5056758b15bbe7d683da8c86a7a7ad",
+      "ref": "12af471f627f866411b4bd785b19646d3672784c",
       "license": "MIT",
       "license_files": [
         "LICENSE"
@@ -153,7 +180,7 @@
         "core"
       ],
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
-      "ref": "56ea9cf174ed86786187daa9de0e6247cb0747e4",
+      "ref": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
       "license": "MIT for repository code and guidance; preserve bundled data provenance and font metadata notices",
       "license_files": [
         "LICENSE"
@@ -205,7 +232,7 @@
         "core"
       ],
       "repo": "pbakaus/impeccable",
-      "ref": "dad8dbb3aac21ad1fa236c110315ef4abece23e8",
+      "ref": "d34c87e1a00989ae8dbdd7f6b30b70f23319e860",
       "license": "Apache-2.0; NOTICE.md attributes MIT-derived platform references",
       "license_files": [
         "LICENSE",

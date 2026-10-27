@@ -8,7 +8,7 @@
 <br>
 
 [![Checks](https://github.com/generosomm/universal-web-dev/actions/workflows/check.yml/badge.svg)](https://github.com/generosomm/universal-web-dev/actions/workflows/check.yml)
-![Skills](https://img.shields.io/badge/skills-28%20pinned-17703f?style=flat-square)
+![Skills](https://img.shields.io/badge/skills-29%20pinned-17703f?style=flat-square)
 ![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%C2%B7%20Codex-0d1411?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?style=flat-square)
 [![License](https://img.shields.io/badge/license-MIT-186B53?style=flat-square)](LICENSE)
@@ -23,7 +23,7 @@
 
 Without guidance, AI-built sites drift toward the same look: a centred headline, three icon cards, a soft gradient. They also skip the boring work that makes a site launchable: contrast, mobile, broken links, secrets in the browser.
 
-**Universal Web Dev** is one skill that sits in front of your coding assistant. For each task it picks the right expert skill from 28 community skills and leaves the rest unloaded, so you get a distinctive design, a plan before code, and a release checklist, without paying for every manual on every edit.
+**Universal Web Dev** is one skill that sits in front of your coding assistant. For each task it picks the right expert skill from 29 community skills and leaves the rest unloaded, so you get a distinctive design, a plan before code, and a release checklist, without paying for every manual on every edit.
 
 <br>
 
@@ -37,7 +37,7 @@ https://github.com/generosomm/universal-web-dev
 follow INSTALL.md, preserve my customized skills, and report what changed.
 ```
 
-That's it. Your assistant downloads this skill plus the 28 skills it uses, each from a reviewed, pinned commit, then runs a check and tells you what it installed. Restart or refresh your assistant afterwards so it sees the new skills.
+That's it. Your assistant downloads this skill plus the 29 skills it uses, each from a reviewed, pinned commit, then runs a check and tells you what it installed. Restart or refresh your assistant afterwards so it sees the new skills.
 
 - **Updating later?** Send the same message. Skills you edited, or installed another way, are kept and reported, never overwritten.
 - **Want a smaller setup?** Say "core skills" instead of "all of its skills".
@@ -163,8 +163,9 @@ All installed from pinned commits in [dependencies.lock.json](dependencies.lock.
 
 | Skill | By | What it does here |
 | --- | --- | --- |
-| [Superpowers](https://github.com/obra/superpowers) | Jesse Vincent | Planning, debugging, test-driven development, verification (14 skills) |
+| [Superpowers](https://github.com/obra/superpowers) | Jesse Vincent | Planning, debugging, test-driven development, code review, verification (14 skills; `using-superpowers` and `writing-skills` are loaded by Superpowers itself) |
 | [Ponytail](https://github.com/DietrichGebert/ponytail) | Dietrich Gebert | The smallest change that fully solves the task |
+| [Humanizer](https://github.com/blader/humanizer) | Siqi Chen | Rewrites website copy that reads AI-written, in your own voice |
 | [Taste](https://github.com/Leonxlnx/taste-skill) | Leonxlnx | Art direction that avoids generic AI pages |
 | [Frontend Design](https://github.com/anthropics/skills) | Anthropic | Direction for app screens and dashboards |
 | [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Next Level Builder | Searchable UX, accessibility and stack guidance |
@@ -177,12 +178,14 @@ All installed from pinned commits in [dependencies.lock.json](dependencies.lock.
 
 Also recommended, not installed or pinned: reusable components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to the site's own design. See [component sources](references/component-sources.md) for rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
 
+More skills were vetted and left out, either because they overlap these or because they touch your browser logins, send your work to other services or have no license. [More skills](references/more-skills.md) lists them with the reasons, so your AI can suggest a safe one when a project needs it.
+
 <br>
 
 ## FAQ
 
 <details>
-<summary><strong>Does installing 28 skills make my assistant slower or more expensive?</strong></summary>
+<summary><strong>Does installing 29 skills make my assistant slower or more expensive?</strong></summary>
 
 <br>
 
