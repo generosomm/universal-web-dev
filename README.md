@@ -203,82 +203,75 @@ Existing projects keep their own structure. See [project bootstrap](references/p
 
 ## Included skills
 
-Every skill installs from a pinned commit listed in [dependencies.lock.json](dependencies.lock.json). Authors and licenses are in [CREDITS.md](CREDITS.md).
+All 29 skills are listed below by their real names, the ones you'll see in your assistant and in [SKILL.md](SKILL.md). You don't have to call them yourself. Universal Web Dev picks the right ones for each task, except the two marked "only when you ask".
 
-| Skill | By | What it does here | Loads when |
+They come from 12 projects. Most projects add one skill, while [Superpowers](https://github.com/obra/superpowers) adds 14 and [Emil's skills](https://github.com/emilkowalski/skills) adds 5. Every skill installs from a pinned commit listed in [dependencies.lock.json](dependencies.lock.json), and authors and licenses are in [CREDITS.md](CREDITS.md).
+
+A profile is a bundle you choose at install time. `core` is installed for everyone. `lean`, `backend` and `postgres` are optional extras, and asking for "all of its skills" installs every profile.
+
+### Planning and teamwork
+
+From [Superpowers](https://github.com/obra/superpowers) by Jesse Vincent. Profile: `core`.
+
+| # | Skill | What it does, in plain words | Used when |
 | --- | --- | --- | --- |
-| [Superpowers](https://github.com/obra/superpowers) | Jesse Vincent | Planning, debugging, test-driven development, code review, verification (14 skills; `using-superpowers` and `writing-skills` are loaded by Superpowers itself) | One at a time: a bug, a behaviour change, a written plan, a review, or the final check |
-| [Ponytail](https://github.com/DietrichGebert/ponytail) | Dietrich Gebert | The smallest change that fully solves the task | Writing or changing code |
-| [Humanizer](https://github.com/blader/humanizer) | Siqi Chen | Rewrites website copy that reads AI-written, in your own voice | Copy needs a rewrite |
-| [Taste](https://github.com/Leonxlnx/taste-skill) | Leonxlnx | Art direction that avoids generic AI pages | A new marketing page or portfolio |
-| [Frontend Design](https://github.com/anthropics/skills) | Anthropic | Direction for app screens and dashboards | A new app screen or dashboard |
-| [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Next Level Builder | Searchable UX, accessibility and stack guidance | A focused lookup, not a full read |
-| [Emil's skills](https://github.com/emilkowalski/skills) | Emil Kowalski | Interaction polish, Break UI, Mobile Native, Prototype, Pick UI Library | Motion and component states; Break UI and Mobile Native at release; Prototype and Pick UI Library only when you ask |
-| [Impeccable](https://github.com/pbakaus/impeccable) | Paul Bakaus | Final polish, audit and accessibility review | Once, as the final review |
-| [Caveman](https://github.com/JuliusBrussee/caveman) | Julius Brussee | Terse replies when you ask for them *(lean profile)* | You ask for short replies |
-| [API Design](https://github.com/wshobson/agents) | Seth Hobson | REST and GraphQL contracts *(backend profile)* | Designing an API |
-| [Security Best Practices](https://github.com/openai/skills) | OpenAI | Security review on request *(backend profile)* | You ask for a security review |
-| [Postgres Best Practices](https://github.com/supabase/agent-skills) | Supabase | Schemas, queries, RLS *(postgres profile)* | Postgres work |
+| 1 | `brainstorming` | Asks you questions, one at a time, to turn a rough idea into clear requirements. It suggests a couple of approaches and gets your OK before anything is built. | A new project where it's unclear what you want |
+| 2 | `writing-plans` | Breaks a big build into small steps, each with the files to touch and how to test it, so you can review the plan before any code is written. | A build big enough to need several sprints |
+| 3 | `executing-plans` | Works through a written plan one step at a time, runs the checks for each step, and stops to ask when something doesn't match the plan. | Carrying out a plan in the same conversation |
+| 4 | `subagent-driven-development` | Gives each step of a plan to a fresh helper AI (a subagent), then reviews what it hands back before moving on. Each helper starts clean, so mistakes don't pile up. | Carrying out a plan, if your assistant can run helpers |
+| 5 | `dispatching-parallel-agents` | Sends several helpers to work at the same time on jobs that don't depend on each other, like fixing three unrelated bugs. | Separate tasks, if your assistant can run helpers |
+| 6 | `test-driven-development` | Writes a test that fails first, then writes just enough code to make it pass. You end up with proof that the feature works, and a test that catches it if it breaks later. | Any change to how the site behaves |
+| 7 | `systematic-debugging` | Finds what is actually causing a bug before touching code: reproduce it, trace it, test one idea at a time. No guessing and no piling fixes on top of each other. | A bug or a failing test |
+| 8 | `verification-before-completion` | Runs the real checks and reads the results before saying "done", "fixed" or "passing". If something wasn't checked, it says so. | The final check, and every release |
+| 9 | `requesting-code-review` | Asks a reviewer (often a helper AI) to look over the changes against the plan and flag problems before they're merged. | Before merging work |
+| 10 | `receiving-code-review` | Checks that each piece of review feedback is correct before acting on it, and pushes back on suggestions that would make things worse. | When review feedback comes in |
+| 11 | `using-git-worktrees` | Makes a separate working copy of the project on its own branch, so experiments never touch your main files. | Risky or experimental work |
+| 12 | `finishing-a-development-branch` | Wraps up finished work: confirms the tests pass, then offers to merge it, open a pull request, keep it, or throw it away. | When a piece of work is done |
+| 13 | `using-superpowers` | Teaches your assistant how to find the skills above and when to use them. | Loaded by Superpowers itself |
+| 14 | `writing-skills` | A guide to writing new skills and testing that they work. | Loaded by Superpowers itself, mainly for people who write skills |
 
-### Every skill, in plain words
+### Writing code and copy
 
-Each name below is the skill's real name, the one you'll see in your assistant and in [SKILL.md](SKILL.md). You never have to call these yourself, except the two marked "only when you ask". Universal Web Dev picks them for you.
+Profile: `core`.
 
-A profile is a bundle you choose at install time. `core` is installed for everyone. `lean`, `backend` and `postgres` are extras, and "all of its skills" installs every profile.
+| # | Skill | What it does, in plain words | Used when |
+| --- | --- | --- | --- |
+| 15 | `ponytail` | Makes the smallest change that fully solves the task. No extra files, libraries, settings or features you didn't ask for, and a short explanation you can read in one go. From [Ponytail](https://github.com/DietrichGebert/ponytail) by Dietrich Gebert. | Writing or changing code |
+| 16 | `humanizer` | Rewrites text that sounds like a chatbot so it sounds like a person. It removes stock phrases, filler and overblown claims, and keeps your facts. From [Humanizer](https://github.com/blader/humanizer) by Siqi Chen. | Headlines, intros, about text or button labels need a rewrite |
 
-**Planning and teamwork** (from Superpowers, `core`)
+### Design
 
-| Skill | In plain words | Used when |
-| --- | --- | --- |
-| `brainstorming` | Asks you questions to turn a rough idea into clear requirements | A new project where it's unclear what you want |
-| `writing-plans` | Writes a step-by-step build plan you can review | A build big enough for several sprints |
-| `executing-plans` | Follows a written plan one step at a time and checks each step | Carrying out a plan |
-| `subagent-driven-development` | Gives each plan step to a helper AI and reviews what it hands back | Carrying out a plan, if your assistant can run helpers (subagents) |
-| `dispatching-parallel-agents` | Runs several helpers at once on jobs that don't depend on each other | Separate tasks, if your assistant can run helpers |
-| `test-driven-development` | Writes a test that fails first, then the code that makes it pass, so you know the feature works | Any change to how the site behaves |
-| `systematic-debugging` | Finds what's actually causing a bug before touching code, instead of guessing | A bug or a failing test |
-| `verification-before-completion` | Runs the checks and reads the results before claiming "done" | The final check, and every release |
-| `requesting-code-review` | Asks a reviewer to look over the changes | Before merging work |
-| `receiving-code-review` | Checks that review feedback is correct before acting on it | When feedback comes in |
-| `using-git-worktrees` | Makes a separate copy of the project to work in, so your main files stay untouched | Risky or experimental work |
-| `finishing-a-development-branch` | Wraps up finished work: tests pass, then merge, open a pull request or keep it | When a branch is done |
-| `using-superpowers` | Teaches your assistant how to find and use the skills above | Loaded by Superpowers itself |
-| `writing-skills` | A guide to writing and testing new skills | Loaded by Superpowers itself, mainly for skill authors |
+Profile: `core`.
 
-**Writing code and copy** (`core`)
+| # | Skill | What it does, in plain words | Used when |
+| --- | --- | --- | --- |
+| 17 | `design-taste-frontend` | Also called Taste. Picks a design direction for a public page (layout, fonts, colours, photos) from a library of researched styles, then checks the page in a real browser against a list of generic AI looks and fixes what it finds. From [Taste](https://github.com/Leonxlnx/taste-skill) by Leonxlnx. | A new landing page, marketing page or portfolio |
+| 18 | `frontend-design` | Sets a clear visual direction for app screens, where being easy to use matters more than flair: type, spacing, colour and layout that don't look like a template. From [Frontend Design](https://github.com/anthropics/skills) by Anthropic. | A new dashboard, admin area or app screen |
+| 19 | `ui-ux-pro-max` | A searchable library of UX rules, colour palettes, font pairings, chart types and tips for each framework. Your assistant looks up just the answer it needs instead of reading the whole thing. From [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) by Next Level Builder. | A focused design question |
+| 20 | `impeccable` | A final design review. It checks spacing, type, colour, contrast, accessibility and states like hover, loading and error, then polishes what needs it. From [Impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus. | Once, at the end of a design task |
 
-| Skill | In plain words | Used when |
-| --- | --- | --- |
-| `ponytail` | Makes the smallest change that fully solves the task, with no extra files, libraries or features you didn't ask for | Writing or changing code |
-| `humanizer` | Rewrites text that sounds like a chatbot so it sounds like you, keeping your facts | Headlines, intros, about text or buttons need a rewrite |
+### Feel and finishing touches
 
-**Design** (`core`)
+From [Emil's skills](https://github.com/emilkowalski/skills) by Emil Kowalski. Profile: `core`.
 
-| Skill | In plain words | Used when |
-| --- | --- | --- |
-| `design-taste-frontend` (Taste) | Picks a design direction for a public page (layout, fonts, colours, photos) and checks it in a browser against a list of generic AI looks | A new landing page, marketing page or portfolio |
-| `frontend-design` | Design direction for app screens, where clarity matters more than flair | A new dashboard, admin area or app screen |
-| `ui-ux-pro-max` | A searchable library of UX rules, colour palettes, font pairings and framework tips. Your assistant looks up one answer instead of reading it all | A focused design question |
-| `impeccable` | A final design review of spacing, type, colour, accessibility and states like hover and error | Once, at the end of a design task |
+| # | Skill | What it does, in plain words | Used when |
+| --- | --- | --- | --- |
+| 21 | `emil-design-eng` | Polishes how things feel to use: animation timing, hover and press states, gestures, and the small details people notice without knowing why. | Buttons, menus, transitions or motion |
+| 22 | `break-ui` | Fills a screen with worst-case content (very long names, empty lists, huge numbers, emoji, other languages) and reports everything that breaks, with a fix for each. | Before launch, on the main screens |
+| 23 | `mobile-native` | Fixes the small things that make a website feel wrong on a phone, like inputs that zoom the page, sticky hover effects, or content hidden under the notch. | Before launch |
+| 24 | `prototype` | Builds several genuinely different versions of a piece of UI and lets you flip between them, so you can keep the one that feels right. | Only when you ask; it may suggest it when the look is undecided |
+| 25 | `pick-ui-library` | Recommends a proven, ready-made library for things like charts, code inputs, toasts or drag and drop, so they aren't built from scratch. | Only when you ask; it may suggest it before building one of these by hand |
 
-**Feel and finishing touches** (from Emil Kowalski, `core`)
+### Extras
 
-| Skill | In plain words | Used when |
-| --- | --- | --- |
-| `emil-design-eng` | Polishes how things feel to use: animations, hover and press states, gestures | Buttons, menus, transitions or motion |
-| `break-ui` | Fills a screen with worst-case content (very long names, empty lists, huge numbers, emoji) and reports what breaks | Before launch, on the main screens |
-| `mobile-native` | Fixes the small things that make a site feel wrong on a phone, like inputs that zoom the page or content hidden under the notch | Before launch |
-| `prototype` | Builds several different versions of a piece of UI so you can flip between them and keep the best | Only when you ask; it may suggest it when the look is undecided |
-| `pick-ui-library` | Recommends a ready-made library for charts, code inputs, drag and drop and similar widgets, so they aren't built from scratch | Only when you ask; it may suggest it before hand-building one |
+Optional profiles, installed only if you choose them.
 
-**Extras** (optional profiles)
-
-| Skill | In plain words | Used when |
-| --- | --- | --- |
-| `caveman` *(lean)* | Makes your assistant's replies very short while keeping every technical fact | You ask for short replies |
-| `api-design-principles` *(backend)* | Rules for designing a clean API, the part of your app that other code talks to: URLs, errors, versions | Designing an API |
-| `security-best-practices` *(backend)* | Reviews Python, JavaScript, TypeScript or Go code for security problems and suggests fixes | You ask for a security review |
-| `supabase-postgres-best-practices` *(postgres)* | Rules for Postgres databases: tables, queries, indexes, and RLS (row-level security, which controls which rows each user can see) | Any Postgres database work |
+| # | Skill | What it does, in plain words | Used when |
+| --- | --- | --- | --- |
+| 26 | `caveman` | Makes your assistant's replies very short while keeping every technical fact. Profile: `lean`. From [Caveman](https://github.com/JuliusBrussee/caveman) by Julius Brussee. | You ask for short replies |
+| 27 | `api-design-principles` | Rules for designing a clean REST or GraphQL API, the part of your app that other code talks to: naming, errors, paging and versions. Profile: `backend`. From [API Design](https://github.com/wshobson/agents) by Seth Hobson. | Designing an API |
+| 28 | `security-best-practices` | Reviews Python, JavaScript, TypeScript or Go code for security problems and suggests safer defaults. Profile: `backend`. From [Security Best Practices](https://github.com/openai/skills) by OpenAI. | You ask for a security review |
+| 29 | `supabase-postgres-best-practices` | Rules for Postgres databases: tables, migrations, queries, indexes, and RLS (row-level security, which controls which rows each user is allowed to see). Profile: `postgres`. From [Postgres Best Practices](https://github.com/supabase/agent-skills) by Supabase. | Any Postgres database work |
 
 Also recommended, but not installed or pinned: components and icons from FeralUI, Motion Primitives, Magic UI, Cult UI, Animata, React Bits, Animate UI, Sonner, Lucide, lucide-animated, itshover, Tabler and Phosphor. Your AI adds them only when a project wants them, restyled to match the site's design. See [component sources](references/component-sources.md) for the rules and [credits](CREDITS.md#referenced-not-installed) for authors and licenses.
 
