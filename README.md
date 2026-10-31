@@ -24,9 +24,9 @@
 
 If you've asked an AI to build a website, you've probably seen the result: a centred headline, three icon cards and a soft gradient. It also tends to skip the boring parts that make a site ready to launch, like colour contrast, phone layouts, broken links and secrets left in the browser.
 
-Universal Web Dev is one free skill you add to your coding assistant. For each request, it picks the right expert from 33 community skills and leaves the rest unloaded. You get a design that fits the business, a plan before any code, tests that prove it works, and a **Launch Readiness Score** that shows exactly what's left before you go live.
+Universal Web Dev is one free skill you add to your coding assistant. It routes each task to relevant guidance from 33 pinned community skills. Start with a simple idea, refine the plan together, then build features with recorded verification. Ask for a **Launch Readiness Score** to see checked results, coverage and unresolved launch work.
 
-It works for any kind of site (portfolio, landing page, shop, booking system, dashboard, full-stack app) in any stack, and it never picks a framework for you.
+It supports portfolios, landing pages, shops, booking systems, dashboards and full-stack apps across stacks. It preserves your existing technology and can recommend a suitable default if you want it to choose. Unfamiliar platforms need current documentation and actual verification; no skill guarantees every feature or platform.
 
 **New to skills?** A skill is a folder of instructions your coding assistant reads when a task needs it. Until then, your assistant only sees each skill's short description, so installing many of them costs very little. The [FAQ](#faq) has the numbers.
 
@@ -70,11 +70,11 @@ The installer never runs code from the skills it downloads. It keeps a backup wh
 
 ## What you get
 
-**A design made for the client.** Each new page gets its own layout, type and palette, based on what makes that business different from its competitors. Common AI patterns are banned and checked in a real browser, and your brand or an existing design always comes first.
+**A design made for the client.** New projects get a coherent direction grounded in the product and audience. Additional pages extend that direction. The agent reviews rendered hierarchy, content, interaction and accessibility; a fashionable palette alone is not a quality check. Your brand and accepted design come first.
 
 **Only the help a task needs.** Fixing a typo loads nothing extra and a bug loads the debugging skill. The big design manuals load for new pages, not for every edit.
 
-**A site that's ready to launch.** You get a plan before code, tests that check real behaviour, and a launch checklist that fits the site. A portfolio won't get a cookie banner or a bot check it doesn't need.
+**Clear feature status.** Each promised outcome carries implementation mode and verification evidence. A demo form, local test and delivered email are different results. Missing credentials or browser tools stay visible, with the next step to finish. The launch checklist fits the site's actual needs.
 
 **A score you can show.** Say "check" or "audit" and you get a Launch Readiness Score from 0 to 100, with the evidence behind every point and the fixes that matter most. Freelancers can turn it into a plain-language handoff report for a client.
 
@@ -133,7 +133,7 @@ Think of Universal Web Dev as a project lead. It doesn't do every job itself. It
 Here's what happens when you ask for something:
 
 1. You describe the work in plain words, like "fix the contact form" or "build a landing page for my bakery".
-2. Your assistant sees that it's web work and opens this skill's routing table in [SKILL.md](SKILL.md). That file is small, about 2,000 tokens.
+2. Your assistant opens [SKILL.md](SKILL.md), the compact routing entrypoint; detailed playbooks load only for relevant work.
 3. The table matches your request to one row. The row names the skills to load (usually one to three) and the ones to leave alone.
 4. Your assistant reads only those skills and does the work. A new project gets a short plan first, then one working feature at a time with tests.
 5. Before saying "done", it runs the project's checks and walks through the real user flow. When the site is about to go live, it also goes through the launch checklist below.
@@ -207,6 +207,12 @@ use universal-web-dev to plan a booking site for a small dental clinic with staf
 ```
 
 ```text
+Use universal-web-dev. I only know basic websites. Help me polish a bakery website idea
+before coding. I want customers to send orders and receive email confirmation.
+Explain account and cost requirements in simple terms.
+```
+
+```text
 use universal-web-dev to continue this project's next feature, reuse the existing design,
 and verify the whole flow before marking it done.
 ```
@@ -226,13 +232,15 @@ A few more things you might say, and what they lead to:
 | "Do a security review" | `security-best-practices` reviews the code *(backend profile)* |
 | "Keep your replies short" | `caveman` trims its answers *(lean profile)* |
 
-For a new project, it writes short planning documents and a sprint plan before any code, then builds one working feature at a time. A sprint is one small, finished piece of the site, such as "visitors can book a room".
+For a new project, it refines a short plan before code, then builds one working feature at a time. A sprint is one small, finished piece of a larger site, such as "visitors can book a room".
+
+For a small site this means one compact plan, not a folder of sprint paperwork. For larger systems it uses the expanded records below. If you ask to brainstorm first, it reviews the plan with you before coding. If you say "choose sensible defaults and proceed", it records its choices and continues without asking you to approve them again.
 
 Some habits it follows while working with you:
 
 - Your brand, your stack and your existing design come first. It won't swap your framework or restyle a page you already approved.
-- When you approve a change in one place, it applies the same change to matching places across the site and tells you which ones it skipped and why.
-- If it expects a request to look or work worse, it says so in a line and suggests something better before changing anything.
+- Global rules apply consistently; a requested local exception stays local.
+- It explains material usability tradeoffs, recommends an option and respects your decision or delegated judgment.
 - It commits, pushes or publishes only when you ask in the conversation.
 - To pause it for unrelated work, say "stop universal-web-dev".
 
@@ -240,6 +248,8 @@ Some habits it follows while working with you:
 <summary><strong>Project files it creates for a new site</strong></summary>
 
 <br>
+
+Small sites use `PLAN.md` (or an existing equivalent) and normal README/setup instructions. Multi-slice systems can use:
 
 ```text
 README.md        what exists and how to run it
@@ -405,13 +415,13 @@ Yes. Universal Web Dev is MIT licensed and free to use, share and change, includ
 
 <br>
 
-Barely. An installed skill costs only its description until it's used. Here's what we measured on a full install (characters ÷ 4, a rough token estimate):
+Installed skills still have discovery overhead. The host initially sees metadata and paths; selected bodies, references and tool results add to that. These are rough character-count estimates, not billed-token measurements or a savings guarantee:
 
 | What | Tokens | When |
 | --- | --- | --- |
-| All 34 skill descriptions | about 2,600 | Once per conversation, about one page of text |
-| This skill's routing | about 2,000 | Each web task |
-| Every skill's full instructions added up | about 91,000 | Never all at once: a request loads only the one to three skills its routing row names |
+| All 34 skill descriptions | about 2,000 (2026-10-31 measurement) | Initial discovery; names, paths and host formatting add overhead |
+| This skill's routing | about 2,200 | Once when selected in a conversation; reuse loaded context |
+| Every pinned upstream skill's full instructions added up | about 91,000 (2026-10-27 snapshot) | Not a normal task budget: only relevant techniques and references should load |
 
 A typo loads nothing extra. A new landing page loads Taste and, at the end, Impeccable. Backend and Postgres guidance stay unloaded on a static site. `Prototype` and `Pick UI Library` load only when you invoke them yourself, in assistants that honour that setting, such as Claude Code.
 
@@ -440,7 +450,7 @@ Claude Code and Codex have built-in install paths (`--host claude`, `--host code
 
 <br>
 
-No. Your stack, brand and existing design come first. Static sites don't get an invented backend, and business systems get real permission and data rules.
+Your stack, brand and accepted design come first. If you want recommendations, the agent explains a simple suitable default. Static sites don't get an invented backend, and business systems need real permission and data rules.
 
 </details>
 

@@ -44,6 +44,23 @@ class CheckUpdatesTests(unittest.TestCase):
         report = updates.check(manifest(), fake(NEW, ['x/%d' % i for i in range(300)]))
         self.assertFalse(report[0]['complete'])
 
+    def test_rename_out_of_installed_tree_is_reported(self):
+        def get(path):
+            if path.endswith('commits/HEAD'):
+                return {'sha': NEW}
+            return {'ahead_by': 1, 'files': [{'filename': 'retired/example.md',
+                    'previous_filename': 'skills/example/SKILL.md', 'status': 'renamed'}]}
+        report = updates.check(manifest(), get)
+        self.assertEqual(report[0]['installed_changes'], ['retired/example.md'])
+
+    def test_rename_from_installed_to_excluded_path_is_reported(self):
+        def get(path):
+            if path.endswith('commits/HEAD'):
+                return {'sha': NEW}
+            return {'ahead_by': 1, 'files': [{'filename': 'skills/example/scripts/old.md',
+                    'previous_filename': 'skills/example/SKILL.md', 'status': 'renamed'}]}
+        self.assertTrue(updates.check(manifest(['scripts']), get)[0]['installed_changes'])
+
     def test_write_moves_only_chosen_repos(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

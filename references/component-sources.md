@@ -26,10 +26,11 @@ Read this only when a task adds icons or a ready-made component. Reusing a maint
 | [Cult UI](https://www.cult-ui.com) | MIT | Tactile shadcn components: docks, toolbars, expandable cards |
 | [Animata](https://animata.design) | MIT | Small interaction and animation snippets |
 | [React Bits](https://reactbits.dev) | MIT + Commons Clause | Text, background and interactive effects |
+| [Canvas UI](https://github.com/DavidHDev/canvas-ui) | MIT + Commons Clause | Optional effects over usable HTML; check experimental API support, fallback, reduced motion and actual target browsers before choosing |
 | [Animate UI](https://animate-ui.com) | MIT + Commons Clause | Animated versions of common shadcn components |
 | [Sonner](https://sonner.emilkowal.ski) | MIT | Toasts that feel physical |
 
-Commons Clause allows the components inside websites and apps, including paid client work. It forbids distributing the components themselves, paid or free: no UI kit, starter, boilerplate or website template that ships them.
+Check the exact component/version license before copying. React Bits and Canvas UI permit use within products but restrict redistributing components/tools as libraries, templates or asset packs. Do not bundle their source into this skill or a paid starter. License terms and runtime support are separate checks.
 
 ## Icons
 

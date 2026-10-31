@@ -2,6 +2,18 @@
 
 Read only the section for a routed skill that is not installed. Tell the developer which skill was missing and that this shorter fallback was used; installing the companion skills ([INSTALL.md](../INSTALL.md)) gives the full version. These are minimums, not replacements.
 
+## Discovery and planning
+
+Use [discovery](discovery.md) and [bootstrap](project-bootstrap.md). Reuse approved decisions, recommend defaults and keep records proportional to the project. A companion's absence is not a reason to stop a clear task.
+
+## Motion and component usability
+
+Reuse native semantic controls and existing patterns. Animate only for a useful state change or the accepted visual direction. Support keyboard, focus, reduced motion and touch; measure rendering cost before adding a heavy effect. Prefer no animation to a broken or inaccessible one.
+
+## Reviews and execution workflow
+
+Read the existing plan/current slice, implement the smallest complete change, inspect its diff and run the relevant checks. Preserve unrelated edits. Use isolated work only when needed, respecting the host's Git rules. Do not invent an independent reviewer or spawn agents without authorization. Branch integration/publication follows the user's actual request, not a missing skill's assumed workflow.
+
 ## Design direction (`design-taste-frontend`, `frontend-design`, `impeccable`)
 
 - Before layout, write one sentence on what makes this business different and let it choose the layout, type and palette. Reuse an accepted design or brand instead.

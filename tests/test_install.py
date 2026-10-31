@@ -77,6 +77,25 @@ class InstallerTests(unittest.TestCase):
         with patch.dict(os.environ, environment, clear=True):
             self.assertEqual(self.mod.default_dest(), Path.home() / '.codex' / 'skills')
 
+    def test_missing_wrapper_reference_never_commits_partial_install(self):
+        (self.source / 'SKILL.md').write_text(
+            '---\nname: universal-web-dev\n---\n[required](references/missing.md)')
+        with patch.object(self.mod, 'SOURCE_ROOT', self.source), \
+                patch.object(self.mod, 'download', side_effect=AssertionError('network')) as download, \
+                contextlib.redirect_stdout(io.StringIO()):
+            with self.assertRaisesRegex(ValueError, 'local link'):
+                self.mod.main(['--manifest', str(self.manifest), '--dest', str(self.dest), '--apply'])
+        download.assert_not_called()
+        self.assertFalse(self.dest.exists())
+
+    def test_wrapper_link_cannot_escape_staged_package(self):
+        (self.source / 'private.txt').write_text('not packaged')
+        (self.source / 'SKILL.md').write_text(
+            '---\nname: universal-web-dev\n---\n[outside](../source/private.txt)')
+        with self.assertRaisesRegex(ValueError, 'local link'):
+            self.run_install('--apply')
+        self.assertFalse(self.dest.exists())
+
     def test_claude_host_dest(self):
         with patch.dict(os.environ, {'CLAUDE_CONFIG_DIR': str(self.root)}):
             self.assertEqual(self.mod.default_dest('claude'), self.root / 'skills')

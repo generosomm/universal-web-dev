@@ -2,6 +2,8 @@
 
 Use at kickoff and release review, and score it with the [Launch Readiness Score](readiness-score.md) when asked to check or audit; inspect only affected sections for a small feature. Record verified evidence, pending work or not applicable with a reason in the project's existing tracker; every item fits the site being built, so a portfolio with no forms gets no invented bot defense. A checklist entry is not proof or authorization to expand the task. Prioritize actual exposure and the agreed release scope.
 
+Use [web baseline](web-baseline.md) for standards/browser support and [feature completion](feature-completion.md) to connect promised outcomes to evidence. Read only applicable sections here; kickoff identifies dependencies, while release verifies them.
+
 ## Privacy and policy pages
 
 - Privacy policy: describe actual data, purposes, providers, retention, contact and user choices. Include browser storage and analytics where used. Verify jurisdiction-specific requirements from current official guidance when drafting; don't invent guarantees or declare legal compliance.

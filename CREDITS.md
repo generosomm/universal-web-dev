@@ -4,6 +4,8 @@ This wrapper coordinates independently published community skills. The wrapper's
 
 The lock records exact 40-character Git commit revisions verified against primary GitHub repository trees and raw source files on 2026-10-20; humanizer was added and Superpowers, Caveman, Taste, UI/UX Pro Max and Impeccable were re-reviewed and moved forward on 2026-10-27; webapp-testing, web-quality-skills and seo-aeo-best-practices were added on 2026-10-27 after reading each selected SKILL.md in full. These are reproducible source snapshots, not a claim that every source is the newest release. No upstream skill files are bundled in this wrapper. The installer must preserve each selected folder in full and retain every listed license/notice file. Source entrypoints, resource trees and license files were inspected; no upstream code was executed.
 
+On 2026-10-31 the selected UI/UX Pro Max revision moved to 9a3f14f742 after reviewing the full comparison: its only installed-file change adds sibling-module import resolution for embedded Python runtimes; license files are unchanged. A narrow product-catalog search was executed successfully from a disposable install. Other upstream runtimes remain unverified unless separately recorded. A complete upstream freshness scan later hit GitHub's unauthenticated rate limit; no blanket newest-version claim is made.
+
 | Package | Author or publisher | Role | Pinned repository | Selected source | Verified license scope and source |
 | --- | --- | --- | --- | --- | --- |
 | superpowers | Jesse Vincent (obra) | Development workflow, planning, implementation, debugging and verification | [obra/superpowers](https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b) | `skills` | MIT; [`LICENSE`](https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/LICENSE) |
@@ -12,7 +14,7 @@ The lock records exact 40-character Git commit revisions verified against primar
 | caveman | Julius Brussee | Optional `lean` profile: concise communication only | [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman/tree/9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4) | `skills/caveman` | Apache-2.0; retained MIT notices for pre-3.0 contributions; [`LICENSE`](https://github.com/JuliusBrussee/caveman/blob/9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4/LICENSE), [`LICENSE-MIT`](https://github.com/JuliusBrussee/caveman/blob/9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4/LICENSE-MIT), [`NOTICE`](https://github.com/JuliusBrussee/caveman/blob/9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4/NOTICE), [`LICENSING.md`](https://github.com/JuliusBrussee/caveman/blob/9b68f7ed12b05e7efaff18e65c5a3fc2849fd0a4/LICENSING.md) |
 | frontend-design | Anthropic | Intentional frontend art direction | [anthropics/skills](https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44) | `skills/frontend-design` | Apache-2.0 for skills/frontend-design only; [`skills/frontend-design/LICENSE.txt`](https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/frontend-design/LICENSE.txt) |
 | taste-skill | Leonxlnx | Research-backed art direction, critique, assets and reference library | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill/tree/12af471f627f866411b4bd785b19646d3672784c) | `skills/taste-skill` | MIT; [`LICENSE`](https://github.com/Leonxlnx/taste-skill/blob/12af471f627f866411b4bd785b19646d3672784c/LICENSE) |
-| ui-ux-pro-max | Next Level Builder | UI/UX guidance and searchable design data | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/28b3b8dee8c976df4fa3e94aed4e092ad43fcb03) | `.claude/skills/ui-ux-pro-max` | MIT for repository code and guidance; preserve bundled data provenance and font metadata notices; [`LICENSE`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/28b3b8dee8c976df4fa3e94aed4e092ad43fcb03/LICENSE) |
+| ui-ux-pro-max | Next Level Builder | UI/UX guidance and searchable design data | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/9a3f14f7423037ccb8feeb4fee7482291b9c820e) | `.claude/skills/ui-ux-pro-max` | MIT for repository code and guidance; preserve bundled data provenance and font metadata notices; [`LICENSE`](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/9a3f14f7423037ccb8feeb4fee7482291b9c820e/LICENSE) |
 | emil-design-eng | Emil Kowalski | Design engineering, interface polish, worst-case and mobile release checks, explicit-only prototyping and library picking | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/2d228630ba1446365f614a108cb8252f1feda202) | `skills/emil-design-eng`, `break-ui`, `mobile-native`, `prototype`, `pick-ui-library` | MIT; [`LICENSE`](https://github.com/emilkowalski/skills/blob/2d228630ba1446365f614a108cb8252f1feda202/LICENSE) |
 | impeccable | Paul Bakaus (pbakaus), project publisher | Frontend critique, design, refinement and accessibility playbooks | [pbakaus/impeccable](https://github.com/pbakaus/impeccable/tree/d34c87e1a00989ae8dbdd7f6b30b70f23319e860) | `.agents/skills/impeccable` | Apache-2.0; NOTICE.md attributes MIT-derived platform references; [`LICENSE`](https://github.com/pbakaus/impeccable/blob/d34c87e1a00989ae8dbdd7f6b30b70f23319e860/LICENSE), [`NOTICE.md`](https://github.com/pbakaus/impeccable/blob/d34c87e1a00989ae8dbdd7f6b30b70f23319e860/NOTICE.md) |
 | webapp-testing | Anthropic | Driving a real browser with Python Playwright to check flows, screenshots and console errors | [anthropics/skills](https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44) | `skills/webapp-testing` | Apache-2.0 for skills/webapp-testing only; [`skills/webapp-testing/LICENSE.txt`](https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/webapp-testing/LICENSE.txt) |
@@ -55,6 +57,7 @@ These component and icon sources are recommended in [component sources](referenc
 | Cult UI | nolly-studio | MIT | [nolly-studio/cult-ui](https://github.com/nolly-studio/cult-ui) |
 | Animata | codse | MIT | [codse/animata](https://github.com/codse/animata) |
 | React Bits | David Haz | MIT + Commons Clause | [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits) |
+| Canvas UI | David Haz | MIT + Commons Clause; reviewed 2026-10-31 | [DavidHDev/canvas-ui](https://github.com/DavidHDev/canvas-ui) |
 | Animate UI | Elliot Sutton | MIT + Commons Clause | [imskyleen/animate-ui](https://github.com/imskyleen/animate-ui) |
 | Sonner | Emil Kowalski | MIT | [emilkowalski/sonner](https://github.com/emilkowalski/sonner) |
 | Lucide | Lucide Icons and Contributors | ISC, with MIT for icons derived from Feather | [lucide-icons/lucide](https://github.com/lucide-icons/lucide) |
@@ -65,5 +68,18 @@ These component and icon sources are recommended in [component sources](referenc
 Notes:
 - lucide-animated serves its agent skill from a website route, not a pinnable folder. Its components ship without a reduced-motion fallback, so the component sources reference asks for one.
 - FeralUI's `pullcord`, `playcaptcha`, `feral-blob` and `feral-fur` are on npm from the same maintainer; `stamp` and `liquid-glass-tip` are copied from source. The npm package named `fur` belongs to a different author.
-- MIT + Commons Clause (React Bits, Animate UI) allows the components inside websites and apps, including client work, but forbids distributing the components themselves, paid or free.
+- React Bits, Animate UI and Canvas UI have redistribution restrictions in addition to MIT terms. Review the exact component/version license; do not bundle their source into this skill or a starter/component pack.
 - Components copied into a project carry their license notice as each source requires.
+
+## Additional references reviewed 2026-10-31
+
+These are optional links, not pinned, installed, bundled or endorsements. See [more skills](references/more-skills.md) for runtime and scope boundaries.
+
+| Source | Publisher | License |
+| --- | --- | --- |
+| [GSAP skills](https://github.com/greensock/gsap-skills) | GreenSock | MIT instructions; GSAP runtime terms are separate |
+| [Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md) | VoltAgent | MIT collection; linked assets retain their own rights |
+| [DESIGN.md](https://github.com/google-labs-code/design.md) | Google Labs Code | Apache-2.0 |
+| [OpenDesign](https://github.com/nexu-io/open-design) | nexu-io | Apache-2.0 |
+| [Dimensional Drawing](https://github.com/enesozturk/dimensional-drawing) | enesozturk | MIT |
+| [Scroll World](https://github.com/oso95/scroll-world) | oso95 | MIT instructions; external media/services retain separate terms |

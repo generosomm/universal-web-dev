@@ -4,7 +4,6 @@ import argparse
 import importlib.util
 import json
 import os
-import re
 from pathlib import Path
 
 
@@ -36,24 +35,7 @@ def check(package, roots, profiles, package_only=False):
     except (OSError, ValueError, TypeError, AttributeError, KeyError) as exc:
         errors.append('Manifest invalid: ' + str(exc))
         manifest = {'packages': []}
-    # These are wrapper-owned Markdown files; upstream dependencies are checked separately.
-    files = [package / 'SKILL.md'] + list((package / 'references').glob('*.md'))
-    files += [p for p in [package / 'README.md', package / 'CREDITS.md', package / 'INSTALL.md'] if p.exists()]
-    for file in files:
-        if not file.exists():
-            continue
-        try:
-            text = file.read_text(encoding='utf-8')
-        except (OSError, UnicodeError):
-            errors.append('Unreadable package document: ' + file.name)
-            continue
-        for link in re.findall(r'\]\(([^)]+)\)', text):
-            if link.startswith(('https:', 'http:', 'mailto:', '#')):
-                continue
-            target = link.split('#', 1)[0].strip('<>')
-            resolved = (file.parent / target).resolve()
-            if not resolved.is_relative_to(package) or not resolved.is_file():
-                errors.append('Invalid local link in ' + file.name + ': ' + target)
+    errors.extend(_installer.package_document_errors(package))
     if not package_only:
         found = set()
         canonical_roots = []

@@ -58,7 +58,9 @@ def check(manifest, get=fetch):
             # The compare API caps its file list; an uncertain answer must not read as "nothing changed".
             entry['complete'] = files is not None and len(files) < 300
             keep, skip = installed_paths(packages)
-            entry['installed_changes'] = [f['filename'] for f in files or [] if touches(f['filename'], keep, skip)]
+            entry['installed_changes'] = [f['filename'] for f in files or []
+                                          if touches(f['filename'], keep, skip)
+                                          or (f.get('previous_filename') and touches(f['previous_filename'], keep, skip))]
             entry['commits'] = compare.get('ahead_by')
         report.append(entry)
     return report

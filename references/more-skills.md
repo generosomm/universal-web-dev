@@ -8,10 +8,26 @@ Read this only when a task needs something the routing table doesn't cover. Noth
 | --- | --- | --- | --- |
 | Diagrams for docs or case studies: architecture, flows, data models | [diagram-design](https://github.com/cathrynlavery/diagram-design) | MIT | About 6 MB, with a long description every session loads. Its Python scripts run only when asked |
 | A second copy pass, or a detect-only review | [no-ai-slop](https://github.com/petergyang/no-ai-slop) | MIT | Same job as the installed `humanizer`; keep one |
-| A different website design direction | [Hallmark](https://github.com/Nutlope/hallmark) | MIT | Overlaps the installed design skills. Needs Node 18 or later, and its browser checks need a global `puppeteer-core` install with Chrome. Never run it next to Taste on one project |
+| A different website design direction | [Hallmark](https://github.com/Nutlope/hallmark) | MIT | Alternative to the existing director, never another simultaneous layer. Render checks need Node 18+, Chrome/Chromium and a resolvable local/global `puppeteer-core` (or its documented configured path). Rechecked 2026-10-31 |
 | Finding another skill | [find-skills](https://github.com/vercel-labs/skills) | MIT | Its commands install globally with `-y` (no confirmation): show the command and get approval first |
 | A demo GIF of the site for a README | [demo-gif](https://github.com/conorbronsdon/demo-gif-skill) | MIT | In maintenance mode. Needs vhs, ffmpeg or Playwright; it commits the GIF and edits the README |
 | A UI finish gate grounded in real product screens | [anti-ui-slop](https://github.com/uizze/uizze) | Apache-2.0, with MIT notices | Its playbooks are derived from the installed `impeccable`, and its description matches almost every UI task. Use it instead of Impeccable's final review, never both. Its hosted reference library is optional and partly paid |
+
+## Additional on-demand capabilities, reviewed 2026-10-31
+
+These extend capability without increasing the installed core catalog. Review current source/license and runtime before installing or executing; browsing a reference needs no installation. Star counts and marketplace descriptions are not validation.
+
+| Need | Source and license | Route and limits |
+| --- | --- | --- |
+| GSAP animation in a project using or explicitly choosing GSAP | [Official GSAP skills](https://github.com/greensock/gsap-skills), MIT skill instructions | Best new specialist: select `gsap-core` and only the relevant React, timeline, ScrollTrigger or plugin module. Do not load all eight. Check GSAP runtime terms separately; animation cleanup, reduced motion and performance still need testing |
+| Design-reference research | [Awesome DESIGN.md](https://github.com/VoltAgent/awesome-design-md), MIT collection | Read one relevant analysis for layout/type principles, not the whole library. Adapt to this business; do not copy a brand's identity or assume all linked assets are licensed |
+| Structured design tokens, lint/export | [Google DESIGN.md](https://github.com/google-labs-code/design.md), Apache-2.0 | Optional alpha format and Node tooling, not a universal skill pack. Preserve existing DESIGN.md; adopt only when useful. Token/contrast lint does not prove rendered accessibility |
+| A separate design workspace with CLI/MCP integration | [OpenDesign](https://github.com/nexu-io/open-design), Apache-2.0 | Current source includes skills and headless use, beyond its desktop UI. Separate runtime/configuration and an installer that executes downloaded shell code; explicit setup choice, never a silent dependency |
+| Measured component anatomy or redline sheet | [Dimensional Drawing](https://github.com/enesozturk/dimensional-drawing), MIT | Explicit documentation request only. Read its measurement skill; browser measurement required, unknown values stay unknown. Not an automatic build review |
+| Reduce excessive animation | [Emil's skills](https://github.com/emilkowalski/skills), MIT | Offer its `remove-animations` specialist if existing motion guidance is insufficient; do not install duplicate versions of existing modules |
+| Cinematic video-scrub landing page | [Scroll World](https://github.com/oso95/scroll-world), MIT instructions | Explicit opt-in only: large instruction file, external media-generation accounts/paid services and ffmpeg. Clarify budget, assets, phone fallback and setup first. Video scrubbing is not a true interactive 3D app |
+
+UI/UX Pro Max, Taste, Impeccable and Emil's core skills are already covered; React Bits, Magic UI and Canvas UI are [component sources](component-sources.md). Keep the pinned Impeccable guidance-only: upstream's current hooks, binary downloads, telemetry/catalog access, live edits and subagent runtime are not installed or verified here.
 
 ## Watch list
 
@@ -36,7 +52,6 @@ Promising, but very new. Review the source before use.
 | [mattpocock/skills](https://github.com/mattpocock/skills) | Overlaps the installed Superpowers skills, and its `prototype` name clashes with the installed one |
 | [Sahil-SS9/hermes-simplify-swarm](https://github.com/Sahil-SS9/hermes-simplify-swarm) | When a test fails it runs `git checkout -- .`, which discards every uncommitted change, not only its own. It also starts three review agents after each code change |
 | [Sahil-SS9/hermaguard](https://github.com/Sahil-SS9/hermaguard) | Setup uses `sudo` and a Python static-analysis toolchain; overlaps the installed code-review and security skills |
-| [nexu-io/open-design](https://github.com/nexu-io/open-design) | A desktop design app rather than a skill; its installer pipes a downloaded script to the shell |
 | [bergside/typeui](https://github.com/bergside/typeui) | Its `typeui-fundamentals` skill (MIT) repeats UI principles the installed `ui-ux-pro-max` covers |
 
 Browsing directories, not vetted: [skills.sh](https://www.skills.sh), [MCP Market](https://mcpmarket.com), [Hermes Atlas](https://hermesatlas.com/lists/top-skills).

@@ -2,7 +2,13 @@
 
 For a new/empty website repository, finish a reviewable planning baseline before application code. For an established project, map to its existing files instead of renaming or duplicating them. User instructions and governing workflow/review gates determine when implementation can begin; prior approval remains valid. Ask only consequential unknowns and label assumptions. Do not invent approved requirements, chosen branding or implemented features.
 
-## Minimal project shape
+## Compact mode
+
+For a small site or single-slice feature, use one `PLAN.md` (or an existing equivalent) plus the project's normal README/setup instructions. Keep the goal, pages/flow, design decision, dependencies, feature acceptance/evidence and next action in that one record. Do not create sprint folders, separate testing manifests or four root briefs merely to follow a template. A one-line fix reuses existing context and needs no new plan file.
+
+Use expanded mode below when multiple slices, roles or data contracts need independent records. Split a compact record only when its growing content has distinct owners or becomes difficult to maintain; preserve links and one source per fact. Existing repository conventions win in both modes.
+
+## Expanded project shape
 
 ```text
 README.md
@@ -21,7 +27,7 @@ tests/
 # application folders follow the selected stack after planning
 ```
 
-These case-sensitive names are the default for a new project. If the user specifies different names, use those consistently. Create records/folders for the first actionable sprint now; create later ones when activated, not empty placeholder trees. A test README is a plan, not executable coverage.
+These case-sensitive names are defaults for expanded mode. If the user specifies different names, use those consistently. Create records/folders for the first actionable sprint now; create later ones when activated, not empty placeholder trees. A test README is a plan, not executable coverage.
 
 ## One owner per fact
 
@@ -48,7 +54,7 @@ Statuses:
 - Planned: scope drafted or dependencies pending.
 - Ready: sufficiently defined and required approvals/inputs available.
 - In progress: the single active implementation slice.
-- Implemented: relevant checks passed; required user review still pending.
+- Implemented: code exists; required verification or user review may remain. Record which checks passed separately.
 - Done: acceptance evidence and required review complete.
 - Blocked: concrete obstacle and smallest next action recorded.
 
@@ -76,7 +82,7 @@ Next: <one concrete action or required review>
 
 ## Tests per sprint
 
-Create tests/sprints/<ID>/ for each active sprint. Its README maps acceptance IDs to actual tests, commands and relevant manual checks, with pending coverage labelled. Place new executable sprint-specific tests there when compatible with the selected runner. Keep cross-feature regression helpers/tests in shared or feature-owned locations; reference them rather than copying tests every sprint. Preserve all prior sprint tests as regression coverage.
+In expanded mode, create tests/sprints/<ID>/ for each active sprint. Its README maps acceptance IDs to actual tests, commands and relevant manual checks, with pending coverage labelled. Compact mode keeps that mapping in its single plan and uses the normal project test layout. Place new executable sprint-specific tests in the sprint folder when compatible with the selected runner. Keep shared regression tests in their existing locations and reference them. Preserve prior sprint tests as regression coverage.
 
 If the framework requires colocated tests or a different layout, keep the per-sprint folder as a manifest linking to those executable tests. Verify discovery/configuration so the intended tests actually run. Don't move an established suite only to fit this tree. A new test command must be checked, not guessed.
 

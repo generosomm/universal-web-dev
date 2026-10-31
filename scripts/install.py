@@ -25,6 +25,28 @@ WRAPPER_FILES = ('SKILL.md', 'agents', 'references', 'LICENSE', 'CREDITS.md', 'R
                  'INSTALL.md', 'dependencies.lock.json', 'scripts', 'docs', 'tests')
 
 
+def package_document_errors(package):
+    """Validate wrapper-owned document links before installation and in doctor."""
+    package = Path(package).resolve()
+    errors = []
+    files = [package / 'SKILL.md'] + list((package / 'references').glob('*.md'))
+    files += [p for p in [package / 'README.md', package / 'CREDITS.md', package / 'INSTALL.md'] if p.exists()]
+    for file in files:
+        try:
+            text = file.read_text(encoding='utf-8')
+        except (OSError, UnicodeError):
+            errors.append('Unreadable package document: ' + file.name)
+            continue
+        for link in re.findall(r'\]\(([^)]+)\)', text):
+            if link.startswith(('https:', 'http:', 'mailto:', '#')):
+                continue
+            target = link.split('#', 1)[0].strip('<>')
+            resolved = (file.parent / target).resolve()
+            if not resolved.is_relative_to(package) or not resolved.is_file():
+                errors.append('Invalid local link in ' + file.name + ': ' + target)
+    return errors
+
+
 def content_digest(root, selected=None):
     """Hash paths and bytes without following links or including generated caches."""
     digest = hashlib.sha256()
@@ -383,6 +405,9 @@ def main(argv=None):
                     source = SOURCE_ROOT / item
                     if source.exists():
                         copy_safe(source, output / item)
+                errors = package_document_errors(output)
+                if errors:
+                    raise ValueError('; '.join(errors))
             else:
                 key = (package['repo'], package['ref'])
                 if key not in repositories:

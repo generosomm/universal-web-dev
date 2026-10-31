@@ -7,14 +7,22 @@ description: Use when planning, building, fixing, reviewing, or releasing websit
 
 Build the smallest complete system that satisfies the brief. Project type, user roles, risk, existing code and chosen stack are inputs; no framework, database, palette or industry is assumed. Project instructions and accepted designs win over this skill. This skill grants no permission to deploy, spend money, migrate production data or message third parties.
 
+## Start from the user's idea
+
+For a new site or unclear feature, use [discovery](references/discovery.md) to polish the idea with the user before coding. Explain choices in everyday language and recommend defaults; beginners need not choose frameworks. If the user delegates choices or asks you to proceed, record assumptions and continue within that authorization. Preserve an existing plan instead of restarting discovery.
+
 ## Route each task to the fewest skills
 
-Load a skill only when its row applies; read its SKILL.md once per conversation and its references only for the question at hand. If a skill is missing, say so, use [the built-in fallback](references/fallback.md) for that row, and continue. Never claim a skill ran when it did not. When a project uses a stack or service with an official skill pack (WordPress, Shopify, Laravel, Svelte, React, Stripe, Sanity, Prisma and others), check [stack packs](references/stack-packs.md) once per project and offer the pack; install only with approval.
+Read each selected SKILL.md once per conversation, then only relevant references. For a missing skill, disclose and use [fallback](references/fallback.md); never claim it ran. Check [stack packs](references/stack-packs.md) once when a provider-specific need arises; offer a relevant missing pack, installing only with approval.
+
+This wrapper owns scope/routing; companions supply techniques. Under this workflow, `using-superpowers` is not a second router: its broad relevance rule does not expand the table. `brainstorming` supplies interview techniques; [discovery](references/discovery.md) governs approval and [bootstrap](references/project-bootstrap.md) governs document size. `writing-plans` supplies sequencing, without another execution-choice gate after "proceed". Companion fixed spec paths, commits, reviewer agents and exact response formats do not apply unless the task requires them and authorization permits them. Preserve upstream files. Higher-priority host/project/user rules still win. Load one primary technique, adding specialists for concrete gaps; no automatic agent fan-out.
+
+Rows compose for mixed requests: a marketing site with orders/email also needs those backend contracts and acceptance checks. "Do not load backend" applies only to purely presentational work.
 
 | Task | Load | Do not load |
 | --- | --- | --- |
 | Typo, label or config fix, or copy the user supplied word for word | nothing extra | design or backend guidance |
-| Copy that reads AI-written or needs a rewrite: headlines, intros, about text, CTAs | `humanizer`, on the user's own words | design skills |
+| Rewrite AI-sounding copy | `humanizer`, preserving supplied facts | design skills |
 | Bug or failing test | `systematic-debugging`; `webapp-testing` to reproduce a UI bug in a browser | design skills |
 | New feature in an existing project | `ponytail`; `test-driven-development` when behavior changes | a new design direction; reuse the accepted one |
 | New marketing page, landing page, portfolio | `design-taste-frontend` full run, then `impeccable` polish | `frontend-design`, backend references |
@@ -22,34 +30,35 @@ Load a skill only when its row applies; read its SKILL.md once per conversation 
 | App screens, dashboard, admin, portal | `frontend-design` for direction; `ui-ux-pro-max` for focused lookups | `design-taste-frontend` |
 | Component states, gestures, motion | `emil-design-eng` | a full redesign |
 | Backend, database, auth, integrations | [full-stack contracts](references/full-stack.md) sections and [backend routing](references/backend-skills.md) | design skills |
-| Empty project | [project bootstrap](references/project-bootstrap.md); `brainstorming` only if requirements are unclear; `writing-plans` only for multi-sprint builds | implementation code before the plan |
-| Carrying out a written plan, code review, or finishing a branch | `executing-plans`, or `subagent-driven-development` and `dispatching-parallel-agents` when the host runs subagents; `requesting-code-review` before merge, `receiving-code-review` for feedback; `using-git-worktrees` for isolated work, `finishing-a-development-branch` to wrap up | a new design direction |
+| Empty project | [discovery](references/discovery.md), then [project bootstrap](references/project-bootstrap.md); `brainstorming` for deeper unresolved product choices; `writing-plans` for complex execution | another interview after an accepted plan; full sprint paperwork for a simple page |
+| Execute/review/integrate a plan | `executing-plans`; review skills for review/feedback; worktree/branch skills only for those tasks. Agent workflow skills only when authorized | a new direction or automatic agent workflow |
 | Kickoff planning, or a release when the site is about to go live | [website readiness](references/website-readiness.md), `verification-before-completion`; for UI releases `break-ui` on the main screens and `mobile-native` | checks outside the release scope; release checks on a first draft |
-| An explicit request to check or audit the whole site, score it, write a client handoff report, or compare two scores | [Launch Readiness Score](references/readiness-score.md); `webapp-testing` for browser checks | code changes before the report; a score for anything not checked; checking one component or comparing design options |
+| Explicit whole-site check, audit, score, handoff or score comparison | [Launch Readiness Score](references/readiness-score.md); browser checks | code changes unless requested; unmeasured scores; scoring a single component/design comparison |
 | Slow pages, Core Web Vitals, page weight | `performance`, and `core-web-vitals` for LCP, INP or CLS | guesses without a measurement |
 | Search or AI-answer visibility: metadata, structured data, sitemaps | `seo-aeo-best-practices` | design skills |
 | Clicking through a flow, screenshots, console errors in a real browser | `webapp-testing` | the readiness score unless asked |
 
-Use one design direction skill per project; when skills disagree on a visual rule, it wins. Run `impeccable` once as the final review: its `polish` playbook, or `audit` when release needs a measured report; `critique` (seven times larger) only when asked, never on every edit; without its `scripts/` folder, use its documented fallback. Query `ui-ux-pro-max` narrowly, running its scripts from the installed skill folder, and never generate a new design system per change. Suggest, never auto-run, the explicit-only `prototype` when looks are undecided and `pick-ui-library` before hand-building charts, OTP inputs, drag and drop or similar widgets. Read [component sources](references/component-sources.md) before adding icon or UI component libraries.
+One direction skill settles visual disagreements; new directions use [design quality](references/design-quality.md). After substantial visual work run `impeccable` once: `polish`, or `audit` for a measured report; `critique` only when asked. Use its fallback without its launcher. Query `ui-ux-pro-max` narrowly from its installed folder. Suggest explicit-only `prototype` for requested alternatives and `pick-ui-library` for complex widgets. Consult [component sources](references/component-sources.md) before adding UI libraries.
 
 ## Plan
 
 - Read the repository's own instructions and existing decisions first.
-- For a new system, establish the goal, users and roles, critical workflow, data ownership, constraints, stack, hosting and acceptance examples. Ask only questions that block progress; label assumptions.
-- Record a short approved plan in the project docs. Business systems need permission and data contracts before code. Small fixes reuse existing docs.
+- Establish users/roles, critical flow, ownership, constraints, hosting and acceptance. Ask consequential unknowns; label assumptions.
+- Record a short plan and its approval or delegated assumptions. Business systems need role/access and data contracts before code. Use compact docs for small sites; reuse existing docs for fixes.
 
 ## Build
 
-- Implement with `ponytail`: deliver one complete vertical feature at a time through the UI, API and database layers it needs.
+- Deliver one complete feature at a time through its needed UI, API and data layers.
 - Reuse existing patterns and tools. Add a service, abstraction or dependency only for a concrete need.
 - Static sites get no invented backend. Business systems get real server-side validation and authorization.
-- Keep the sprint ledger and test evidence current while working, not only at handoff.
+- Track promised features with [completion evidence](references/feature-completion.md). A rendered control, mock response or success toast alone does not prove the outcome.
+- Keep the existing acceptance record and test evidence current while working.
 
 ## Work with the developer
 
-- A change the developer asks for or accepts in one section (alignment, spacing, a fix, a style) is a site-wide rule: find every place with the same pattern and apply it in the same change. Skip any place where it would look or work worse, such as a timeline or form whose structure depends on its alignment, and name each skipped place with the reason.
-- When you expect a request to look or work worse, your first reply is the reason in one line plus a better option, with no edits; build after the developer chooses.
-- When looks are undecided, show two or three real options side by side (rendered mockups, a prototype page or screenshots) and build only the pick.
+- Apply requested global rules consistently. Keep a requested local exception local; for a demonstrated shared defect, fix affected instances within scope and explain material exceptions.
+- Explain a material usability tradeoff and recommend a better option. Respect an explicit choice or delegated judgment; do not manufacture approval loops for reversible decisions.
+- When the user wants visual alternatives, show two or three rendered options before implementing the pick. When they delegate design, select and explain one direction, then proceed.
 - After adding or moving UI, rerun the project's existing layout and regression checks.
 - Commit, push, deploy or publish only when asked in this conversation.
 
@@ -62,8 +71,8 @@ Use one design direction skill per project; when skills disagree on a visual rul
 
 ## Verify and report
 
-Test meaningful behavior, including denied, invalid and failure cases. Run the repository's required checks and walk through the real user flow. Viewport emulation is not device testing, and mocks are not proof that a live integration works. Before calling a layout done on phones, run the [phone checks](references/website-readiness.md#phones). If a skill's checking script cannot run, use its documented fallback and report that the check did not run. Respect review gates and release authorization, and verify deployed behavior after release.
+Test meaningful behavior, including denied, invalid and failure cases. Run required checks and the real user flow using [completion evidence](references/feature-completion.md). Use [current web baseline](references/web-baseline.md) for new builds and releases, only its affected sections for edits. Viewport emulation is not device testing. Before calling a phone layout done, run the [phone checks](references/website-readiness.md#phones). Report unavailable checks; respect release authorization and verify deployed behavior after release.
 
-Report what changed, the evidence and what remains unverified, in a few lines in the user's language. If the optional `caveman` skill is installed and the user asked for terse replies, use it; otherwise write plain, short sentences. Code, docs and PR language follow the project's conventions.
+Report changes, evidence and unverified outcomes briefly in the user's language. Use optional `caveman` only when terse replies were requested; otherwise write plainly. Code/docs/PRs follow project conventions.
 
-For a capability no row covers, such as diagrams, web research or finding another skill, read [more skills](references/more-skills.md) before installing anything. For a request to install or update this skill from its repository link, follow [INSTALL.md](INSTALL.md) and do not start a website project. For missing dependencies or sharing, read [sharing and dependencies](references/sharing.md). Pause this skill for unrelated work, or stop on "stop universal-web-dev". Do not change global instructions or hooks.
+For an uncovered capability consult [more skills](references/more-skills.md). Installation/update requests follow [INSTALL.md](INSTALL.md), not website kickoff. Missing dependencies/sharing use [sharing](references/sharing.md). Pause for unrelated work or "stop universal-web-dev". Do not change global instructions/hooks.
