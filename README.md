@@ -374,6 +374,24 @@ The full list, with how each stack is detected, is in [stack packs](references/s
 ## FAQ
 
 <details>
+<summary><strong>I don't have time to read all this. What is it, in one line?</strong></summary>
+
+<br>
+
+You tell your AI "build me a website," and this makes it plan first, design something that doesn't look AI-made, and check contrast, phone layouts, links and leaked secrets before you launch. Install it with [one message](#install-in-one-message) and keep working the way you already do.
+
+</details>
+
+<details>
+<summary><strong>I already have my own skill. Do I still need this?</strong></summary>
+
+<br>
+
+You can use both. Universal Web Dev doesn't replace or edit your skill: it installs next to it, and it only decides which of its 33 web skills to load for each request.
+
+</details>
+
+<details>
 <summary><strong>Is it really free?</strong></summary>
 
 <br>
