@@ -97,7 +97,8 @@ def managed_status(target, desired):
         if not isinstance(receipt, dict) or type(receipt.get('version')) is not int or receipt['version'] != 1:
             return 'unmanaged'
         identity = receipt.get('identity')
-        if not isinstance(identity, dict) or set(identity) != set(desired):
+        optional = {'exclude'} if desired['kind'] == 'dependency' else set()
+        if not isinstance(identity, dict) or set(identity) - optional != set(desired) - optional:
             return 'unmanaged'
         stable = ('kind', 'name', 'repo', 'package', 'path') if desired['kind'] == 'dependency' else ('kind', 'name')
         if any(identity.get(key) != desired.get(key) for key in stable):
@@ -203,6 +204,13 @@ def load_manifest(path):
             exclude = skill.get('exclude', [])
             if not isinstance(exclude, list):
                 raise ValueError('Invalid exclude list')
+            required = skill.get('required_files', [])
+            if not isinstance(required, list):
+                raise ValueError('Invalid required_files list')
+            for item in required:
+                required_path = safe_path(item)
+                if any(required_path.is_relative_to(safe_path(e)) for e in exclude):
+                    raise ValueError('Required file must not be excluded')
             for item in exclude:
                 if safe_path(item).parts[0] in {'SKILL.md', 'UPSTREAM-NOTICE.txt', 'upstream-licenses'}:
                     raise ValueError('Exclude must not remove entrypoint or attribution')
@@ -358,7 +366,7 @@ def main(argv=None):
     mode.add_argument('--sync', action='store_true', help='Update unchanged receipt-managed skills to the lock pins')
     args = parser.parse_args(argv)
     manifest = load_manifest(args.manifest)
-    profiles = set(args.profile or ['core'])
+    profiles = set(args.profile or ['all'])
     selected = [p for p in manifest['packages'] if 'all' in profiles or profiles.intersection(p['profiles'])]
     dest = (args.dest or default_dest(args.host)).expanduser().absolute()
     if dest.is_symlink():
@@ -433,6 +441,9 @@ def main(argv=None):
                 (output / 'UPSTREAM-NOTICE.txt').write_text(notice, encoding='utf-8')
             if skill_name(output / 'SKILL.md') != name:
                 raise ValueError('SKILL.md name does not match manifest: ' + name)
+            for required in (skill or {}).get('required_files', []):
+                if not output.joinpath(*safe_path(required).parts).is_file():
+                    raise ValueError('Missing required file for {}: {}'.format(name, required))
             if (output / RECEIPT).exists():
                 raise ValueError('Source contains reserved install receipt: ' + name)
             receipt = {'version': 1, 'identity': desired_identity(name, package, skill),

@@ -60,7 +60,7 @@ Use the installed skills instead of improvising, each once at release and only w
 
 | Area | Skill |
 | --- | --- |
-| Accessibility, contrast, responsive layout | `impeccable`, once per release: `audit` when a measured report is needed, otherwise the `polish` pass, never both. Without its launcher, do the detector's checks by hand with available tools |
+| Accessibility, contrast, responsive layout | `impeccable`, once per release: `audit` when a measured report is needed, otherwise the `polish` pass, never both. Require launcher setup per [runtime setup](impeccable-runtime.md); if unavailable, report incomplete runtime coverage and distinguish manual checks |
 | Load speed and Core Web Vitals | `performance`, and `core-web-vitals` for LCP, INP or CLS; measure first |
 | Titles, structured data, sitemaps, AI-answer visibility | `seo-aeo-best-practices` |
 | Critical flow, console errors, screenshots in a real browser | `webapp-testing`, or the host's own browser tool |

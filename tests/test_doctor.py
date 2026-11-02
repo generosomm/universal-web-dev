@@ -69,6 +69,22 @@ class DoctorTests(unittest.TestCase):
             self.save_manifest()
             self.assertTrue(self.check()['errors'])
 
+    def test_guidance_only_install_cannot_satisfy_required_launcher(self):
+        self.manifest['packages'][0]['skills'][0]['required_files'] = ['scripts/launcher']
+        self.save_manifest()
+        skills = self.root / 'skills'
+        for name in ['example', 'universal-web-dev']:
+            folder = skills / name
+            folder.mkdir(parents=True)
+            (folder / 'SKILL.md').write_text('---\nname: ' + name + '\n---\n')
+        result = self.check([skills], False)
+        self.assertEqual(result['dependencies']['example'], 'incomplete (required files missing)')
+        self.assertTrue(result['errors'])
+        launcher = skills / 'example/scripts/launcher'
+        launcher.parent.mkdir()
+        launcher.write_text('not executed')
+        self.assertEqual(self.check([skills], False)['errors'], [])
+
     def test_canonical_family_cannot_be_split_or_aliased(self):
         self.manifest['packages'][0]['canonical_folders'] = True
         self.save_manifest()

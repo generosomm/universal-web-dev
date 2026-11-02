@@ -276,7 +276,7 @@ All 33 skills are listed below by their real names, the ones you'll see in your 
 
 They come from 14 projects. Most projects add one skill, while [Superpowers](https://github.com/obra/superpowers) adds 14, [Emil's skills](https://github.com/emilkowalski/skills) adds 5 and [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) adds 2. Every skill installs from a pinned commit listed in [dependencies.lock.json](dependencies.lock.json), and authors and licenses are in [CREDITS.md](CREDITS.md).
 
-A profile is a bundle you choose at install time. `core` is installed for everyone. `lean`, `backend` and `postgres` are optional extras, and asking for "all of its skills" installs every profile.
+A profile is an installation filter. The default installs all 33 companion skills, including the full Impeccable launcher. Select `core`, `lean`, `backend` or `postgres` explicitly for a smaller setup. Installed skills stay unloaded until a task needs them.
 
 ### Planning and teamwork
 
@@ -344,7 +344,7 @@ Profile: `core`.
 
 ### Extras
 
-Optional profiles, installed only if you choose them.
+Additional profiles, included in the default all-skills installation.
 
 | # | Skill | What it does, in plain words | Used when |
 | --- | --- | --- | --- |
@@ -459,7 +459,7 @@ Your stack, brand and accepted design come first. If you want recommendations, t
 
 <br>
 
-Its design guidance is. Its optional launcher downloads a separate program that isn't pinned, so the installer leaves the launcher out and Impeccable uses its documented fallback. If you want live browser mode and its automatic detector, set up the launcher from [the upstream project](https://github.com/pbakaus/impeccable).
+Yes: installation includes the full skill, launchers, engine version and checksum manifest from the pinned source. UI work requires launcher context setup once per project session. The launcher can download its version-pinned, checksum-verified engine on first use. Installation copies files without executing upstream code. Live browser mode and detector commands still need their documented environment and actual execution; missing runtime support is reported, not silently treated as complete. See [runtime setup](references/impeccable-runtime.md).
 
 </details>
 

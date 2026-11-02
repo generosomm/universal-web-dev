@@ -27,7 +27,7 @@ These extend capability without increasing the installed core catalog. Review cu
 | Reduce excessive animation | [Emil's skills](https://github.com/emilkowalski/skills), MIT | Offer its `remove-animations` specialist if existing motion guidance is insufficient; do not install duplicate versions of existing modules |
 | Cinematic video-scrub landing page | [Scroll World](https://github.com/oso95/scroll-world), MIT instructions | Explicit opt-in only: large instruction file, external media-generation accounts/paid services and ffmpeg. Clarify budget, assets, phone fallback and setup first. Video scrubbing is not a true interactive 3D app |
 
-UI/UX Pro Max, Taste, Impeccable and Emil's core skills are already covered; React Bits, Magic UI and Canvas UI are [component sources](component-sources.md). Keep the pinned Impeccable guidance-only: upstream's current hooks, binary downloads, telemetry/catalog access, live edits and subagent runtime are not installed or verified here.
+UI/UX Pro Max, Taste, Impeccable and Emil's core skills are already covered; React Bits, Magic UI and Canvas UI are [component sources](component-sources.md). Impeccable includes its full pinned launcher; follow [runtime setup](impeccable-runtime.md) for UI work. Installing the launcher does not prove hooks, live edits, catalog access or agent integrations ran. Use the matching upstream workflow only for an applicable task and report actual verification.
 
 ## Watch list
 

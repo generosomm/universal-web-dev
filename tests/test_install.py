@@ -109,6 +109,9 @@ class InstallerTests(unittest.TestCase):
         profiles = {p['id']: p['profiles'] for p in lock['packages']}
         self.assertEqual(profiles['caveman'], ['lean'])
         self.assertIn('core', profiles['superpowers'])
+        impeccable = next(p for p in lock['packages'] if p['id'] == 'impeccable')['skills'][0]
+        self.assertNotIn('scripts', impeccable.get('exclude', []))
+        self.assertIn('scripts/engine-checksums.txt', impeccable['required_files'])
         emil = [p for p in lock['packages'] if p['id'] == 'emil-design-eng'][0]
         self.assertLessEqual({'break-ui', 'mobile-native', 'prototype', 'pick-ui-library'}, {s['name'] for s in emil['skills']})
 
@@ -122,6 +125,32 @@ class InstallerTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     self.mod.load_manifest(self.manifest)
                 self.data['packages'][0][field] = original
+
+    def test_default_install_selects_backend_too(self):
+        self.data['packages'][0]['profiles'] = ['backend']
+        self.write_manifest()
+        self.run_install('--apply')
+        self.assertTrue((self.dest / 'example/SKILL.md').is_file())
+
+    def test_required_launcher_files_must_exist_before_commit(self):
+        self.data['packages'][0]['skills'][0]['required_files'] = ['scripts/launcher']
+        self.write_manifest()
+        with self.assertRaisesRegex(ValueError, 'Missing required file'):
+            self.run_install('--apply')
+        self.assertFalse(self.dest.exists())
+        with zipfile.ZipFile(io.BytesIO(self.payload)) as source:
+            files = {name.split('/', 1)[1]: source.read(name) for name in source.namelist()}
+        files['nested/skill/scripts/launcher'] = 'never executed'
+        self.run_install('--apply', payload=archive(files))
+        self.assertEqual((self.dest / 'example/scripts/launcher').read_text(), 'never executed')
+
+    def test_required_files_reject_escape_and_exclusion(self):
+        skill = self.data['packages'][0]['skills'][0]
+        for required, excluded in [(['../outside'], []), (['scripts/launcher'], ['scripts'])]:
+            skill.update(required_files=required, exclude=excluded)
+            self.write_manifest()
+            with self.assertRaises(ValueError):
+                self.mod.load_manifest(self.manifest)
 
     def test_apply_copies_selected_skill_support_license_and_wrapper(self):
         self.run_install('--apply')
@@ -234,10 +263,30 @@ class InstallerTests(unittest.TestCase):
     def test_profiles_can_be_repeated(self):
         self.data['packages'][0]['profiles'] = ['backend']
         self.write_manifest()
-        self.run_install('--apply')
+        self.run_install('--apply', '--profile', 'core')
         self.assertFalse((self.dest / 'example').exists())
         self.run_install('--apply', '--profile', 'core', '--profile', 'backend')
         self.assertTrue((self.dest / 'example').exists())
+
+    def test_sync_upgrades_guidance_only_without_overwriting_customizations(self):
+        skill = self.data['packages'][0]['skills'][0]
+        skill['exclude'] = ['scripts']
+        self.write_manifest()
+        files = {'nested/skill/SKILL.md': '---\nname: example\n---\nbody',
+                 'nested/skill/scripts/launcher': 'unexecuted', 'shared/helper.py': 'x', 'LICENSE': 'MIT'}
+        payload = archive(files)
+        self.run_install('--apply', payload=payload)
+        del skill['exclude']
+        skill['required_files'] = ['scripts/launcher']
+        self.write_manifest()
+        self.run_install('--sync', '--apply', payload=payload)
+        launcher = self.dest / 'example/scripts/launcher'
+        self.assertEqual(launcher.read_text(), 'unexecuted')
+        launcher.write_text('custom launcher')
+        self.data['packages'][0]['ref'] = 'b' * 40
+        self.write_manifest()
+        self.run_install('--sync', '--apply', payload=payload)
+        self.assertEqual(launcher.read_text(), 'custom launcher')
 
     def test_manual_only_packages_are_reported_without_network(self):
         self.data['packages'][0]['skills'] = []

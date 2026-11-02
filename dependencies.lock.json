@@ -242,8 +242,11 @@
         {
           "name": "impeccable",
           "path": ".agents/skills/impeccable",
-          "exclude": [
-            "scripts"
+          "required_files": [
+            "scripts/impeccable",
+            "scripts/impeccable.cmd",
+            "scripts/VERSION",
+            "scripts/engine-checksums.txt"
           ]
         }
       ]

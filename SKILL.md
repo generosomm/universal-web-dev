@@ -38,7 +38,7 @@ Rows compose for mixed requests: a marketing site with orders/email also needs t
 | Search or AI-answer visibility: metadata, structured data, sitemaps | `seo-aeo-best-practices` | design skills |
 | Clicking through a flow, screenshots, console errors in a real browser | `webapp-testing` | the readiness score unless asked |
 
-One direction skill settles visual disagreements; new directions use [design quality](references/design-quality.md). After substantial visual work run `impeccable` once: `polish`, or `audit` for a measured report; `critique` only when asked. Use its fallback without its launcher. Query `ui-ux-pro-max` narrowly from its installed folder. Suggest explicit-only `prototype` for requested alternatives and `pick-ui-library` for complex widgets. Consult [component sources](references/component-sources.md) before adding UI libraries.
+One direction skill settles visual disagreements; new directions use [design quality](references/design-quality.md). For UI work, Impeccable's launcher is a required part of setup: follow [Impeccable runtime](references/impeccable-runtime.md), running context once per project session before UI planning or editing. After substantial visual work run `impeccable` once: `polish`, or `audit` for a measured report; `critique` only when asked. A fallback does not count as a successful launcher run. Query `ui-ux-pro-max` narrowly from its installed folder. Suggest explicit-only `prototype` for requested alternatives and `pick-ui-library` for complex widgets. Consult [component sources](references/component-sources.md) before adding UI libraries.
 
 ## Plan
 

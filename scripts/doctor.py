@@ -38,6 +38,7 @@ def check(package, roots, profiles, package_only=False):
     errors.extend(_installer.package_document_errors(package))
     if not package_only:
         found = set()
+        installed = {}
         canonical_roots = []
         for root in roots:
             root = Path(root)
@@ -49,6 +50,7 @@ def check(package, roots, profiles, package_only=False):
                     name = declared_name(folder / 'SKILL.md')
                     if name:
                         found.add(name)
+                        installed.setdefault(name, []).append(folder)
                         canonical[folder.name] = name
             canonical_roots.append(canonical)
         dependencies['universal-web-dev'] = 'present' if 'universal-web-dev' in found else 'missing'
@@ -67,6 +69,12 @@ def check(package, roots, profiles, package_only=False):
                 dependencies[name] = 'present' if name in found else 'missing'
                 if name not in found:
                     errors.append('Missing skill: ' + name)
+                elif skill.get('required_files'):
+                    required = skill['required_files']
+                    if not any(all((folder / item).is_file() for item in required)
+                               for folder in installed[name]):
+                        dependencies[name] = 'incomplete (required files missing)'
+                        errors.append('Missing required files for ' + name + ': ' + ', '.join(required))
     return {'errors': errors, 'dependencies': dependencies,
             'scope': 'package only' if package_only else 'package and dependency presence',
             'limits': 'Presence is not runtime, upstream-integrity, website-security or integration verification.'}
@@ -79,7 +87,7 @@ def main(argv=None):
     parser.add_argument('--profile', action='append', choices=['core', 'lean', 'backend', 'postgres', 'all'])
     parser.add_argument('--json', action='store_true')
     args = parser.parse_args(argv)
-    result = check(Path(__file__).resolve().parents[1], args.skills_dir or default_roots(), args.profile or ['core'], args.package_only)
+    result = check(Path(__file__).resolve().parents[1], args.skills_dir or default_roots(), args.profile or ['all'], args.package_only)
     if args.json:
         print(json.dumps(result, indent=2))
     else:
