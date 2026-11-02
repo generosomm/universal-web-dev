@@ -384,6 +384,13 @@ The full list, with how each stack is detected, is in [stack packs](references/s
 ## FAQ
 
 <details>
+<summary><strong>Do I need to mention the skill in every prompt?</strong></summary>
+
+At a website project's kickoff, the assistant asks once whether to use Universal Web Dev throughout that project's development and fixes in the conversation or only for the current task. If you already stated your preference, it skips the question. You can then send normal follow-ups without repeating a special phrase. You can change the preference or say "stop universal-web-dev" anytime. This records your intent; automatic skill activation and continuity in a new chat still depend on your assistant.
+
+</details>
+
+<details>
 <summary><strong>I don't have time to read all this. What is it, in one line?</strong></summary>
 
 <br>

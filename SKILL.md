@@ -9,6 +9,8 @@ Build the smallest complete system that satisfies the brief. Project type, user 
 
 ## Start from the user's idea
 
+At a website project's kickoff, ask once: "Would you like me to use Universal Web Dev throughout this project's development and fixes in this conversation, or just for this task?" Skip this question when the user already chose a scope. Follow their answer without asking again on each prompt. While awaiting an answer, continue the current authorized task; silence does not extend the scope. This preference does not guarantee host-level activation on every turn or in new chats. See [discovery](references/discovery.md#workflow-scope) for continuity.
+
 For a new site or unclear feature, use [discovery](references/discovery.md) to polish the idea with the user before coding. Explain choices in everyday language and recommend defaults; beginners need not choose frameworks. If the user delegates choices or asks you to proceed, record assumptions and continue within that authorization. Preserve an existing plan instead of restarting discovery.
 
 ## Route each task to the fewest skills
